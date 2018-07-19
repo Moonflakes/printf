@@ -1,0 +1,10 @@
+a.out
+tests
+mbtowc.c
+ft_printf
+printf.dSYM
+obj/
+libft/obj/
+libft/printf/obj/
+.DS_Store
+libftprintf.a
