@@ -77,7 +77,7 @@ int	print_char(t_arg *arg, t_flags *flags, int num)
 //	ft_putnbr(mbrlen(str, MB_CUR_MAX, &ps));
 //	ft_putnbr(mblen(str, MB_CUR_MAX));
 //	ft_putendl(" : mblen");
-	return (printing(str, arg, flags, num));
+	return (printing(&str, arg, flags, num));
 }
 
 int ft_tabnblen(int *tabnb)
@@ -168,7 +168,7 @@ int	print_string(t_arg *arg, t_flags *flags, int num)
 					ft_strdel(&str);
 					str = ft_strdup("");
 					arg->ret = -1;
-					return (printing(str, arg, flags, num));
+					return (printing(&str, arg, flags, num));
 				}
 				str = ft_strjoin_free(str, c, 0);
 			}
@@ -176,7 +176,7 @@ int	print_string(t_arg *arg, t_flags *flags, int num)
 		}
 	}
 	str = pr_str(str, flags, arg, num);
-	return (printing(str, arg, flags, num));
+	return (printing(&str, arg, flags, num));
 }
 
 int	what_base(t_arg *arg, int num)
@@ -202,6 +202,8 @@ int	if_length(t_arg *arg, t_flags *flags, int num)
 
 int	print_arg(t_arg *arg, t_flags *flags, int num)
 {
+	char	*pct;
+
 	if (arg->type)
 	{
 		if (arg->type[num] == 'c' || arg->type[num] == 'C')
@@ -226,7 +228,10 @@ int	print_arg(t_arg *arg, t_flags *flags, int num)
 		if (arg->type[num] == 'p')
 			return (print_p(arg, flags, num));
 		if (arg->type[num] == '%')
-			return(printing(ft_strdup("%"), arg, flags, num));
+		{
+			pct = ft_strdup("%");
+			return(printing(&pct, arg, flags, num));
+		}
 	}
 	return (0);
 }

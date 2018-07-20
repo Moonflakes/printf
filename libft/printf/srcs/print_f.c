@@ -133,5 +133,5 @@ int		print_f(t_arg *arg, t_flags *flags, int num)
 	if (flags->htag[num] == 1 && flags->precision[num] == 0 && arg->precision[num] == 1)
 		nb = ft_strjoin_free(nb, ".", 1);
 //	ft_putendl(nb);
-	return (printing(nb, arg, flags, num));
+	return (printing(&nb, arg, flags, num));
 }

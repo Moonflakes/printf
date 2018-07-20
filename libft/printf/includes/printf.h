@@ -91,7 +91,7 @@ typedef struct			s_g
 
 int						ft_printf(const char *format, ...);
 int						print_arg(t_arg *arg, t_flags *flags, int num);
-int						printing(char *str, t_arg *arg, t_flags *flags, int num);
+int						printing(char **str, t_arg *arg, t_flags *flags, int num);
 void					verif_next_arg(t_arg *arg, t_flags *flags, int next);
 int 					interrupt(t_arg *arg, t_flags *flags);
 

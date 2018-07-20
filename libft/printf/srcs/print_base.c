@@ -42,15 +42,15 @@ char	*pad_precision(char *str, t_flags *flags, int num)
 				padstr[0] = '-';
 			padstr[j] = (padstr[j] == '-') ? '-' : '0';
 		}
-		ft_strdel(&str);
-		str = ft_strdup(padstr);
+//		ft_strdel(&str);
+	//	str = ft_strdup(padstr);
 		flags->prpass = 1;
 //		ft_putendl("je passe la");
 	}
 //	ft_putendl("");
 //	ft_putstr(str);
 //	ft_putendl(" : str");
-	return (str);
+	return (padstr);
 }
 
 int		ft_nblen(int nb)
@@ -77,20 +77,23 @@ int		print_nb(t_arg *arg, t_flags *flags, int num)
 {
 	long long	i;
 	char		*str;
+	char		*tmp;
 
+	tmp = NULL;
 	i = arg->i[flags->index_arg[num]];
 //	ft_putnbr(flags->precision[num]);
 //	ft_putstr(" - ");
 //	ft_putnbr(arg->precision[num]);
 //	ft_putendl(" : precision");
 	if (i == 0 && flags->precision[num] == 1 && arg->precision[num] == 1)
-		str = ft_strdup("");
+		str = ft_memalloc(sizeof(char));
 	else
 	{
 		str = ft_itoa(i);
-		str = pad_precision(str, flags, num);
+		tmp = pad_precision(str, flags, num);
+		ft_strdel(&str);
 	}
-	return (printing(str, arg, flags, num));
+	return (printing(&tmp, arg, flags, num));
 }
 
 int		print_base(int base, t_arg *arg, t_flags *flags, int num)
@@ -114,7 +117,7 @@ int		print_base(int base, t_arg *arg, t_flags *flags, int num)
 			ft_uitoabase(i, base) : ft_itoabase(i, base);
 		str = pad_precision(str, flags, num);
 	}
-	return (printing(str, arg, flags, num));
+	return (printing(&str, arg, flags, num));
 }
 
 int		print_hex(char c, t_arg *arg, t_flags *flags, int num)
@@ -135,5 +138,5 @@ int		print_hex(char c, t_arg *arg, t_flags *flags, int num)
 		}
 	}
 	x = pad_precision(x, flags, num);
-	return (printing(x, arg, flags, num));
+	return (printing(&x, arg, flags, num));
 }

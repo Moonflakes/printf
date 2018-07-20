@@ -66,5 +66,5 @@ int		print_la(char a, t_arg *arg, t_flags *flags, int num)
 	sign->exp = ldble_process(&d, &exp);
 	hex = dtoa_base(d, sign, exp, flags->precision[num] + 1);
 	free_t_sign(sign);
-	return (printing(hex, arg, flags, num));
+	return (printing(&hex, arg, flags, num));
 }

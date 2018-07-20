@@ -59,6 +59,7 @@ $(LIB) :
 	@mkdir -p $(OBJ_PATH)
 
 clean :
+	@make clean -C $(PATH_LIB)
 	@rm -rf $(OBJ_PATH)
 	@echo "\033[1;34mFichier printf/obj supprimé.\033[0m"
 

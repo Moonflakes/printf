@@ -12,7 +12,7 @@
 
 #include "../includes/printf.h"
 
-int	printing(char *str, t_arg *arg, t_flags *flags, int num)
+int	printing(char **str, t_arg *arg, t_flags *flags, int num)
 {
 	int i;
 
@@ -32,14 +32,14 @@ int	printing(char *str, t_arg *arg, t_flags *flags, int num)
 //		ft_putendl("");
 //		ft_putstr(str);
 //		ft_putendl(" : str");
-		str = process_flags(str, arg, flags, num);
+		*str = process_flags(*str, arg, flags, num);
 //		ft_putstr(str);
 //		ft_putendl(" : str2");
 //		if (arg->count_bn < arg->nb_bn)
-			ft_putstr(str);
-		i = ft_strlen(str);
+			ft_putstr(*str);
+		i = ft_strlen(*str);
 	}
-	ft_strdel(&str);
+	ft_strdel(str);
 //	ft_putendl("miou");
 	verif_next_arg(arg, flags, num + 1);
 //	ft_putendl("mia");

@@ -25,5 +25,5 @@ int	print_p(t_arg *arg, t_flags *flags, int num)
 		p[i] = ft_tolower(p[i]);
 		i++;
 	}
-	return (printing(p, arg, flags, num));
+	return (printing(&p, arg, flags, num));
 }

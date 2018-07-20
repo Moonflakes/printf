@@ -2138,6 +2138,6 @@ int main(void)
 //	printf("%.s", 42);
 //	ft_printf("%.s", 42);
 */
-//	while (1);
+	while (1);
 
 }

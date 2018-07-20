@@ -157,5 +157,5 @@ int		print_e(char c, t_arg *arg, t_flags *flags, int num)
 		nb = ft_strjoin_free(sign_nb, pute(round_e(i[1],
 			ft_strjoin_free(ft_itoa(i[0]), dtoa_rest(i[2], flags->precision[num]), 0)), c, exp - 1, i[0]), 0);
 //	ft_putendl(nb);
-	return (printing(nb, arg, flags, num));
+	return (printing(&nb, arg, flags, num));
 }

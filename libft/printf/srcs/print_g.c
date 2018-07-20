@@ -137,5 +137,5 @@ int			print_g(char c, t_arg *arg, t_flags *flags, int num)
 //		ft_putendl(" : nb 3");
 	}
 	free_t_g(val);
-	return (printing(nb, arg, flags, num));
+	return (printing(&nb, arg, flags, num));
 }
