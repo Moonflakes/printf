@@ -28,8 +28,7 @@ void	init_flags(t_arg *arg, int i, t_flags *flags, int num)
 	flags->space[num] = (flags->space[num] != 0 ||
 		(c == ' ' && flags->plus[num] != 1)) ? 1 : 0;
 	if (arg->strp[num][i] == 'l' || arg->strp[num][i] == 'L' 
-		|| arg->type[num] == 'D' || arg->type[num] == 'U' 
-		|| arg->type[num] == 'O' || arg->type[num] == 'X')
+		|| ft_strchr("DUOX", arg->type[num]))
 		arg->length[num] = 1;
 	if (arg->strp[num][i] == 'z' || arg->strp[num][i] == 'j')
 		arg->length[num] = 3;
