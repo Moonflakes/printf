@@ -24,11 +24,7 @@ char	*add_plus_or_space(char *str, t_arg *arg, t_flags *flags, int num)
 //		while (types[i])
 //		{
 //			if (arg->type[num] == types[i])
-			if (arg->type[num] == 'i' || arg->type[num] == 'd' ||
-			arg->type[num] == 'D' || arg->type[num] == 'g' ||
-			arg->type[num] == 'G' || arg->type[num] == 'f' ||
-			arg->type[num] == 'F' || arg->type[num] == 'e' ||
-			arg->type[num] == 'E' || arg->type[num] == 'a' || arg->type[num] == 'A')
+			if (ft_strchr("idDgGfFeEaA", arg->type[num]))
 				str = ft_strjoin_free("+", str, 2);
 //			i++;
 //		}
@@ -38,11 +34,7 @@ char	*add_plus_or_space(char *str, t_arg *arg, t_flags *flags, int num)
 //		while (types[i])
 //		{
 //			if (arg->type[num] == types[i])
-			if (arg->type[num] == 'i' || arg->type[num] == 'd' ||
-			arg->type[num] == 'D' || arg->type[num] == 'g' ||
-			arg->type[num] == 'G' || arg->type[num] == 'f' ||
-			arg->type[num] == 'F' || arg->type[num] == 'e' ||
-			arg->type[num] == 'E' || arg->type[num] == 'a' || arg->type[num] == 'A')
+			if (ft_strchr("idDgGfFeEaA", arg->type[num]))
 				str = ft_strjoin_free(" ", str, 2);
 //			i++;
 //		}

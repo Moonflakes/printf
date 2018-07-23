@@ -155,7 +155,7 @@ int		ft_printf(const char *format, ...)
 					print_rest(i, format/*, arg, flags*/);
 			}
 		}
-//		free_struct(&arg, &flags);
+		free_struct(&arg, &flags);
 	}
 	va_end(ap);
 	return (i[2]);

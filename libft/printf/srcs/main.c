@@ -394,7 +394,7 @@ int main(void)
 	ft_putendl("");
 
 	ft_putendl("c all_01 : /0	 	(char)564");
-	ft_putnbr(ft_printf("hello ca**%----4c** **%1c** va **%10c** **%-c** ??", '\0', '\n', (char)564, 0));
+	ft_putnbr(ft_printf("hello ca*%----4c* *%1c* va *%10c* *%-c* ??", '\0', '\n', (char)564, 0));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("hello ca*%----4c* *%1c* va *%10c* *%-c* ??", '\0', '\n', (char)564, 0));
 	ft_putendl(" : return vrai printf");
@@ -584,6 +584,48 @@ int main(void)
 ** INT : i, d et D **
 *********************
 
+	ft_putendl("test : ");
+	ft_putnbr(ft_printf("%020.d", 12));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%020.d", 12));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+*/
+	ft_putendl("test 2 : ");
+	ft_putnbr(ft_printf("%020.5g", 12.0));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%020.5g", 12.0));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+/*
+	ft_putendl("i et d : basic_01");
+	ft_putnbr(ft_printf("%d", 42));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%d", 42));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+
+	ft_putendl("i et d : basic_02");
+	ft_putnbr(ft_printf("%d", -42));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%d", -42));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+
+	ft_putendl("i et d : basic_03");
+	ft_putnbr(ft_printf("%d", 0));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%d", 0));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+
+	ft_putendl("i et d : basic_04");
+	ft_putnbr(ft_printf("%d", 3));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%d", 3));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+
 	size_t i = 456454;
 	ft_putendl("i et d :");
 	ft_putnbr(ft_printf("%zi \n", i));
@@ -605,14 +647,14 @@ int main(void)
 	ft_putnbr(printf("%.0i", 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("d precision_05 : ");
 	ft_putnbr(ft_printf("%.5d", -421));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%.5d", -421));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 	ft_putendl("d precision_07 : ");
 	ft_putnbr(ft_printf("%.d", 0));
 	ft_putendl(" : return mon printf");
@@ -694,10 +736,31 @@ int main(void)
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
+	ft_putendl("u : basic_02");
+	ft_putnbr(ft_printf("%u", 1234));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%u", 1234));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+
+	ft_putendl("u : basic_03");
+	ft_putnbr(ft_printf("%u", -1001234));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%u", -1001234));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+
 	ft_putendl("u : basic_04");
 	ft_putnbr(ft_printf("%U", 231009999));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%U", 231009999));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+
+	ft_putendl("u : basic_04");
+	ft_putnbr(ft_printf("%hhu", (unsigned char)20));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%hhu", (unsigned char)20));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
@@ -964,9 +1027,9 @@ int main(void)
 	ft_putendl("");
 
 	ft_putendl("x all_05 : 0xff1144ff1144			0xffaabbccee");
-	ft_putnbr(ft_printf("#.22zX : **%#.22zX**	020.14jx : **%020.14jx**\n", 0xff1144ff1144, 0xffaabbccee));
+	ft_putnbr(ft_printf("#.22zX : **%#.22zX**	020.14jx : **%020.14jx**", 0xff1144ff1144, 0xffaabbccee));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("#.22zX : **%#.22zX**	020.14jx : **%020.14jx**\n", 0xff1144ff1144, 0xffaabbccee));
+	ft_putnbr(printf("#.22zX : **%#.22zX**	020.14jx : **%020.14jx**", 0xff1144ff1144, 0xffaabbccee));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
@@ -2138,6 +2201,6 @@ int main(void)
 //	printf("%.s", 42);
 //	ft_printf("%.s", 42);
 */
-	while (1);
+//	while (1);
 
 }

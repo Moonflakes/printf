@@ -12,14 +12,14 @@
 
 #include "../includes/printf.h"
 
-char	*pad_precision(char *str, t_flags *flags, int num)
+char	*pad_precision(char **str, t_flags *flags, int num)
 {
 	int		i;
 	int		j;
 	char	*padstr;
 
 	padstr = NULL;
-	i = (str[0] == '-') ? ft_strlen(str) : ft_strlen(str) + 1;
+	i = (str[0][0] == '-') ? ft_strlen(str[0]) : ft_strlen(str[0]) + 1;
 //	ft_putendl("");
 //	ft_putnbr(i);
 //	ft_putendl(" : i");
@@ -34,23 +34,23 @@ char	*pad_precision(char *str, t_flags *flags, int num)
 		{
 			while (--i >= 0)
 			{
-				if (str[i] == '-')
+				if (str[0][i] == '-')
 					break ;
-				padstr[j--] = str[i];
+				padstr[j--] = str[0][i];
 			}
-			if (str[i] == '-')
+			if (str[0][i] == '-')
 				padstr[0] = '-';
 			padstr[j] = (padstr[j] == '-') ? '-' : '0';
 		}
-//		ft_strdel(&str);
-	//	str = ft_strdup(padstr);
+		ft_strdel(str);
+		str[0] = ft_strdup(padstr);
 		flags->prpass = 1;
 //		ft_putendl("je passe la");
 	}
 //	ft_putendl("");
 //	ft_putstr(str);
 //	ft_putendl(" : str");
-	return (padstr);
+	return (str[0]);
 }
 
 int		ft_nblen(int nb)
@@ -77,10 +77,12 @@ int		print_nb(t_arg *arg, t_flags *flags, int num)
 {
 	long long	i;
 	char		*str;
-	char		*tmp;
+//	char		*tmp;
 
-	tmp = NULL;
+//	tmp = NULL;
 	i = arg->i[flags->index_arg[num]];
+//	ft_putnbr(i);
+//	ft_putendl(" : i");
 //	ft_putnbr(flags->precision[num]);
 //	ft_putstr(" - ");
 //	ft_putnbr(arg->precision[num]);
@@ -90,10 +92,10 @@ int		print_nb(t_arg *arg, t_flags *flags, int num)
 	else
 	{
 		str = ft_itoa(i);
-		tmp = pad_precision(str, flags, num);
-		ft_strdel(&str);
+		str = pad_precision(&str, flags, num);
+//		ft_strdel(&str);
 	}
-	return (printing(&tmp, arg, flags, num));
+	return (printing(&str, arg, flags, num));
 }
 
 int		print_base(int base, t_arg *arg, t_flags *flags, int num)
@@ -115,7 +117,7 @@ int		print_base(int base, t_arg *arg, t_flags *flags, int num)
 			arg->length[num] == 3 || (arg->length[num] == 1 &&
 			arg->type[num] == 'o') || arg->type[num] == 'O') ?
 			ft_uitoabase(i, base) : ft_itoabase(i, base);
-		str = pad_precision(str, flags, num);
+		str = pad_precision(&str, flags, num);
 	}
 	return (printing(&str, arg, flags, num));
 }
@@ -137,6 +139,6 @@ int		print_hex(char c, t_arg *arg, t_flags *flags, int num)
 			i++;
 		}
 	}
-	x = pad_precision(x, flags, num);
+	x = pad_precision(&x, flags, num);
 	return (printing(&x, arg, flags, num));
 }

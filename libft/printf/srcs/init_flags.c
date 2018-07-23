@@ -97,21 +97,19 @@ void	width(t_arg *arg, t_flags *flags, int num)
 
 }
 
-int		if_point(t_arg *arg, t_flags *flags, int num, int i)
+void	if_point(t_arg *arg, t_flags *flags, int num, int i)
 {
 	arg->precision[num] = 1;
 	flags->asterix_p[num] = (arg->strp[num][i + 1] == '*') ? 1 : 0;
 	flags->precision[num] = extract_value(&arg->strp[num][i + 1], arg,
 			flags, num);
+	ft_putnbr(flags->precision[num]);
+	ft_putendl(" : pr1");
 	if (flags->precision[num] == 0)
-		if (arg->type[num] != 'a' && arg->type[num] != 'A' &&
-				arg->type[num] != 'e' && arg->type[num] != 'E' &&
-				arg->type[num] != 'g' && arg->type[num] != 'G' &&
-				arg->type[num] != 'f' && arg->type[num] != 'F' &&
-				arg->type[num] != 'x' && arg->type[num] != 'X' &&
-				arg->type[num] != 's' && arg->type[num] != 'S')
+		if (!ft_strchr("aAeEgGfFxXsS", arg->type[num]))
 			flags->precision[num] = 1;
-	return (i);
+	ft_putnbr(flags->precision[num]);
+	ft_putendl(" : pr2");
 }
 
 void	process_strp(t_arg *arg, int num, t_flags *flags)
@@ -131,7 +129,7 @@ void	process_strp(t_arg *arg, int num, t_flags *flags)
 			arg->dollar = 1;
 		}
 		if (arg->strp[num][i] == '.')
-			i = if_point(arg, flags, num, i);
+			if_point(arg, flags, num, i);
 		init_flags(arg, i, flags, num);
 	}
 	width(arg, flags, num);

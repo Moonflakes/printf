@@ -22,9 +22,7 @@ void	begin_str(char **padstr, t_flags *flags, t_int *inc, t_arg *arg)
 		if (flags->zero[inc->num] == 1)
 			padstr[0][inc->a++] = inc->str[inc->j++];
 	}
-	if (arg->type[inc->num] == 'a' || arg->type[inc->num] == 'A' ||
-		arg->type[inc->num] == 'p' || arg->type[inc->num] == 'x' ||
-		arg->type[inc->num] == 'X')
+	if (ft_strchr("aApxX", arg->type[inc->num]))
 	{
 		if (flags->zero[inc->num] == 1 && flags->htag[inc->num] == 1)
 		{
@@ -54,39 +52,9 @@ char	*put_pad_l(char **padstr, t_arg *arg, t_flags *flags, t_int *inc)
 //	ft_putendl(" : arg pr");
 //	ft_putnbr(len);
 //	ft_putendl(" : len");
-	pad = (flags->zero[inc->num] == 1 && arg->type[inc->num] != 's'
-		&& arg->type[inc->num] != 'S' && arg->type[inc->num] != 'c'
-		&& arg->type[inc->num] != 'C' && (arg->i[inc->num] != 0 ||
-		arg->ull[inc->num] != 0 || arg->type[inc->num] == '%') &&
-		(arg->type[inc->num] != 'u' || arg->type[inc->num] != 'o' ||
-		arg->type[inc->num] != 'U' || arg->type[inc->num] != 'O')) ? '0' : ' ';
-//	ft_putendl("");
-//	ft_putchar(pad);
-//	ft_putendl(" : pad1");
-	pad = ((arg->type[inc->num] == 'd' || arg->type[inc->num] == 'D' ||
-		arg->type[inc->num] == 'i' || ((arg->type[inc->num] == 'u' ||
-		arg->type[inc->num] == 'U') && arg->precision[inc->num] == 0))
-		&& flags->zero[inc->num] == 1) ? '0' : pad;
-	pad = (arg->precision[inc->num] == 1 && (arg->i[inc->num] != 0 ||
-		arg->ull[inc->num] != 0)) ? ' ' : pad;
-//	ft_putchar(pad);
-//	ft_putendl(" : pad2");
-	pad = (arg->precision[inc->num] == 0 && arg->ull && arg->ull[inc->num] == 0 
-		&& arg->i[inc->num] == 0 && arg->type[inc->num] != 'p' && !arg->d[inc->num]) ? '0' : pad;
-//	ft_putchar(pad);
-//	ft_putendl(" : pad3");
-	pad = (arg->ull[inc->num] == 0 && flags->htag[inc->num] == 1 &&
-		arg->type[inc->num] != 'x' && arg->type[inc->num] != 'X' &&
-		arg->type[inc->num] != 'O' && !(arg->type[inc->num] == 'o'
-		&& arg->length[inc->num] == 1)) ? ' ' : pad ;
-//	ft_putchar(pad);
-//	ft_putendl(" : pad4");
-	pad = (flags->zero[inc->num] == 0 && (arg->type[inc->num] == '%' ||
-		arg->type[inc->num] == 's' || arg->type[inc->num] == 'S')) ? ' ' : pad;
-//	ft_putchar(pad);
-//	ft_putendl(" : pad5");
-//	ft_putnbr(inc->str[inc->j]);
-//	ft_putendl(" : str j");
+	pad = ((ft_strchr("%aAgGfFeE", arg->type[inc->num]) && flags->zero[inc->num] == 1) ||
+			(!ft_strchr("sScCp", arg->type[inc->num]) && ft_strchr("idDuUoOxXb", arg->type[inc->num])
+			&& flags->zero[inc->num] == 1 && arg->precision[inc->num] == 0)) ? '0' : ' ';
 	while (inc->str[inc->j] || (len == 0 && (arg->type[inc->num] == 'S' ||
 		(arg->type[inc->num] == 's' && arg->length[inc->num] == 1))))
 	{
