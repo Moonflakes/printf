@@ -33,7 +33,7 @@ char	*if_sup_one(char *str, int i, int precision, int point_pr)
 	int count;
 
 	count = 0;
-	if (ft_strlen(str) == 1)
+	if (!ft_strchr(str, '.'))
 		str = ft_strjoin_free(str, ".", 1);
 	while (str[i])
 	{

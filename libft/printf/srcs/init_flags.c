@@ -103,13 +103,9 @@ void	if_point(t_arg *arg, t_flags *flags, int num, int i)
 	flags->asterix_p[num] = (arg->strp[num][i + 1] == '*') ? 1 : 0;
 	flags->precision[num] = extract_value(&arg->strp[num][i + 1], arg,
 			flags, num);
-	ft_putnbr(flags->precision[num]);
-	ft_putendl(" : pr1");
 	if (flags->precision[num] == 0)
 		if (!ft_strchr("aAeEgGfFxXsS", arg->type[num]))
 			flags->precision[num] = 1;
-	ft_putnbr(flags->precision[num]);
-	ft_putendl(" : pr2");
 }
 
 void	process_strp(t_arg *arg, int num, t_flags *flags)
