@@ -585,16 +585,16 @@ int main(void)
 *********************
 
 	ft_putendl("test : ");
-	ft_putnbr(ft_printf("%020.d", 12));
+	ft_putnbr(ft_printf("%#020x", 12));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%020.d", 12));
+	ft_putnbr(printf("%#020x", 12));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 */
 	ft_putendl("test 2 : ");
-	ft_putnbr(ft_printf("%020.5g", 12.0));
+	ft_putnbr(ft_printf("%#20a", 12.0));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%020.5g", 12.0));
+	ft_putnbr(printf("%#20a", 12.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 /*

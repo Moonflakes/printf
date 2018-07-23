@@ -22,20 +22,19 @@ void	begin_str(char **padstr, t_flags *flags, t_int *inc, t_arg *arg)
 		if (flags->zero[inc->num] == 1)
 			padstr[0][inc->a++] = inc->str[inc->j++];
 	}
-	if (ft_strchr("aApxX", arg->type[inc->num]))
+	if (flags->zero[inc->num] == 1 && flags->htag[inc->num] == 1 &&
+		((ft_strchr("pxX", arg->type[inc->num]) && arg->precision[inc->num] == 0) ||
+		(ft_strchr("aA", arg->type[inc->num]) && arg->precision[inc->num] == 1)))
 	{
-		if (flags->zero[inc->num] == 1 && flags->htag[inc->num] == 1)
+		while (inc->str[inc->j])
 		{
-			while (inc->str[inc->j])
+			padstr[0][inc->a++] = inc->str[inc->j];
+			if (inc->str[inc->j] == 'x' || inc->str[inc->j] == 'X')
 			{
-				padstr[0][inc->a++] = inc->str[inc->j];
-				if (inc->str[inc->j] == 'x' || inc->str[inc->j] == 'X')
-				{
-					inc->j++;
-					break ;
-				}
 				inc->j++;
+				break ;
 			}
+			inc->j++;
 		}
 	}
 }
