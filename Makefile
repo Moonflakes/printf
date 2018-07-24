@@ -39,7 +39,7 @@ PATH_LIB = libft/
 
 LIB = libftprintf.a
 
-CC = gcc -g3
+CC = gcc -g -fsanitize=address
 
 CFLAGS = -Wall -Werror -Wextra
 

@@ -585,19 +585,19 @@ int main(void)
 *********************
 
 	ft_putendl("test : ");
-	ft_putnbr(ft_printf("%#020x", 12));
+	ft_putnbr(ft_printf("%#020X", 12));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%#020x", 12));
+	ft_putnbr(printf("%#020X", 12));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("test 2 : ");
 	ft_putnbr(ft_printf("%#20g", 12.0));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%#20g", 12.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 	ft_putendl("i et d : basic_01");
 	ft_putnbr(ft_printf("%d", 42));
 	ft_putendl(" : return mon printf");
@@ -763,7 +763,14 @@ int main(void)
 	ft_putnbr(printf("%hhu", (unsigned char)20));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
+	ft_putendl("u : basic_04");
+	ft_putnbr(ft_printf("%hu", (unsigned short)12220));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%hu", (unsigned short)12220));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+/*
 	ft_putendl("lu :");
 	ft_putnbr(ft_printf("%llu\n", (unsigned long long)-12345612220));
 	ft_putendl(" : return mon printf");

@@ -67,7 +67,7 @@ char	*put_pad_l(char **padstr, t_arg *arg, t_flags *flags, t_int *inc)
 		if (len == 0)
 			len = 1;
 	}
-	if (ft_strcmp(inc->str, "\0") == 0)
+	if (!inc->str || !inc->str[0])
 	{
 		while (k < (flags->width[inc->num] - len))
 		{

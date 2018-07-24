@@ -19,14 +19,12 @@ void	free_tab_str(t_arg *arg)
 	i = 0;
 	while (arg->strp[i] && arg->strp)
 	{
-//		ft_putstr(arg->strp[i]);
-//		ft_putendl(" : strp[i]");
 		ft_memdel((void**)&arg->strp[i]);
 		i++;
 	}
 	free((void*)arg->strp);
 	i = 0;
-	while (arg->s[i] && arg->type[i] != 'n' && arg->type[i] != 's' && arg->type[i] != 'S')
+	while (arg->s[i] && arg->s && arg->type[i] != 'n' && arg->type[i] != 's' && arg->type[i] != 'S')
 	{
 		ft_memdel((void**)&arg->s[i]);
 		i++;
@@ -36,14 +34,15 @@ void	free_tab_str(t_arg *arg)
 
 void	free_struct(t_arg *arg, t_flags *flags)
 {
-	free_tab_str(arg);
+	//free_tab_str(arg);
 	ft_memdel((void**)&arg->type);
 	ft_memdel((void**)&arg->size);
 	ft_memdel((void**)&arg->length);
 	ft_memdel((void**)&arg->i);
 	ft_memdel((void**)&arg->ull);
 	ft_memdel((void**)&arg->d);
-//	ft_memdel((void**)&arg->str);
+//	if (arg->str)
+//		ft_strdel(&(arg->str));
 	ft_memdel((void**)&arg->precision);
 //	ft_memdel((void**)&arg);
 	ft_memdel((void**)&flags->htag);
