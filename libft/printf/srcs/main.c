@@ -682,7 +682,11 @@ int main(void)
 	ft_putnbr(printf("5d : **%5d**\n", -741));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+	*/
+	char *s = ft_itoabase(154521, 16);
+	ft_putstr(s);
+	ft_putendl(" : nb");
+	/*
 	ft_putendl("d all_03 :");
 	ft_putnbr(ft_printf("%20.ld et %.4hhi !\n", 0x11ffaa147, (signed char)-8));
 	ft_putendl(" : return mon printf");
@@ -763,14 +767,14 @@ int main(void)
 	ft_putnbr(printf("%hhu", (unsigned char)20));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("u : basic_04");
 	ft_putnbr(ft_printf("%hu", (unsigned short)12220));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%hu", (unsigned short)12220));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 	ft_putendl("lu :");
 	ft_putnbr(ft_printf("%llu\n", (unsigned long long)-12345612220));
 	ft_putendl(" : return mon printf");

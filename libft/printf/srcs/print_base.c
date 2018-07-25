@@ -81,6 +81,7 @@ int		print_nb(t_arg *arg, t_flags *flags, int num)
 
 //	tmp = NULL;
 	i = arg->i[flags->index_arg[num]];
+	str = NULL;
 //	ft_putnbr(i);
 //	ft_putendl(" : i");
 //	ft_putnbr(flags->precision[num]);
@@ -92,7 +93,7 @@ int		print_nb(t_arg *arg, t_flags *flags, int num)
 	else
 	{
 		str = ft_itoa(i);
-		str = pad_precision(&str, flags, num);
+		//str = pad_precision(&str, flags, num);
 //		ft_strdel(&str);
 	}
 	return (printing(&str, arg, flags, num));

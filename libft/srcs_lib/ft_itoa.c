@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
-
+/*
 static void	ft_result(long long nbb, long long nb_digit, char *str)
 {
 	long long i;
@@ -55,5 +55,35 @@ char		*ft_itoa(long long n)
 		return (NULL);
 	str[nb_digit] = '\0';
 	ft_result(nbb, nb_digit, str);
+	return (str);
+}
+*/
+char *ft_itoa(long long n)
+{
+	unsigned long long	a;
+	char				*str;
+	int					sign;
+	int					len;
+
+	a = 10;
+	len = 1;
+	sign = n < 0 ? 1 : 0;
+	n < 0 ? n = -n : 0;
+	while (a - 1 < (unsigned long long)n)
+	{
+		a *= 10;
+		++len;
+	}
+	a /= 10;
+	if (!(str = ft_memalloc(sizeof(char) * (len + sign + 1))))
+		return (NULL);
+	sign ? str[0] = '-' : 0;
+	len = sign;
+	while (a >= 1)
+	{
+		str[len++] = (n / a) + '0';
+		n %= a;
+		a /= 10;
+	}
 	return (str);
 }
