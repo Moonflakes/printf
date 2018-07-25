@@ -34,7 +34,7 @@ void	free_tab_str(t_arg *arg)
 
 void	free_struct(t_arg *arg, t_flags *flags)
 {
-	//free_tab_str(arg);
+	free_tab_str(arg);
 	ft_memdel((void**)&arg->type);
 	ft_memdel((void**)&arg->size);
 	ft_memdel((void**)&arg->length);
