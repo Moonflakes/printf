@@ -14,21 +14,18 @@
 
 void	ft_putnbr(long long n)
 {
-	long long nbb;
-
-	nbb = n;
-	if (nbb < 0 && nbb >= -2147483648)
+	if (n < 0)
 	{
 		ft_putchar('-');
-		nbb = nbb * (-1);
+		n = n * (-1);
 	}
-	if (nbb >= 0 && nbb <= 9)
+	if (n >= 0 && n <= 9)
 	{
-		ft_putchar(nbb + '0');
+		ft_putchar(n + '0');
 	}
-	if (nbb > 9)
+	if (n > 9)
 	{
-		ft_putnbr(nbb / 10);
-		ft_putnbr(nbb % 10);
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
 	}
 }

@@ -683,9 +683,10 @@ int main(void)
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 */	
-	char *s = ft_itoabase(2, 2);
-	ft_putstr(s);
+	ft_putnbr(ft_atoi("456466"));
 	ft_putendl(" : nb");
+	ft_putnbr(atoi("456466"));
+	ft_putendl(" : le atoi");
 /*	
 	ft_putendl("d all_03 :");
 	ft_putnbr(ft_printf("%20.ld et %.4hhi !\n", 0x11ffaa147, (signed char)-8));
