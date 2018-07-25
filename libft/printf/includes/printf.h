@@ -37,7 +37,6 @@ typedef struct			s_arg
 	unsigned long long	*ull;
 	long double 		*d;
 	int					**s;
-	char				*str;
 	int					dollar;
 	int					*precision;
 }						t_arg;

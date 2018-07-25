@@ -92,7 +92,7 @@ SRC_PATH = srcs_lib/
 OBJ_PATH = obj/
 
 NAME = libftprintf.a
-FLAG = -Wall -Wextra -Werror -g -fsanitize=address
+FLAG = -Wall -Wextra -Werror -g3 #-g -fsanitize=address
 OBJ_NAME = $(SRCS:.c=.o)
 CC = clang $(FLAG)
 SRC = $(addprefix $(SRC_PATH),$(SRCS))

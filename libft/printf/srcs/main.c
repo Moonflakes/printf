@@ -675,19 +675,19 @@ int main(void)
 	ft_putnbr(printf("04d : **%04d** \n", 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
 	ft_putendl("d padding_01 : -741");
 	ft_putnbr(ft_printf("5d : **%5d**\n", -741));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("5d : **%5d**\n", -741));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/	
+/*
 	ft_putnbr(ft_atoi("456466"));
 	ft_putendl(" : nb");
 	ft_putnbr(atoi("456466"));
 	ft_putendl(" : le atoi");
-/*	
+	
 	ft_putendl("d all_03 :");
 	ft_putnbr(ft_printf("%20.ld et %.4hhi !\n", 0x11ffaa147, (signed char)-8));
 	ft_putendl(" : return mon printf");
@@ -2213,6 +2213,6 @@ int main(void)
 //	printf("%.s", 42);
 //	ft_printf("%.s", 42);
 */
-//	while (1);
+	while (1);
 
 }

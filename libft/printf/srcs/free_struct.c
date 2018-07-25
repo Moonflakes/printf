@@ -41,8 +41,6 @@ void	free_struct(t_arg *arg, t_flags *flags)
 	ft_memdel((void**)&arg->i);
 	ft_memdel((void**)&arg->ull);
 	ft_memdel((void**)&arg->d);
-//	if (arg->str)
-//		ft_strdel(&(arg->str));
 	ft_memdel((void**)&arg->precision);
 //	ft_memdel((void**)&arg);
 	ft_memdel((void**)&flags->htag);

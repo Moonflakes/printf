@@ -27,10 +27,10 @@ char	*pad_precision(char **str, t_flags *flags, int num)
 //	ft_putendl(" : pr");
 	if (flags->precision[num] >= i && flags->precision[num] != 0)
 	{
-		j = i + (flags->precision[num] - i) + 1;
+		j = flags->precision[num] + 1;
 		if (!(padstr = (char*)ft_memalloc(sizeof(char) * (j + 1))))
 			return (NULL);
-		while (j-- + 1 > 0)
+		while (--j >= 0)
 		{
 			while (--i >= 0)
 			{
@@ -38,17 +38,16 @@ char	*pad_precision(char **str, t_flags *flags, int num)
 					break ;
 				padstr[j--] = str[0][i];
 			}
-			if (str[0][i] == '-')
+			if (i >= 0 && str[0][i] == '-')
 				padstr[0] = '-';
 			padstr[j] = (padstr[j] == '-') ? '-' : '0';
 		}
 		ft_strdel(str);
 		str[0] = ft_strdup(padstr);
 		flags->prpass = 1;
-//		ft_putendl("je passe la");
 	}
 //	ft_putendl("");
-//	ft_putstr(str);
+//	ft_putstr(str[0]);
 //	ft_putendl(" : str");
 	return (str[0]);
 }
@@ -93,7 +92,7 @@ int		print_nb(t_arg *arg, t_flags *flags, int num)
 	else
 	{
 		str = ft_itoa(i);
-		//str = pad_precision(&str, flags, num);
+		str = pad_precision(&str, flags, num);
 //		ft_strdel(&str);
 	}
 	return (printing(&str, arg, flags, num));
