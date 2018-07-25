@@ -682,11 +682,11 @@ int main(void)
 	ft_putnbr(printf("5d : **%5d**\n", -741));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-	*/
-	char *s = ft_itoabase(154521, 16);
+*/	
+	char *s = ft_itoabase(2, 2);
 	ft_putstr(s);
 	ft_putendl(" : nb");
-	/*
+/*	
 	ft_putendl("d all_03 :");
 	ft_putnbr(ft_printf("%20.ld et %.4hhi !\n", 0x11ffaa147, (signed char)-8));
 	ft_putendl(" : return mon printf");
