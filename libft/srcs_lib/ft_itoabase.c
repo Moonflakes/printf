@@ -14,12 +14,6 @@
 
 static void	ft_recursive(char *str, long long n, int base, unsigned long long i)
 {
-//	if (n < 0)
-//	{
-//		*str = '-';
-//		ft_recursive((str + 1), -n, base, i);
-//		return ;
-//	}
 	if (i >= (unsigned long long)base)
 	{
 		if ((n / i) < 10)
@@ -34,36 +28,6 @@ static void	ft_recursive(char *str, long long n, int base, unsigned long long i)
 	else
 		*str = n - 10 + 'A';
 }
-/*
-char		*ft_itoabase(long long n, int base)
-{
-	long long	i;
-	int		neg;
-	char	*str;
-	int		count;
-
-	i = 1;
-	neg = 0;
-	count = 0;
-	if (n <= 0)
-		neg = 1;
-	while (i <= n || (i * -neg) >= n)
-	{
-		i = i * base;
-		count++;
-	}
-	if (base < 2 || !(str = (char*)malloc(sizeof(char) * (count + neg + 1))))
-		return (NULL);
-	str[count + neg] = '\0';
-	if (n == 0)
-	{
-		str[0] = '0';
-		return (str);
-	}
-	ft_recursive(str, n, base, (i / base));
-	return (str);
-}
-*/
 
 char	*ft_itoabase(long long n, int base)
 {
