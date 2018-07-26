@@ -403,14 +403,14 @@ int main(void)
 	ft_putnbr(printf("**%c** \n", '\0'));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("c all_01 : /0	 	(char)564");
 	ft_putnbr(ft_printf("hello ca*%----4c* *%1c* va *%10c* *%-c* ??", '\0', '\n', (char)564, 0));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("hello ca*%----4c* *%1c* va *%10c* *%-c* ??", '\0', '\n', (char)564, 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 
 **************
 ** CHAR : C **
@@ -569,14 +569,14 @@ int main(void)
 	ft_putnbr(printf("%8C et coco %C titi %lc\n", 3250, 0x11ffff, 'a'));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
 	ft_putendl("C all_02 :");
 	ft_putnbr(ft_printf("%---8C et coco %1C titi\n", 3250, 0xffff));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%---8C et coco %1C titi\n", 3250, 0xffff));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 	ft_putendl("C all_03 :");
 	ft_putnbr(ft_printf("%6C et coco %C titi %C tyty\n", 3250, 0xd800, 'u'));
 	ft_putendl(" : return mon printf");
