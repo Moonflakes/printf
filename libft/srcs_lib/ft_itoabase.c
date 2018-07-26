@@ -45,7 +45,7 @@ char	*ft_itoabase(long long n, int base)
 		i *= base;
 		++len;
 	}
-	i = (i / base < (unsigned long long)base) ? i : i / base;
+	i = (i / base < 1) ? i : i / base;
 	if (base < 2 || !(str = ft_memalloc(sizeof(char) * (len + sign + 1))))
 		return (NULL);
 	if (sign)

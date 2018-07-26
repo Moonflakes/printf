@@ -43,7 +43,7 @@ char		*ft_uitoabase(unsigned long long jack, unsigned int base)
 		i = i / base;
 		count++;
 	}
-	if (base < 2 || !(str = (char*)malloc(sizeof(char) * (count + 1))))
+	if (base < 2 || !(str = (char*)ft_memalloc(sizeof(char) * (count + 1))))
 		return (NULL);
 	str[count] = '\0';
 	if (jack == 0)

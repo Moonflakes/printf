@@ -5,6 +5,17 @@
 int main(void)
 {
 /*
+************
+** BASICS **
+************
+
+	ft_putendl("s :");
+	ft_putnbr(ft_printf("coco\net titi \n"));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("coco\net titi \n"));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+
 ****************
 ** STRING : s **
 ****************
@@ -675,14 +686,14 @@ int main(void)
 	ft_putnbr(printf("04d : **%04d** \n", 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("d padding_01 : -741");
 	ft_putnbr(ft_printf("5d : **%5d**\n", -741));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("5d : **%5d**\n", -741));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 	ft_putnbr(ft_atoi("456466"));
 	ft_putendl(" : nb");
 	ft_putnbr(atoi("456466"));
@@ -828,14 +839,14 @@ int main(void)
 	ft_putnbr(printf("%#o \n", 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");	
-
+*/
 	ft_putendl("o flag_03 :");
 	ft_putnbr(ft_printf("%#o \n", -896));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%#o \n", -896));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");	
-
+/*
 	ft_putendl("o modifier_01 :");
 	ft_putnbr(ft_printf("%hho \n", (unsigned char)-12));
 	ft_putendl(" : return mon printf");
@@ -936,6 +947,10 @@ int main(void)
 
 	ft_putendl("b :");
 	ft_putnbr(ft_printf("%b \n", 45));
+	ft_putendl(" : return mon printf");
+
+	ft_putendl("b :");
+	ft_putnbr(ft_printf("%b \n", 2));
 	ft_putendl(" : return mon printf");
 
 	ft_putendl("b :");
@@ -2213,6 +2228,6 @@ int main(void)
 //	printf("%.s", 42);
 //	ft_printf("%.s", 42);
 */
-	while (1);
+//	while (1);
 
 }

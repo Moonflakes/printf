@@ -78,7 +78,7 @@ void	width(t_arg *arg, t_flags *flags, int num)
 		i = -1;
 //		ft_putstr(arg->strp[num]);
 //		ft_putendl(" : strp");
-		while (arg->strp[num][i++] != '.')
+		while (arg->strp[num][++i] != '.')
 		{
 			if (arg->strp[num][i] == '*')
 				flags->asterix_w[num] = 1;

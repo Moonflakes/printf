@@ -36,7 +36,7 @@ void	verif_next_arg(t_arg *arg, t_flags *flags, int next)
 {
 	char *sw_next;
 //	ft_putendl("je vais la");
-	if (arg->i[flags->index_arg[next]] && arg->i)
+	if (arg->i && arg->i[flags->index_arg[next]])
 	{
 //		ft_putendl("kikou");
 		if ((arg->type[next] == 'C' || (arg->type[next] == 'c'

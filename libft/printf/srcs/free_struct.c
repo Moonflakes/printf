@@ -23,13 +23,14 @@ void	free_tab_str(t_arg *arg)
 		i++;
 	}
 	free((void*)arg->strp);
-	i = 0;
+	/*i = 0;
 	while (arg->s[i] && arg->s && arg->type[i] != 'n' && arg->type[i] != 's' && arg->type[i] != 'S')
 	{
 		ft_memdel((void**)&arg->s[i]);
 		i++;
-	}
+	}*/
 	free((void*)arg->s);
+//	ft_memdel((void**)arg->s);
 }
 
 void	free_struct(t_arg *arg, t_flags *flags)
