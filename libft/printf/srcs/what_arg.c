@@ -139,5 +139,7 @@ void	num_arg(const char *format, t_arg *arg, t_flags *flags)
 		i++;
 	}
 	arg->nb_prct = num + 1;
+//	ft_putnbr(arg->nb_prct);
+//	ft_putendl(" : nb_prct");
 	set_index_arg(arg, flags);
 }

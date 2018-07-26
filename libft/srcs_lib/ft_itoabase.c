@@ -37,7 +37,7 @@ char	*ft_itoabase(long long n, int base)
 	char				*str;
 
 	i = 1;
-	len = (n == 0 || (n == 2 && base == 2)) ? 1 : 0;
+	len = (n == 0 || (n % base == 0 && base == 2)) ? 1 : 0;
 	sign = n < 0 ? 1 : 0;
 	n < 0 ? n = -n : 0;
 	while (i < (unsigned long long)n)
@@ -45,7 +45,7 @@ char	*ft_itoabase(long long n, int base)
 		i *= base;
 		++len;
 	}
-	i = (i / base < 1) ? i : i / base;
+	i = (n % base == 0 && base == 2) ? i : i / base;
 	if (base < 2 || !(str = ft_memalloc(sizeof(char) * (len + sign + 1))))
 		return (NULL);
 	if (sign)

@@ -108,7 +108,7 @@ void	init_struct_flags2(t_flags *flags, int len)
 	(flags)->asterix_p = ft_memalloc(sizeof(int) * len);
 	(flags)->cote = ft_memalloc(sizeof(int) * len);
 	(flags)->dollar = ft_memalloc(sizeof(int) * len);
-	(flags)->index_arg = ft_memalloc(sizeof(int) * len);
+	(flags)->index_arg = ft_memalloc(sizeof(int) * (len));
 	(flags)->precision = ft_memalloc(sizeof(int) * len);
 	(flags)->width = ft_memalloc(sizeof(size_t) * len);
 //	return (flags);

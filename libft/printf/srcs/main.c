@@ -834,19 +834,26 @@ int main(void)
 ******************************
 
 	ft_putendl("o flag_01 :");
+	ft_putnbr(ft_printf("%o \n", 16));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%o \n", 16));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");	
+
+	ft_putendl("o flag_01 :");
 	ft_putnbr(ft_printf("%#o \n", 0));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%#o \n", 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");	
-*/
+
 	ft_putendl("o flag_03 :");
 	ft_putnbr(ft_printf("%#o \n", -896));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%#o \n", -896));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");	
-/*
+
 	ft_putendl("o modifier_01 :");
 	ft_putnbr(ft_printf("%hho \n", (unsigned char)-12));
 	ft_putendl(" : return mon printf");
@@ -948,11 +955,11 @@ int main(void)
 	ft_putendl("b :");
 	ft_putnbr(ft_printf("%b \n", 45));
 	ft_putendl(" : return mon printf");
-
+*/
 	ft_putendl("b :");
-	ft_putnbr(ft_printf("%b \n", 2));
+	ft_putnbr(ft_printf("%b \n", 16));
 	ft_putendl(" : return mon printf");
-
+/*
 	ft_putendl("b :");
 	ft_putnbr(ft_printf("%b \n", -5));
 	ft_putendl(" : return mon printf");
@@ -968,6 +975,13 @@ int main(void)
 *******************************
 ** UNSIGNED base 16 : x et X **
 *******************************
+
+	ft_putendl("x et X :");
+	ft_putnbr(ft_printf("%x \n", 64));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%x \n", 64));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
 
 	ft_putendl("x et X :");
 	ft_putnbr(ft_printf("%lX \n", 1321L));

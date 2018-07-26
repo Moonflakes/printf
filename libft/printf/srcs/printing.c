@@ -41,7 +41,8 @@ int	printing(char **str, t_arg *arg, t_flags *flags, int num)
 	}
 	ft_strdel(str);
 //	ft_putendl("miou");
-	verif_next_arg(arg, flags, num + 1);
+	if (num + 1 < arg->nb_prct)
+		verif_next_arg(arg, flags, num + 1);
 //	ft_putendl("mia");
 	return (i);
 }
