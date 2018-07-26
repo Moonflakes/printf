@@ -403,14 +403,14 @@ int main(void)
 	ft_putnbr(printf("**%c** \n", '\0'));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
 	ft_putendl("c all_01 : /0	 	(char)564");
 	ft_putnbr(ft_printf("hello ca*%----4c* *%1c* va *%10c* *%-c* ??", '\0', '\n', (char)564, 0));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("hello ca*%----4c* *%1c* va *%10c* *%-c* ??", '\0', '\n', (char)564, 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 
 **************
 ** CHAR : C **
@@ -832,14 +832,14 @@ int main(void)
 ******************************
 ** UNSIGNED base 8 : o et O **
 ******************************
-*/
+
 	ft_putendl("o basic_01 :");
 	ft_putnbr(ft_printf("%o", 0));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%o", 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");	
-/*
+
 	ft_putendl("o flag_01 :");
 	ft_putnbr(ft_printf("%#o \n", 0));
 	ft_putendl(" : return mon printf");

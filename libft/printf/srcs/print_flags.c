@@ -83,7 +83,7 @@ char	*put_pad_r(char **padstr, t_arg *arg, t_flags *flags, t_int *inc)
 	unsigned long	k;
 	char			pad;
 
-	k = (inc->str[0] == '\0' && !inc->str[1] && arg->type[inc->num] != 's') ? 1 : 0;
+	k = (inc->str[0] == '\0'/* && inc->str[1] == 0 */&& arg->type[inc->num] != 's') ? 1 : 0;
 	pad = ' ';
 	while (inc->str[inc->j])
 	{
