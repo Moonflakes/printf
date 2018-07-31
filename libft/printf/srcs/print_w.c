@@ -61,8 +61,6 @@ void		octect_zero(int i, char *b, char **octet, int nb_octet)
 		}
 		i--;
 	}
-//	ft_putstr(octet[0]);
-//	ft_putendl(" : octet[0]");
 }
 
 void		octet_process(int k, char **octet, char *b, int nb_octet)
@@ -74,22 +72,33 @@ void		octet_process(int k, char **octet, char *b, int nb_octet)
 //	ft_putendl(" : b");
 //	ft_putnbr(i);
 //	ft_putendl(" : i");
+//	ft_putnbr(k);
+//	ft_putendl(" : k");
+//	ft_putnbr(nb_octet);
+//	ft_putendl(" : nb_octet");
 	while (i >= 0)
 	{
-		if (!(octet[k] = (char*)ft_memalloc(sizeof(char) * 9)))
-			return ;
-		octet[k][8] = '\0';
 		if (k == 0)
 		{
+			if (!(octet[k] = (char*)ft_memalloc(sizeof(char) * 9)))
+				return ;
 			octect_zero(i, b, octet, nb_octet);
+//			ft_putstr(octet[k]);
+//			ft_putstr(" : octet[");
+//			ft_putnbr(k);
+//			ft_putendl("]");
 			return ;
 		}
-		else
+		else if (k > 0)
 		{
-			ft_strdel(&octet[k]);
+//			ft_strdel(&octet[k]);
 			octet[k] = ft_strjoin("10", &b[i - 6]);
 			b[i - 6] = '\0';
 			i = i - 6;
+//			ft_putstr(octet[k]);
+//			ft_putstr(" : octet[");
+//			ft_putnbr(k);
+//			ft_putendl("]");
 			return ;
 		}
 	}
@@ -102,9 +111,12 @@ char		**split_octet(char *b)
 	int		k;
 
 	nb_octet = (ft_strlen(b) / 6) + 1;
+//	ft_putnbr(nb_octet);
+//	ft_putendl(" : nb_octet split");
 	k = nb_octet - 1;
 	if (!(octet = (char**)ft_memalloc(sizeof(char*) * (nb_octet + 1))))
 		return (NULL);
+	octet[nb_octet] = NULL;
 	while (k >= 0)
 	{
 //		ft_putendl("while");
@@ -145,8 +157,10 @@ char		*printable_w(long long w, t_arg *arg)
 		octet = split_octet(ft_uitoabase(w, 2));
 		i = 0;
 		arg->ret = 0;
-		while (octet[i])
+		while (octet[i] && i < nb_octet)
 		{
+//			ft_putnbr(i);
+//			ft_putendl(" : num octet");
 //			ft_putendl("lala");
 //			ft_putstr(octet[i]);
 //			ft_putendl(" : octet ici");
