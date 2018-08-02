@@ -63,7 +63,7 @@ $(NAME): $(OBJS)
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c
 	@printf "\033[42m \033[0m"
 	@mkdir -p $(OBJ_PATH)
-	@$(CC) $(CFLAGS) -c $< -o $@ -I$(PATH_LIB)$(OBJ_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
 	
 $(LIB):
 	@make -j -C $(PATH_LIB)
