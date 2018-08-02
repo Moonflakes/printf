@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME = libft.a
+
 SRCS = ft_bzero.c \
 	   ft_putchar.c \
 	   ft_putchar_fd.c \
@@ -89,58 +91,26 @@ SRCS = ft_bzero.c \
 	   ft_lstmap.c
 
 SRC_PATH = srcs_lib/
-OBJ_PATH = obj/
-
-NAME = libftprintf.a
-FLAG = -Wall -Wextra -Werror -g3 #-g -fsanitize=address
-OBJ_NAME = $(SRCS:.c=.o)
-CC = clang $(FLAG)
 SRC = $(addprefix $(SRC_PATH),$(SRCS))
-OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
-POBJ = ft_printf.c \
-		free_struct.c \
-		mallocnb.c \
-		mallocchar.c \
-		init_struct.c \
-		what_arg.c \
-		stock_arg.c \
-		init_flags.c \
-		print_arg.c \
-		printing.c \
-		print_w.c \
-		print_base.c \
-		print_f.c \
-		print_e.c \
-		print_g.c \
-		utils_g.c \
-		ft_pr.c \
-		print_p.c \
-		print_a.c \
-		print_long_a.c \
-		utils_a.c \
-		round_nb.c \
-		print_flags.c \
-		add_plus_space.c \
-		htag_process.c \
-		color.c
-POBJS = $(POBJ:.c=.o)
-PROBJS = $(addprefix printf/obj/, $(POBJS))
 
+OBJ_PATH = obj/
+OBJ_NAME = $(SRCS:.c=.o)
+OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
+
+CC = clang $(FLAG)
+FLAG = -Wall -Wextra -Werror -g3 #-g -fsanitize=address
 
 all : $(NAME)
 
-$(NAME) :  $(OBJ) PROBJ
-	@ar rc $(NAME) $(OBJ) $(PROBJS)
+$(NAME) : $(OBJ)
+	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@printf "\033[\1A \r\033[K""\r\033[K""\033[32mCompilation libft terminée !\033[0m\n"
+	@printf "\033[ \r\033[K""\r\033[K""\033[32mCompilation libft terminée !\033[0m\n"
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+$(OBJ_PATH)%.o : $(SRC_PATH)%.c includes/libft.h
 	@printf "\033[42m \033[0m"
 	@mkdir -p $(OBJ_PATH)
 	@$(CC) -I./includes -o $@ -c $<
-
-PROBJ :
-	@make -C printf/
 
 loading :
 	@printf "Compilation en cours...\n"
@@ -152,13 +122,11 @@ clean :
 fclean : clean
 	@rm -f $(NAME)
 	@echo "\033[1;37mLibrairie detruite.\033[0m"
-	@$(MAKE) fclean -C printf
 
 norm :
 	@norminette srcs/ includes/
 
-header :
-	cp includes/libft.h ./
+#header :
+#	cp includes/libft.h ./
 
-re : fclean
-	@$(MAKE) all
+re : fclean all

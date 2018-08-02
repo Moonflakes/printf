@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = printf
+NAME = libftprintf.a
 
 SRCS = 	ft_printf.c \
 		free_struct.c \
@@ -39,44 +39,46 @@ SRCS = 	ft_printf.c \
 		htag_process.c \
 		color.c
 
+SRC_PATH = srcs/
+SRC = $(addprefix $(SRC_PATH),$(SRCS))
+
 OBJ_PATH = obj/
 OBJ = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))
 
-SRC_PATH = srcs/
-SRC = $(addprefix $(SRC_PATH),$(SRCS))
+CC = clang $(FLAG)
+FLAG = -Wall -Wextra -Werror -g3 #-g -fsanitize=address
 
-PATH_LIB = ../
+all : $(NAME)
 
-LIB = libftprintf.a
+$(NAME) : mlibft $(OBJS) 
+	@ar rc printf.a $(OBJS)
+	@ranlib printf.a
+	@libtool -static -o $(NAME) printf.a ../libft.a
+	@rm printf.a
+	@ranlib $(NAME)
+	@printf "\033[ \r\033[K""\r\033[K""\033[1;32mCompilation printf terminée !\033[0m\n"
 
-CC = gcc -g3
-
-CFLAGS = -Wall -Werror -Wextra
-
-all: $(OBJS)
-
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(PATH_LIB)$(LIB)
-	@printf "\r\033[K""\r\033[K""\033[1;32mCompilation printf terminée !\033[0m\n"
-
-$(OBJ_PATH)%.o : $(SRC_PATH)%.c
-	@printf "\033[42m \033[0m"
+$(OBJ_PATH)%.o : $(SRC_PATH)%.c includes/printf.h
+	@printf "\033[1;42m \033[0m"
 	@mkdir -p $(OBJ_PATH)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	
-$(LIB):
-	@make -j -C $(PATH_LIB)
-	@mkdir -p $(OBJ_PATH)
+	@$(CC) -I./includes -o $@ -c $<
 
-clean:
+loading :
+	@printf "Compilation en cours...\n"
+
+clean :
+	@make -C ../ fclean
 	@rm -rf $(OBJ_PATH)
 	@echo "\033[1;34mFichier printf/obj supprimé.\033[0m"
 
-fclean: clean
+fclean : clean
 	@rm -f $(NAME)
 	@echo "\033[1;37mProgramme printf détruit\033[0m"
 
-re: fclean all
+mlibft :
+	@make -C ../
 
-.PHONY: all clean fclean re
+re : fclean all
+
+.PHONY : all clean fclean re

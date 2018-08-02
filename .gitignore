@@ -8,3 +8,4 @@ libft/obj/
 libft/printf/obj/
 .DS_Store
 libftprintf.a
+libft.a
