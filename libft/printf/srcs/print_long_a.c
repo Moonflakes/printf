@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/printf.h"
+#include "printf.h"
 
 char	*if_nbneg(char *str, int exp, char *signe, t_sign *sign)
 {

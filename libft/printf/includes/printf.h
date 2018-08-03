@@ -87,6 +87,12 @@ typedef struct			s_g
 	int					num;
 }						t_g;
 
+typedef struct			s_tf
+{
+	char				*cond;
+	int					(*f)(t_arg *arg, t_flags *flags, int num);
+}						t_tf;
+
 int						ft_printf(const char *format, ...);
 int						print_arg(t_arg *arg, t_flags *flags, int num);
 int						printing(char **str, t_arg *arg, t_flags *flags, int num);
@@ -123,6 +129,7 @@ int						print_g(char c, t_arg *arg, t_flags *flags, int num);
 int						print_a(char a, t_arg *arg, t_flags *flags, int num);
 int						print_la(char a, t_arg *arg, t_flags *flags, int num);
 int						print_p(t_arg *arg, t_flags *flags, int num);
+int						if_length(t_arg *arg, t_flags *flags, int num);
 
 char					*process_flags(char *str, t_arg *arg, t_flags *flags, int num);
 char					*htag_process(char *str, t_arg *arg, t_flags *flags, int num);

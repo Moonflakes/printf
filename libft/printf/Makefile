@@ -6,7 +6,7 @@
 #    By: mthiery <mthiery@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/14 11:37:44 by mthiery           #+#    #+#              #
-#    Updated: 2018/04/26 11:02:26 by mthiery          ###   ########.fr        #
+#    Updated: 2018/08/03 15:43:48 by mthiery          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ $(NAME) : mlibft $(OBJS)
 $(OBJ_PATH)%.o : $(SRC_PATH)%.c includes/printf.h
 	@printf "\033[1;42m \033[0m"
 	@mkdir -p $(OBJ_PATH)
-	@$(CC) -I./includes -o $@ -c $<
+	@$(CC) -I./includes/ -o $@ -c $<
 
 loading :
 	@printf "Compilation en cours...\n"

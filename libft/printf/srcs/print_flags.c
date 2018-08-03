@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/printf.h"
+#include "printf.h"
 #include <stdio.h>
 
 void	begin_str(char **padstr, t_flags *flags, t_int *inc, t_arg *arg)

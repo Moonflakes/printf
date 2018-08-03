@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/printf.h"
+#include "printf.h"
+#include "funct.h"
 
 char	*pr_str(char *str, t_flags *flags, t_arg *arg, int num)
 {
@@ -203,35 +204,28 @@ int	if_length(t_arg *arg, t_flags *flags, int num)
 int	print_arg(t_arg *arg, t_flags *flags, int num)
 {
 	char	*pct;
+	int		i;
 
+	i = 0;
 	if (arg->type)
 	{
-		if (arg->type[num] == 'c' || arg->type[num] == 'C')
-			return (print_char(arg, flags, num));
-		if (arg->type[num] == 'd' || arg->type[num] == 'i' || arg->type[num] == 'D')
-			return (print_nb(arg, flags, num));
-		if (arg->type[num] == 's' || arg->type[num] == 'S')
-			return (print_string(arg, flags, num));
 		if (arg->type[num] == 'u' || arg->type[num] == 'U' || arg->type[num] == 'o'
 			|| arg->type[num] == 'O' || arg->type[num] == 'b')
 			return (print_base(what_base(arg, num), arg, flags, num));
-		if (arg->type[num] == 'x' || arg->type[num] == 'X')
+		else if (arg->type[num] == 'x' || arg->type[num] == 'X')
 			return (print_hex(arg->type[num], arg, flags, num));
-		if (arg->type[num] == 'f' || arg->type[num] == 'F')
-			return (print_f(arg, flags, num));
-		if (arg->type[num] == 'e' || arg->type[num] == 'E')
+		else if (arg->type[num] == 'e' || arg->type[num] == 'E')
 			return (print_e(arg->type[num], arg, flags, num));
-		if (arg->type[num] == 'g' || arg->type[num] == 'G')
+		else if (arg->type[num] == 'g' || arg->type[num] == 'G')
 			return (print_g(arg->type[num], arg, flags, num));
-		if (arg->type[num] == 'a' || arg->type[num] == 'A')
-			return (if_length(arg, flags, num));
-		if (arg->type[num] == 'p')
-			return (print_p(arg, flags, num));
-		if (arg->type[num] == '%')
+		else if (arg->type[num] == '%')
 		{
 			pct = ft_strdup("%");
 			return(printing(&pct, arg, flags, num));
 		}
+		while (tabf[i].cond && !ft_strchr(tabf[i].cond, arg->type[num]))
+			++i;
+		return (tabf[i].f(arg, flags, num));
 	}
 	return (0);
 }

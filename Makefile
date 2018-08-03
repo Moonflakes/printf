@@ -1,5 +1,5 @@
 all : lautre libft/printf/srcs/main.c
-	@gcc libft/printf/srcs/main.c libft/printf/libftprintf.a -o ft_printf
+	@gcc libft/printf/srcs/main.c libft/printf/libftprintf.a -I./libft/printf/includes/ -o ft_printf
 
 lautre :
 	@make -C libft/printf

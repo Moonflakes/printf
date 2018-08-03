@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/printf.h"
+#include "printf.h"
 
 void	extract_arg(va_list ap, t_arg *arg, t_flags *flags, int num)
 {

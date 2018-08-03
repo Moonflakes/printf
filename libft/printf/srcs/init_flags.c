@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/printf.h"
+#include "printf.h"
 
 void	init_flags(t_arg *arg, int i, t_flags *flags, int num)
 {

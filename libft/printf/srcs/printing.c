@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/printf.h"
+#include "printf.h"
 
 int	printing(char **str, t_arg *arg, t_flags *flags, int num)
 {

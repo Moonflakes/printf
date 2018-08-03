@@ -1,4 +1,4 @@
-#include "../includes/printf.h"
+#include "printf.h"
 #include <stdio.h>
 #include <float.h>
 
