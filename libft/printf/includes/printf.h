@@ -89,8 +89,9 @@ typedef struct			s_g
 
 typedef struct			s_tf
 {
-	char				*cond;
-	int					(*f)(t_arg *arg, t_flags *flags, int num);
+	char				*cond1;
+	int					cond2;
+	int					(*f)();
 }						t_tf;
 
 int						ft_printf(const char *format, ...);
