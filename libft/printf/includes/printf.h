@@ -27,7 +27,6 @@ typedef struct			s_arg
 	int					nb_arg;
 	int					nb_prct;
 	int					nb_bn;
-	int					count_bn;
 	int					ret;
 	char				*type;
 	size_t				*size;
@@ -92,7 +91,6 @@ int						ft_printf(const char *format, ...);
 int						print_arg(t_arg *arg, t_flags *flags, int num);
 int						printing(char **str, t_arg *arg, t_flags *flags, int num);
 void					verif_next_arg(t_arg *arg, t_flags *flags, int next);
-int 					interrupt(t_arg *arg, t_flags *flags);
 
 int						*int_tab_malloc(int len);
 long long				*ll_tab_malloc(int len);
@@ -103,14 +101,11 @@ char					**str_tab_malloc(int len);
 int						**long_tab_malloc(int len);
 long double				*dbl_tab_malloc(int len);
 
-t_arg					*init_struct_arg(int len);
-t_flags					*init_struct_flags(int len);
-t_int					*init_struct_int(char *str, int num);
-t_sign					*init_struct_sign(char a, t_arg *arg, int num);
+void					init_struct_arg(t_arg *arg, int len);
+void					init_struct_flags(t_flags *flags, int len);
 t_g						*init_struct_g(t_arg *arg, t_flags *flags, int num, char c);
 
 void					free_struct(t_arg *arg, t_flags *flags);
-void					free_t_sign(t_sign *sign);
 void					free_t_int(t_int *inc);
 void					free_t_g(t_g *val);
 

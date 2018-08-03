@@ -51,20 +51,21 @@ int		print_la(char a, t_arg *arg, t_flags *flags, int num)
 {
 	long double	d;
 	int			exp;
-	t_sign		*sign;
+	t_sign		sign;
 	char		*hex;
 
 	d = arg->d[flags->index_arg[num]];
-	sign = init_struct_sign(a, arg, num);
+	ft_bzero(&sign, sizeof(t_sign));
+	sign.a = a;
+	sign.pr = arg->precision[num];
 	exp = 0;
-	sign->ld = 1;
+	sign.ld = 1;
 	if (d < 0)
 	{
 		d = -d;
-		sign->nb = 1;
+		sign.nb = 1;
 	}
-	sign->exp = ldble_process(&d, &exp);
-	hex = dtoa_base(d, sign, exp, flags->precision[num] + 1);
-	free_t_sign(sign);
+	sign.exp = ldble_process(&d, &exp);
+	hex = dtoa_base(d, &sign, exp, flags->precision[num] + 1);
 	return (printing(&hex, arg, flags, num));
 }

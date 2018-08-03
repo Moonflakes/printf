@@ -104,22 +104,13 @@ char	*padding(char *str, t_arg *arg, t_flags *flags, int num)
 	char	*padstr;
 	t_int	inc;
 
-	//inc = ft_memalloc(sizeof(t_int));
 	ft_bzero(&inc, sizeof(t_int));
 	inc = (t_int){0, 0, num, ft_strdup(str)};
-//	inc = init_struct_int(str, num);
 	padstr = NULL;
 	i = 0;
-//	ft_putendl("");
-//	ft_putnbr(flags->width[num]);
-//	ft_putendl(" : width");
-//	ft_putnbr(ft_strlen(str));
-//	ft_putendl(" : len");
 	if (flags->width[num] > ft_strlen(str))
 	{
 		j = ft_strlen(str) + (flags->width[num] - ft_strlen(str));
-//		ft_putnbr(j);
-//		ft_putendl(" : j");
 		if (!(padstr = (char*)ft_memalloc(sizeof(char) * j + 1)))
 		{
 			ft_strdel(&inc.str);
@@ -133,7 +124,6 @@ char	*padding(char *str, t_arg *arg, t_flags *flags, int num)
 			str = put_pad_l(&padstr, arg, flags, &inc);
 	}
 	ft_strdel(&inc.str);
-//	inc ? ft_memdel((void**)&inc) : ft_putendl("Oh!");
 	return (str);
 }
 

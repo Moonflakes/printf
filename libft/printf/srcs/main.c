@@ -1451,14 +1451,14 @@ int main(void)
 	ft_putnbr(printf("%#.1E %#.1E \n", 0.0004745, 45.789));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
 	ft_putendl("E : 20 width");
 	ft_putnbr(ft_printf("%20E %20E \n", 0.0004745, 45.789));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%20E %20E \n", 0.0004745, 45.789));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 	ft_putendl("* :");
 	ft_putnbr(ft_printf("%*.*e  \n", 20, 8, 12.45));
 	ft_putendl(" : return mon printf");
@@ -1705,14 +1705,14 @@ int main(void)
 	ft_putnbr(printf("%a \n", 1.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("a : 5");
 	ft_putnbr(ft_printf("%a \n", 5.0));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%a \n", 5.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 	ft_putendl("a : 0");
 	ft_putnbr(ft_printf("%a \n", -0.0));
 	ft_putendl(" : return mon printf");
@@ -1923,6 +1923,7 @@ int main(void)
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
+a revoir
 	ft_putendl("a : #."); // double en double, lona double en lona double
 	ft_putnbr(ft_printf("%#.La **** %#.La \n", 4565445.5546456L, 0.0004567878L));
 	ft_putendl(" : return mon printf");

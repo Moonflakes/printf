@@ -59,11 +59,6 @@ void	free_struct(t_arg *arg, t_flags *flags)
 //	ft_memdel((void**)&flags);
 }
 
-void	free_t_sign(t_sign *sign)
-{
-	ft_memdel((void**)&sign);
-}
-
 void	free_t_int(t_int *inc)
 {
 	ft_memdel((void**)&inc);
