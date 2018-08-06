@@ -91,7 +91,8 @@ typedef struct			s_tf
 {
 	char				*cond1;
 	int					cond2;
-	int					(*f)();
+	int					(*f1)(t_arg *arg, t_flags *flags, int num);
+	int					(*f2)(char c, t_arg *arg, t_flags *flags, int num);
 }						t_tf;
 
 int						ft_printf(const char *format, ...);
@@ -122,7 +123,7 @@ int						print_char(t_arg *arg, t_flags *flags, int num);
 char					*printable_w(long long w, t_arg *arg);
 int						print_string(t_arg *arg, t_flags *flags, int num);
 int						print_nb(t_arg *arg, t_flags *flags, int num);
-int						print_base(int base, t_arg *arg, t_flags *flags, int num);
+int						print_base(char base, t_arg *arg, t_flags *flags, int num);
 int						print_hex(char c, t_arg *arg, t_flags *flags, int num);
 int						print_f(t_arg *arg, t_flags *flags, int num);
 int						print_e(char c, t_arg *arg, t_flags *flags, int num);

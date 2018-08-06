@@ -98,7 +98,7 @@ int		print_nb(t_arg *arg, t_flags *flags, int num)
 	return (printing(&str, arg, flags, num));
 }
 
-int		print_base(int base, t_arg *arg, t_flags *flags, int num)
+int		print_base(char base, t_arg *arg, t_flags *flags, int num)
 {
 	unsigned long long	i;
 	char		*str;
@@ -116,7 +116,7 @@ int		print_base(int base, t_arg *arg, t_flags *flags, int num)
 		str = (arg->type[num] == 'u' || arg->type[num] == 'U' ||
 			arg->length[num] == 3 || (arg->length[num] == 1 &&
 			arg->type[num] == 'o') || arg->type[num] == 'O') ?
-			ft_uitoabase(i, base) : ft_itoabase(i, base);
+			ft_uitoabase(i, (int)base) : ft_itoabase(i, (int)base);
 		str = pad_precision(&str, flags, num);
 	}
 	return (printing(&str, arg, flags, num));

@@ -209,16 +209,7 @@ int	print_arg(t_arg *arg, t_flags *flags, int num)
 	i = 0;
 	if (arg->type)
 	{
-		if (arg->type[num] == 'u' || arg->type[num] == 'U' || arg->type[num] == 'o'
-			|| arg->type[num] == 'O' || arg->type[num] == 'b')
-			return (print_base(what_base(arg, num), arg, flags, num));
-//		else if (arg->type[num] == 'x' || arg->type[num] == 'X')
-//			return (print_hex(arg->type[num], arg, flags, num));
-//		else if (arg->type[num] == 'e' || arg->type[num] == 'E')
-//			return (print_e(arg->type[num], arg, flags, num));
-//		else if (arg->type[num] == 'g' || arg->type[num] == 'G')
-//			return (print_g(arg->type[num], arg, flags, num));
-		else if (arg->type[num] == '%')
+		if (arg->type[num] == '%')
 		{
 			pct = ft_strdup("%");
 			return(printing(&pct, arg, flags, num));
@@ -226,9 +217,12 @@ int	print_arg(t_arg *arg, t_flags *flags, int num)
 		while (tabf[i].cond1 && !ft_strchr(tabf[i].cond1, arg->type[num]))
 			++i;
 		if (tabf[i].cond2)
-			return (tabf[i].f(arg->type[num], arg, flags, num));
+		{
+			return (tabf[i].cond2 == 1 ? (tabf[i].f2(arg->type[num], arg, flags,
+			num)) : (tabf[i].f2(what_base(arg, num), arg, flags, num)));
+		}		
 		else
-			return (tabf[i].f(arg, flags, num));
+			return (tabf[i].f1(arg, flags, num));
 	}
 	return (0);
 }

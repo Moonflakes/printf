@@ -800,14 +800,14 @@ int main(void)
 	ft_putnbr(printf("%zu\n", (size_t)-145612220));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
 	ft_putendl("u :");
 	ft_putnbr(ft_printf("ko%-4.2hhu et %05.2u!\n", (unsigned char)-456, 0));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("ko%-4.2hhu et %05.2u!\n", (unsigned char)-456, 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 	ft_putendl("u précision_05 et 06 : 0");
 	ft_putnbr(ft_printf(".u : **%.u**		.0U : **%.0U**\n", 0, 0));
 	ft_putendl(" : return mon printf");
@@ -1451,14 +1451,14 @@ int main(void)
 	ft_putnbr(printf("%#.1E %#.1E \n", 0.0004745, 45.789));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("E : 20 width");
 	ft_putnbr(ft_printf("%20E %20E \n", 0.0004745, 45.789));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%20E %20E \n", 0.0004745, 45.789));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 	ft_putendl("* :");
 	ft_putnbr(ft_printf("%*.*e  \n", 20, 8, 12.45));
 	ft_putendl(" : return mon printf");
