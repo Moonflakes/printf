@@ -11,4 +11,8 @@ fclean :
 	@make -C libft/printf fclean
 	@rm -rf ft_printf
 
+curqui :
+	cp libft/printf/libftprintf.a ../curqui_test
+	@make -C ../curqui_test && ./../curqui_test/ft_printf_tests
+
 re : fclean all

@@ -36,34 +36,26 @@ char	*pr_str(char *str, t_flags *flags, t_arg *arg, int num)
 void	verif_next_arg(t_arg *arg, t_flags *flags, int next)
 {
 	char *sw_next;
-//	ft_putendl("je vais la");
 	if (arg->i && arg->i[flags->index_arg[next]])
 	{
-//		ft_putendl("kikou");
 		if ((arg->type[next] == 'C' || (arg->type[next] == 'c'
 			&& arg->length[next] == 1)) && !(arg->i[flags->index_arg[next]]
 			<= 127 && arg->i[flags->index_arg[next]] >= 0))
 		{
-//			ft_putendl("lala");
 			sw_next = printable_w(arg->i[flags->index_arg[next]], arg);
 			if (mblen(sw_next, MB_CUR_MAX) == -1)
 				arg->ret = -1;
 			ft_strdel(&sw_next);
-//			ft_putendl("loulou");
 		}
 	}
-//	ft_putendl("je ne passe pas");
 }
 
 int	print_char(t_arg *arg, t_flags *flags, int num)
 {
 	char c;
 	char *str;
-//	mbstate_t ps;
 
 	c = arg->i[flags->index_arg[num]];
-//	ft_putnbr(arg->i[flags->index_arg[num]]);
-//	ft_putendl(" : i");
 	setlocale(LC_ALL, "");
 	if ((arg->type[num] == 'c' && arg->length[num] == 0) ||
 		(arg->i[flags->index_arg[num]] <= 127 &&
@@ -75,22 +67,7 @@ int	print_char(t_arg *arg, t_flags *flags, int num)
 		if (mblen(str, MB_CUR_MAX) == -1)
 			arg->ret = -1;
 	}
-//	ft_putnbr(mbrlen(str, MB_CUR_MAX, &ps));
-//	ft_putnbr(mblen(str, MB_CUR_MAX));
-//	ft_putendl(" : mblen");
 	return (printing(&str, arg, flags, num));
-}
-
-int ft_tabnblen(int *tabnb)
-{
-	int i;
-
-	i = 0;
-	while (tabnb[i])
-	{
-		i++;
-	}
-	return (i);
 }
 
 int	print_string(t_arg *arg, t_flags *flags, int num)
@@ -103,21 +80,12 @@ int	print_string(t_arg *arg, t_flags *flags, int num)
 
 	i = 0;
 	w_str = arg->s[flags->index_arg[num]];
-//	ft_putnbr((int)w_str);
-//	ft_putendl("");
-//	ft_putendl("lili");
-//	ft_putnbr(arg->s[flags->index_arg[num]][0]);
-//	ft_putendl(" : arg->s");
-//	ft_putnbr(w_str[0]);
-//	ft_putendl(" : w1");
 	setlocale(LC_ALL, "");
 	if ((int)w_str >= 0 && (int)w_str <= 127 && (arg->type[num] == 'S'
 		|| (arg->type[num] == 's' && arg->length[num] == 1)))
 	{
-//		ft_putendl("jiji");
 		str = ft_memalloc(sizeof(char) * (2));
 		str[0] = (int)w_str;
-//		str[0] = *w_str + '0';
 	}
 	else if (arg->s[flags->index_arg[num]] == NULL)
 		str = ft_strdup("(null)");
@@ -125,21 +93,12 @@ int	print_string(t_arg *arg, t_flags *flags, int num)
 		str = ft_strdup("");
 	else if (arg->type[num] == 's' && arg->length[num] == 0
 			&& arg->s[flags->index_arg[num]] != NULL)
-	{
 		str = ft_strdup((char*)arg->s[flags->index_arg[num]]);
-//		ft_putendl("mama");
-	}
+		
 	else
 	{
-//		ft_putendl("lala");
 		if (w_str[i])
-		{
-//			ft_putendl("moumou");
-//			ft_strdel(str);
 			str = ft_strdup_free(printable_w(w_str[i], arg));
-		}
-//		ft_putnbr(mblen(str, MB_CUR_MAX));
-//		ft_putendl(" : mblen");
 		if (w_str[i] <= 127 && w_str[i] >= 0)
 			nb_octet = 1;
 		else
@@ -147,18 +106,7 @@ int	print_string(t_arg *arg, t_flags *flags, int num)
 		i++;
 		while (w_str[i])
 		{
-//			ft_putendl("");
-//			ft_putstr(str);
-//			ft_putendl(" : str cur");
-//			ft_putnbr(ft_strlen(str));
-//			ft_putendl(" : strlen cur");
-//			ft_putnbr(flags->precision[num]);
-//			ft_putendl(" : precision");
-//			ft_putnbr(arg->precision[num]);
-//			ft_putendl(" : precision");
 			nb_octet = nb_octet + (nbase_len(w_str[i], 2) / 6) + 1;
-//			ft_putnbr(nb_octet);
-//			ft_putendl(" : nb_octet");
 			if ((nb_octet <= flags->precision[num] && arg->precision[num] == 1)
 				|| arg->precision[num] == 0)
 			{
@@ -182,7 +130,6 @@ int	print_string(t_arg *arg, t_flags *flags, int num)
 
 int	what_base(t_arg *arg, int num)
 {
-//	ft_putendl("je passe la");
 	if (arg->type[num] == 'u' || arg->type[num] == 'U')
 		return (10);
 	if (arg->type[num] == 'o' || arg->type[num] == 'O')
@@ -217,10 +164,8 @@ int	print_arg(t_arg *arg, t_flags *flags, int num)
 		while (tabf[i].cond1 && !ft_strchr(tabf[i].cond1, arg->type[num]))
 			++i;
 		if (tabf[i].cond2)
-		{
 			return (tabf[i].cond2 == 1 ? (tabf[i].f2(arg->type[num], arg, flags,
-			num)) : (tabf[i].f2(what_base(arg, num), arg, flags, num)));
-		}		
+			num)) : (tabf[i].f2(what_base(arg, num), arg, flags, num)));	
 		else
 			return (tabf[i].f1(arg, flags, num));
 	}
