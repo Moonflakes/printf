@@ -16,6 +16,6 @@ curqui :
 	@make -C ../my_curqui_test && ./../my_curqui_test/ft_printf_tests
 
 recurqui :
-	@make re -C ../curqui_test
+	@make re -C ../my_curqui_test
 
 re : fclean all
