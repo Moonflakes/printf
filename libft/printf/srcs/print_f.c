@@ -31,12 +31,25 @@ void	nb_inf_zero(int *i, char *str)
 	}
 }
 
+int		lenmalloc(char *nb, int precision)
+{
+	int lennb;
+
+	lennb = ft_strlen(nb);
+	if (lennb >= precision)
+		return (lennb + 2);
+	else
+		return (precision + 3);
+}
+
 char	*putf(char *nb, char *sign_nb, int precision)
 {
 	int		i[3];
+	int		len;
 	char	*str;
 
-	if (!(str = (char*)ft_memalloc(sizeof(char) * 11)))
+	len = lenmalloc(nb, precision);
+	if (!(str = (char*)ft_memalloc(sizeof(char) * len)))
 		return (NULL);
 	i[0] = ft_strlen(nb) - precision;
 //	ft_putnbr(ft_strlen(nb));
@@ -51,7 +64,8 @@ char	*putf(char *nb, char *sign_nb, int precision)
 		i[1] = 1;
 		i[0] = i[0] + 1;
 	}
-//	ft_putendl(nb);
+//	ft_putstr(nb);
+//	ft_putendl(" : nb");
 //	ft_putnbr(precision);
 //	ft_putendl(" : pr");
 	nb_inf_zero(i, str);
@@ -67,6 +81,8 @@ char	*putf(char *nb, char *sign_nb, int precision)
 			str[i[1]] = '.';
 			i[1]++;
 		}
+//		ft_putnbr(i[1]);
+//		ft_putendl(" : i1");
 		str[i[1]] = nb[i[2]];
 		i[1]++;
 		i[2]++;
