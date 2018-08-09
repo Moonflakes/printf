@@ -111,14 +111,14 @@ char	*ht_process_g(char *str, int precision, int point_pr)
 	return (str);
 }
 
-char	*ht_process_a(char *str)
+char	*ht_process_a(char *str, char a)
 {
 	int i;
 	char *end;
 	char *start;
 
 	i = 0;
-	while (str[i] != 'p')
+	while (str[i] != a)
 		i++;
 	end = ft_strdup(&str[i]);
 	start = ft_strndup(str, i);
@@ -161,7 +161,12 @@ char	*htag_process(char *str, t_arg *arg, t_flags *flags, int num)
 		if ((arg->type[num] == 'a' || arg->type[num] == 'A') && (flags->precision[num] == 0
 			|| (arg->precision[num] == 0 && flags->precision[num] == 1)))
 		{
-			str = ht_process_a(str);
+			str = ht_process_a(str, arg->type[num] + 15);
+		}
+		if ((arg->type[num] == 'e' || arg->type[num] == 'E') && (flags->precision[num] == 0
+			|| (arg->precision[num] == 0 && flags->precision[num] == 1)))
+		{
+			str = ht_process_a(str, arg->type[num]);
 		}
 	}
 	if (arg->ull[num] == 0 && flags->precision[num] == 0 && (arg->type[num] == 'x' || arg->type[num] == 'X'))

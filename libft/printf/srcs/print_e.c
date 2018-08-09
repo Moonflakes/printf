@@ -139,12 +139,33 @@ char *dtoa_rest(unsigned long long rest, int precision)
 	return (rest_nb);
 }
 
+char	*ft_rest_e(long double e, int precision)
+{
+	int		k;
+	int		i;
+	char	*rest;
+
+	k = e;
+	e = e - k;
+	i = -1;
+	if (!(rest = (char*)ft_memalloc(sizeof(char) * precision + 2)))
+		return (NULL);
+	while (--precision >= -1)
+	{
+		k = e * 10;
+		e = (e * 10) - k;
+		rest[++i] = k + '0';
+	}
+	rest[++i] = '\0';
+	return (rest);
+}
+
 int		print_e(char c, t_arg *arg, t_flags *flags, int num)
 {
 	long double	e;
 	char		*nb;
 	char		*sign_nb;
-	long long	i[3];
+	long long	i[2];
 	long long	exp;
 
 	e = arg->d[flags->index_arg[num]];
@@ -167,20 +188,12 @@ int		print_e(char c, t_arg *arg, t_flags *flags, int num)
 //	ft_putstr(" : i[0]     ");
 //	ft_putnbr(flags->precision[num]);
 //	ft_putendl(" : flags->precision[num]");
-	i[2] = (e * (ft_power_double(10,
-			flags->precision[num] + 1) / ft_iterative_power(10,
-			(ft_nblen(i[0]) - 1)))) - (i[0] * (ft_power_double(10,
-			flags->precision[num] + 1) / ft_iterative_power(10,
-			(ft_nblen(i[0]) - 1))));
-//	i[2] = (ft_nblen(i[2]) == flags->precision[num]) ? i[2] + 1 : i[2];
-//	ft_putnbr(i[2]);
-//	ft_putstr(" : i[2]    ");	
 	if (e - i[0] == 0)
 		nb = ft_strjoin_free(sign_nb, pute(round_e(i[1],
 		ft_strjoin_free(ft_itoa(i[0]), ft_zero_e(flags->precision[num]), 0)), c, exp - 1, i[0]), 0);
 	else
 		nb = ft_strjoin_free(sign_nb, pute(round_e(i[1],
-			ft_strjoin_free(ft_itoa(i[0]), dtoa_rest(i[2], flags->precision[num]), 0)), c, exp - 1, i[0]), 0);
+			ft_strjoin_free(ft_itoa(i[0]), ft_rest_e(e, flags->precision[num]), 0)), c, exp - 1, i[0]), 0);
 //	ft_putendl(nb);
 	return (printing(&nb, arg, flags, num));
 }

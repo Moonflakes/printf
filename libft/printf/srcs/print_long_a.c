@@ -15,10 +15,10 @@
 char	*if_nbneg(char *str, int exp, char *signe, t_sign *sign)
 {
 	if (sign->nb)
-		str = ft_strjoin_free(ft_strjoin_free(if_maj("-0x", sign->a), str, 2),
+		str = ft_strjoin_free(ft_strjoin_free(if_maj(ft_strdup("-0x"), sign->a), str, 2),
 			ft_strjoin_free(signe, ft_itoa(exp), 2), 0);
 	else
-		str = ft_strjoin_free(ft_strjoin_free(if_maj("0x", sign->a), str, 2),
+		str = ft_strjoin_free(ft_strjoin_free(if_maj(ft_strdup("0x"), sign->a), str, 2),
 			ft_strjoin_free(signe, ft_itoa(exp), 2), 0);
 	return (str);
 }
