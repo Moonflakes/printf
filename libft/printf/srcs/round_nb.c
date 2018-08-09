@@ -109,7 +109,8 @@ char	*round_e(long long i, char *n)
 	char	*nb;
 
 	nb = ft_strdup_free(n);
-//	ft_putendl(nb);
+//	ft_putstr(nb);
+//	ft_putendl(" : nb rde");
 	j = ft_strlen(nb);
 	if ((nb[j - 2] <= '5' && nb[j - 1] >= '5') ||
 		(nb[j - 2] > '5' && nb[j - 1] > '5') || (i == 1 && nb[j - 1] >= '5'))

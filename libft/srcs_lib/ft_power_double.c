@@ -41,7 +41,5 @@ long double	ft_power_double(long double nb, long long power)
 			power--;
 		}
 	}
-//	ft_putnbr(nb);
-//	ft_putendl(" : nb");
 	return (nb);
 }

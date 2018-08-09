@@ -405,9 +405,9 @@ int main(void)
 	ft_putendl("");
 
 	ft_putendl("c all_01 : /0	 	(char)564");
-	ft_putnbr(ft_printf("hello ca*%----4c* *%1c* va *%10c* *%-c* ??", '\0', '\n', (char)564, 0));
+	ft_putnbr(ft_printf("hello ca**%----4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("hello ca*%----4c* *%1c* va *%10c* *%-c* ??", '\0', '\n', (char)564, 0));
+	ft_putnbr(printf("hello ca**%----4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
@@ -800,14 +800,14 @@ int main(void)
 	ft_putnbr(printf("%zu\n", (size_t)-145612220));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("u :");
 	ft_putnbr(ft_printf("ko%-4.2hhu et %05.2u!\n", (unsigned char)-456, 0));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("ko%-4.2hhu et %05.2u!\n", (unsigned char)-456, 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 	ft_putendl("u précision_05 et 06 : 0");
 	ft_putnbr(ft_printf(".u : **%.u**		.0U : **%.0U**\n", 0, 0));
 	ft_putendl(" : return mon printf");
@@ -1215,9 +1215,9 @@ int main(void)
 	ft_putendl("");
 
 	ft_putendl("f : precision .15");
-	ft_putnbr(ft_printf("%.15f %.15f \n", -0.0004745, -45.789));
+	ft_putnbr(ft_printf("%.15f %.15f %.15f %.15f %.15f \n", 0.0004745, -45.789, 5.0, 1.0, 0.0));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%.15f %.15f \n", -0.0004745, -45.789));
+	ft_putnbr(printf("%.15f %.15f %.15f %.15f %.15f \n", 0.0004745, -45.789, 5.0, 1.0, 0.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
@@ -1367,14 +1367,14 @@ int main(void)
 	ft_putnbr(printf("%e \n", -0.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
 	ft_putendl("e :"); // double en double, long double en long double
-	ft_putnbr(ft_printf("%e \n", 4.1));
+	ft_putnbr(ft_printf("%e %e %e %e %e %e %e %e\n", 4.1, 4.01, 4.001, 4.0001, 4.00001, 4.000001, 4.0000001, 4.00000001));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%e \n", 4.1));
+	ft_putnbr(printf("%e %e %e %e %e %e %e %e\n", 4.1, 4.01, 4.001, 4.0001, 4.00001, 4.000001, 4.0000001, 4.00000001));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 	ft_putendl("e :"); // double en double, long double en long double
 	ft_putnbr(ft_printf("%e \n", 4.005));
 	ft_putendl(" : return mon printf");
