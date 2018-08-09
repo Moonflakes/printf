@@ -38,11 +38,6 @@ char		*putg(char *nb, long long nblen)
 		i++;
 		j++;
 	}
-	if (i == 1)
-	{
-		str[j] = '.';
-		j++;
-	}
 	str[j] = '\0';
 	ft_strdel(&nb);
 //	ft_putendl(str);
@@ -117,7 +112,7 @@ int			print_g(char c, t_arg *arg, t_flags *flags, int num)
 				flags->precision[num]))
 	{
 //		ft_putendl("ici");
-		nb = (g == 1) ? ft_strdup_del("1", val->sign_nb) : ft_strjoin_free(val->sign_nb,
+		nb = ft_strjoin_free(val->sign_nb,
 			putg(nb_g(g, &val->exp, flags->precision[num], -val->i),
 				ft_nblen(g * 1)), 0);
 //		ft_putendl("la");

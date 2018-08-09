@@ -1513,9 +1513,9 @@ int main(void)
 	ft_putendl("");
 
 	ft_putendl("g : 5");
-	ft_putnbr(ft_printf("%g \n", 5.0));
+	ft_putnbr(ft_printf("%g \n", -1.0));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%g \n", 5.0));
+	ft_putnbr(printf("%g \n", -1.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
@@ -1567,7 +1567,14 @@ int main(void)
 	ft_putnbr(printf("%#g %#g \n", -0.0004745, -45.789));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
+	ft_putendl("g : #");
+	ft_putnbr(ft_printf("%.0g %.0g %.0g %.0g %.0g\n", -0.0004745, -45.789, 5.0, 1.0, 0.0));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%.0g %.0g %.0g %.0g %.0g\n", -0.0004745, -45.789, 5.0, 1.0, 0.0));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+/*
 	ft_putendl("g : #");
 	ft_putnbr(ft_printf("%#g \n", 0.0));
 	ft_putendl(" : return mon printf");
@@ -1901,14 +1908,14 @@ int main(void)
 	ft_putnbr(printf("%#a %#a \n", +0.000000000004745, -454568972136897.846852238639));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("a : #");
 	ft_putnbr(ft_printf("%#.A %#.A \n", +0.000000000004745, -454568972136897.846852238639));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%#.A %#.A \n", +0.000000000004745, -454568972136897.846852238639));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 	ft_putendl("a : #");
 	ft_putnbr(ft_printf("%#.a %#.a \n", 0.0, -45.789));
 	ft_putendl(" : return mon printf");
