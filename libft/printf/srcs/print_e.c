@@ -103,15 +103,30 @@ char	*ft_zero_e(int precision)
 	return (zero);
 }
 
-char *dtoa_rest(long long rest, int precision)
+int		ft_unblen(unsigned long long nb)
+{
+	int i;
+
+	i = 1;
+	while (nb / 10 > 0)
+	{
+		nb = nb / 10;
+		i++;
+	}
+	if (nb == 0)
+		i = 1;
+	return (i);
+}
+
+char *dtoa_rest(unsigned long long rest, int precision)
 {
 	int nb_zero;
 	char *rest_nb;
 
-	nb_zero = ft_nblen(rest) - (precision + 1);
+	nb_zero = ft_unblen(rest) - (precision + 1);
 //	if (nb_zero < 0)
 //		nb_zero = -nb_zero;
-//	ft_putnbr(rest);
+//	ft_putunsignednbr(rest);
 //	ft_putendl(" : rest");
 //	ft_putnbr(nb_zero);
 //	ft_putendl(" : nb_zero");
