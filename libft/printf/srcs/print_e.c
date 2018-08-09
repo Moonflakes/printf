@@ -38,11 +38,13 @@ char	*pute(char *nb, char e, int exp, int nbb)
 	int		i;
 	int		j;
 	char	*str;
+	int		len;
 
 	i = 0;
 	j = 0;
 //	ft_putendl(nb);
-	if (!(str = (char*)ft_memalloc(sizeof(char) * 11)))
+	len = ft_strlen(nb) + ft_strlen(process_exp(exp, nbb)) + 1;
+	if (!(str = (char*)ft_memalloc(sizeof(char) * len + 1)))
 		return (NULL);
 	while (str[i] || nb[j])
 	{
@@ -89,7 +91,7 @@ char	*ft_zero_e(int precision)
 	int i;
 
 	i = 0;
-	if (!(zero = (char*)ft_memalloc(sizeof(char) * precision + 1)))
+	if (!(zero = (char*)ft_memalloc(sizeof(char) * precision + 2)))
 		return (NULL);
 	while (precision >= i)
 	{
@@ -107,18 +109,18 @@ char *dtoa_rest(long long rest, int precision)
 	char *rest_nb;
 
 	nb_zero = ft_nblen(rest) - (precision + 1);
-	if (nb_zero < 0)
-		nb_zero = -nb_zero;
+//	if (nb_zero < 0)
+//		nb_zero = -nb_zero;
 //	ft_putnbr(rest);
 //	ft_putendl(" : rest");
 //	ft_putnbr(nb_zero);
 //	ft_putendl(" : nb_zero");
 //	ft_putnbr(precision);
 //	ft_putendl(" : precision");
-	if (nb_zero == 0)
-		rest_nb = ft_itoa((int)rest);
+	if (nb_zero >= 0)
+		rest_nb = ft_itoa((long long)rest);
 	else
-		rest_nb = ft_strjoin_free(ft_zero_e(nb_zero - 1), ft_itoa((int)rest), 0);
+		rest_nb = ft_strjoin_free(ft_zero_e(-nb_zero - 1), ft_itoa((long long)rest), 0);
 	return (rest_nb);
 }
 

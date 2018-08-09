@@ -154,7 +154,7 @@ char					*if_nbneg(char *str, int exp, char *signe, t_sign *sign);
 char					*dtoa_base(long double d, t_sign *sign, int exp,
 						long long precision);
 char					*if_maj(char *str, char a);
-int						ft_nblen(int nb);
+int						ft_nblen(long long nb);
 long double				ft_power(long double e, long long *i, long long *exp);
 char					*nb_g(double g, long long *exp, int precision, long long i);
 char					*suppr_zero(char *nb);

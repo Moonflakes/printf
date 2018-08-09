@@ -52,7 +52,7 @@ char	*pad_precision(char **str, t_flags *flags, int num)
 	return (str[0]);
 }
 
-int		ft_nblen(int nb)
+int		ft_nblen(long long nb)
 {
 	int i;
 

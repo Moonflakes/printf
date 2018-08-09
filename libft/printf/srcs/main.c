@@ -1402,14 +1402,14 @@ int main(void)
 	ft_putnbr(printf("%e \n", 78.458565));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("e :"); // double en double, long double en long double
 	ft_putnbr(ft_printf("%e \n", -0.00000048787895));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%e \n", -0.00000048787895));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 	ft_putendl("e :"); // double en double, long double en long double
 	ft_putnbr(ft_printf("%.0e \n", -0.00000048787895));
 	ft_putendl(" : return mon printf");
@@ -1437,7 +1437,14 @@ int main(void)
 	ft_putnbr(printf("%.20e \n", 78.458565));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
+	ft_putendl("e .15 :");
+	ft_putnbr(ft_printf("%.15e %.15e %.15e %.15e %.15e\n", -0.00000048787895, 78.458565, 5.0, 1.0, 0.0));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%.15e %.15e %.15e %.15e %.15e\n", -0.00000048787895, 78.458565, 5.0, 1.0, 0.0));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+/*
 	ft_putendl("e : #");
 	ft_putnbr(ft_printf("%#e %#e \n", -0.0004745, -45.789));
 	ft_putendl(" : return mon printf");
