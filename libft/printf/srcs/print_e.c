@@ -116,9 +116,9 @@ char *dtoa_rest(long long rest, int precision)
 //	ft_putnbr(precision);
 //	ft_putendl(" : precision");
 	if (nb_zero == 0)
-		rest_nb = ft_dtoa(rest);
+		rest_nb = ft_itoa((int)rest);
 	else
-		rest_nb = ft_strjoin_free(ft_zero_e(nb_zero - 1), ft_dtoa(rest), 0);
+		rest_nb = ft_strjoin_free(ft_zero_e(nb_zero - 1), ft_itoa((int)rest), 0);
 	return (rest_nb);
 }
 

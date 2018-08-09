@@ -28,11 +28,14 @@ char		*ft_dtoa(long double n)
         n = n / 10;
         i++;
     }
-	if (!(str = (char*)ft_memalloc(sizeof(char) * (i))))
-		return (NULL);
-	str[i] = '\0';
     if (i == 0)
-        str = ft_strdup_del("0", str);
+        str = ft_strdup("0");
+    else
+    {
+        if (!(str = (char*)ft_memalloc(sizeof(char) * (i))))
+		    return (NULL);
+	    str[i] = '\0';
+    }
     while (i > 0)
     {
         k = n * 10;
