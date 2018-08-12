@@ -1526,6 +1526,13 @@ int main(void)
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
+	ft_putendl("g : width");
+	ft_putnbr(ft_printf("%g\n", -0.0004745));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%g\n", -0.0004745));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+
 	ft_putendl("g : 0");
 	ft_putnbr(ft_printf("%.15g \n", 0.0));
 	ft_putendl(" : return mon printf");
@@ -1569,12 +1576,57 @@ int main(void)
 	ft_putendl("");
 */
 	ft_putendl("g : #");
-	ft_putnbr(ft_printf("%.0g %.0g %.0g %.0g %.0g\n", -0.0004745, -45.789, 5.0, 1.0, 0.0));
+	ft_putnbr(ft_printf("%.5g %.0g %.0g %.0g %.0g\n", -0.0004745, -45.789, 5.0, 1.0, 0.0));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%.0g %.0g %.0g %.0g %.0g\n", -0.0004745, -45.789, 5.0, 1.0, 0.0));
+	ft_putnbr(printf("%.5g %.0g %.0g %.0g %.0g\n", -0.0004745, -45.789, 5.0, 1.0, 0.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 /*
+	printf("%1$#g %1$#.g %1$#.0g %1$#.1g %1$#.2g %1$#.3g %1$#.4g %1$#.5g %1$#.6g %1$#.7g %1$#.8g %1$#.9g %1$#.10g\n", 1.0);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", 1.12);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", 1.01);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", 1.001);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", 1.0000001);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", 0.0000067428378945987);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", 125839.038000038);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", 1.0000001);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", 1.00000001);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", 1.000000001);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", -1.1);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", -1.01);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", -1.001);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", -1.0001);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", -1.00001);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", -1.000001);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", -1.0000001);
+	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", -1.00000001);
+
+//		chiffre < 1
+// a partir de 5 zero apres la virgule mettre en e -> nb < 1
+// . .0 et .1 = 1 chiffre apres la virgule si nb < 1, chiffre seule sans virgule si nb > 1
+// si nb > 1 on met les chiffres apres la virgule jusqu'a 5 chiffres (ou jusqu'a la precision)
+// la precision signifie le nb de caractere que prend le nb en entier sans les 0 derriere 
+//			ex : .5 de 8.325442133 = 8.324   ou .8 de 78.563000000006524 = 78.563
+// chiffres apres la virgule :
+//		- si nb < 1 
+//			- si le nb de 0 apres la virgule est < 4 -> 6 chiffres apres les 0 (sans precision)
+//						0.0047392093 = 0.00473921
+//			- si le nb de 0 apres la virgule est >= 4 -> passage en conv e et 5 chiffres apres 
+//				la virgule avec les 0 inclus (sans precision) les 0 a la fin sont ignorés
+//						0.000064378884389 = 6.43789e-05
+//						0.000007008920073 = 7.00892e-06
+//						0.000068038000038 = 6.8038e-05
+//		- si nb > 1
+//			- si le nb de 0 apres la virgule est >= 5 avec arrondi -> pas de chiffre apres la virgule (sans precision)
+//						2.0000038540938 = 2
+//						3.0000084783 = 3.00001
+//			- si le nb de 0 apres la virgule est < 5 -> 5 chiffres apres la virgules avec les 0 inclus (s p)
+//					et les 0 a la fin sont ignorés
+//						89.003728
+// le nombre ne dois pas depasser 6 chiffres ou precision en tout (en excluant les 0 devants si leur nombre est <= 4 et la virgule)
+// s'il depasse 6 chiffres on passe en mode e
+
+
 	ft_putendl("g : #");
 	ft_putnbr(ft_printf("%#g \n", 0.0));
 	ft_putendl(" : return mon printf");

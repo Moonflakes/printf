@@ -45,6 +45,7 @@ char    *round_char_d(char *nb, int len)
     }
     return (nb);
 }
+// a revoir pour 99999999
 
 char	*round_g(char *n)
 {

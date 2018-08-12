@@ -25,33 +25,6 @@ char	*nb_zero(int i)
 	return (nb);
 }
 
-char	*suppr_zero(char *nb)
-{
-	int i;
-
-	i = ft_strlen(nb) - 1;
-	while (nb[i] == '0')
-	{
-		nb[i] = '\0';
-		i--;
-	}
-	return (nb);
-}
-
-char	*suppr_zero_b(char *nb, long long *exp)
-{
-	int i;
-
-	i = ft_strlen(nb) - 1;
-	while (nb[i] == '0')
-	{
-		nb[i] = '\0';
-		i--;
-	}
-	exp[0] = ft_strlen(nb) - i;
-	return (nb);
-}
-
 char	*nb_g(double g, long long *exp, int precision, long long i)
 {
 	char *nb;

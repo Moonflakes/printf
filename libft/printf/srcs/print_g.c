@@ -87,6 +87,166 @@ char		*process_nb(double g, int i, int precision)
 	return (e);
 }*/
 
+int		exposant_g(long double *g)
+{
+	int	exp;
+	
+	exp = 0;
+	if (g[0] < 1)
+	{
+		while (g[0] < 1)
+		{
+			g[0] = g[0] * 10;
+			--exp;
+		}
+	}
+	else
+	{
+		while (g[0] / 10 > 1)
+		{
+			g[0] = g[0] / 10;
+			++exp;
+		}
+	}
+	return (exp);
+}
+
+int		abs_value(int value)
+{
+	value = value < 0 ? -value : value;
+	return (value);
+}
+
+char	*char_g(long double g, int precision)
+{
+	char	*nb;
+	int		i;
+	int		k;
+
+	i = -1;
+	k = g * 1;
+	if (!(nb = (char*)ft_memalloc(sizeof(char) * (precision + 2))))
+		return (NULL);
+	while (++i < precision + 1)
+	{
+		nb[i] = k + '0';
+		g = g - k;
+		g = g * 10;
+		k = g;
+	}
+	nb[i] = '\0';
+	return (nb);
+}
+
+char	*add_zero_g(char *nb, int exp)
+{
+	char	*g;
+	int		i;
+	int		j;
+	int		len;
+
+	i = -1;
+	j = -1;
+	len = ft_strlen(nb) - exp;
+	if (!(g = (char*)ft_memalloc(sizeof(char) * len + 1)))
+		return (NULL);
+	while (++i < len)
+	{
+		if (i < -exp)
+			g[i] = '0';
+		else
+			g[i] = nb[++j];
+	}
+	return (g);
+}
+
+char	*suppr_zero(char *nb)
+{
+	int i;
+
+	i = ft_strlen(nb);
+	while (nb[--i] == '0')
+		nb[i] = '\0';
+	if (nb[i] == '.')
+		nb[i] = '\0';
+	return (nb);
+}
+
+char	*insert_point_sign(char *nb, int exp, int sign)
+{
+	char	*nbb;
+	int		len;
+	int		i;
+	int		j;
+
+	len = ft_strlen(nb) + 1 + sign;
+	i = -1;
+	j = -1;
+	if (!(nbb = (char*)ft_memalloc(sizeof(char) * len + 1)))
+		return (NULL);
+	if (sign)
+		nbb[++i] = '-';
+	while (++i < len)
+	{
+		nbb[i] = (i == exp + 1 + sign) ? '.' : nb[++j];
+	}
+	nbb[i] = '\0';
+	ft_strdel(&nb);
+	return (suppr_zero(nbb));
+}
+
+char	*add_exp(char *nb, int exp, char e)
+{
+	char	*nbexp;
+	char	sign_exp;
+	int		len;
+	int		i;
+
+	len = ft_strlen(nb) + 3;
+	sign_exp = (exp < 0) ? '-': '+';
+	exp = abs_value(exp);
+	i = -1;
+	if (!(nbexp = (char*)ft_memalloc(sizeof(char) * len + 1)))
+		return (NULL);
+	while (nb[++i])
+		nbexp[i] = nb[i];
+	nbexp[i] = e;
+	nbexp[++i] = sign_exp;
+	if (exp < 10)
+		nbexp[++i] = '0';
+	ft_strdel(&nb);
+	nb = ft_strjoin_free(nbexp, ft_itoa(exp), 0);
+	return (nb);
+}
+
+int			print_g(char c, t_arg *arg, t_flags *flags, int num)
+{
+	int sign;
+	int	exp;
+	long double g;
+	char *nb;
+
+//	nb = NULL;
+	g = arg->d[flags->index_arg[num]];
+	sign = (g < 0.0) ? 1 : 0;
+	g = (sign == 1) ? -g : g;
+	flags->precision[num]  = (flags->precision[num]) ? flags->precision[num] : 1;
+	exp = (g == 0.0) ? 0 : exposant_g(&g);
+	if (exp < 0 && abs_value(exp) <= 4)
+	{
+		nb = insert_point_sign(round_g(add_zero_g(char_g(g, flags->precision[num]), exp)), 0, sign);
+	}
+	else if (exp >= 0 && exp <= flags->precision[num] - 1)
+	{
+		nb = insert_point_sign(round_g(char_g(g, flags->precision[num])), exp, sign);
+	}
+	else
+	{
+		nb = add_exp(insert_point_sign(round_g(char_g(g, flags->precision[num])), 0, sign), exp, c - 2);
+	}
+	return (printing(&nb, arg, flags, num));
+}
+/*
 int			print_g(char c, t_arg *arg, t_flags *flags, int num)
 {
 	long double	g;
@@ -134,3 +294,4 @@ int			print_g(char c, t_arg *arg, t_flags *flags, int num)
 	free_t_g(val);
 	return (printing(&nb, arg, flags, num));
 }
+*/
