@@ -12,103 +12,77 @@
 
 #include "printf.h"
 
-char	*add_zero(char *str, int count, int precision, int point_pr)
+char	*add_zeros(char *nb, int precision)
 {
-	if (count == 0)
-		count = 1;
-	if (point_pr != 1)
-		precision = 6;
-	while (count < precision)
-	{
-		str = ft_strjoin_free(str, "0", 1);
-		count++;
-	}
-	return (str);
+	int len;
+	int i;
+
+	i = 0;
+	while (nb[i] == '0' || nb[i] == '-' || nb[i] == '.')
+		++i;
+	i = (ft_strcmp(nb, "0.\0")) ? i : 0;
+	len = (i >= 2) ? ft_strlen(nb) - i - 1 : ft_strlen(nb) - i - 2;
+	i = ft_strlen(nb) - 1;
+	while (++len < precision)
+		nb[++i] = '0';
+	return (nb);
+
 }
 
-char	*if_sup_one(char *str, int i, int precision, int point_pr)
+char	*add_point(char *nb, int precision)
 {
-	char *s;
-	char *tmp;
-	int count;
+	int len;
+	int sign;
 
-	count = 0;
-	if (!ft_strchr(str, '.'))
-		str = ft_strjoin_free(str, ".", 1);
-	while (str[i])
-	{
-		if (str[i] == '.')
-			count--;
-		if (str[i] == 'e')
-		{
-			s = ft_strndup(str, count + 1);
-			tmp = ft_strdup(&str[count + 1]);
-			ft_strdel(&str);
-			s = add_zero(s, count, precision, point_pr);
-	//		ft_putendl(s);
-	//		ft_putendl(tmp);
-			str = ft_strjoin_free(s, tmp, 0);
-	//		ft_putendl(str);
-			return (str);
-			}
-		i++;
-		count++;
-	}
-	str = add_zero(str, count, precision, point_pr);
-	return (str);
+	sign = (nb[0] == '-') ? 1 : 0;
+	len = ft_strlen(nb);
+	if (!ft_strchr(nb, '.') && len - sign <= precision)
+		nb[len] = '.';
+	return (nb);
 }
 
-char	*if_inf_one(char *str, int i, int precision, int point_pr)
+char	*copy_nb(char *str, char *nb, int len)
 {
-	int count;
-
-	count = 0;
-	if (ft_strlen(str) == 1)
-		str = ft_strjoin_free(str, ".", 1);
-	while (str[i] == '0')
-		i++;
-	while (str[i])
-	{
-		i++;
-		count++;
-	}
-	str = add_zero(str, count, precision, point_pr);
-	return (str);
+	int		i;
+	
+	i = -1;
+	while (++i < len)
+		nb[i] = str[i];
+	return (nb);
 }
 
-char	*ht_process_g(char *str, int precision, int point_pr)
+char	*add_rest(char *nb, char *str)
 {
-//	ft_putendl(str);
-	if (str[0] != '-')
+	char	*rest;
+	int		i;
+	int		j;
+
+	rest = ft_strdup(ft_strchr(str, 'e'));
+	j = ft_strlen(nb) - 1;
+	i = -1;
+	if (rest)
 	{
-		if (str[0] != '0')
-		{
-//			ft_putendl("la");
-			str = if_sup_one(str, 0, precision, point_pr);
-//			ft_putendl(str);
-		}
-		else
-		{
-//			ft_putendl("ici");
-			// voir avec g = 0
-			str = if_inf_one(str, 2, precision, point_pr);
-		}
+		while (rest[++i])
+			nb[++j] = rest[i];
+		ft_strdel(&rest);
 	}
-	else
-	{
-		if (str[1] != '0')
-		{
-//			ft_putendl("par la");
-			str = if_sup_one(str, 1, precision, point_pr);
-		}
-		else
-		{
-//			ft_putendl("par ici");
-			// voir avec g = 0
-			str = if_inf_one(str, 3, precision, point_pr);
-		}
-	}
-	return (str);
+	return (nb);
+
+}
+
+char	*ht_process_g(char *str, int precision, char e)
+{
+	char	*nb;
+	int		len;
+	int		len_e;
+
+	len = ft_strlen(str) + precision + 1;
+	len_e = ft_strlen(str) - ft_strlen(ft_strchr(str, e));
+	if (!(nb = (char*)ft_memalloc(sizeof(char) * (len + 1))))
+		return (NULL);
+	nb = add_rest(add_zeros(add_point(copy_nb(str, nb, len_e), precision), precision), str);
+	ft_strdel(&str);
+	return (nb);
 }
 
 char	*ht_process_a(char *str, char a)
@@ -157,7 +131,7 @@ char	*htag_process(char *str, t_arg *arg, t_flags *flags, int num)
 				&& arg->precision[num] == 1) ? ft_strdup_del("", str) : ft_strdup_free(str);
 		}
 		if (arg->type[num] == 'g' || arg->type[num] == 'G')
-			str = ht_process_g(str, flags->precision[num], arg->precision[num]);
+			str = ht_process_g(str, flags->precision[num], arg->type[num] - 2);
 		if ((arg->type[num] == 'a' || arg->type[num] == 'A') && (flags->precision[num] == 0
 			|| (arg->precision[num] == 0 && flags->precision[num] == 1)))
 		{

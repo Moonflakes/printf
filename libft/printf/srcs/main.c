@@ -1576,9 +1576,9 @@ int main(void)
 	ft_putendl("");
 */
 	ft_putendl("g : #");
-	ft_putnbr(ft_printf("%.5g %.0g %.0g %.0g %.0g\n", -0.0004745, -45.789, 5.0, 1.0, 0.0));
+	ft_putnbr(ft_printf("%#g %#g %#g %#g %#g\n", -0.0004745, -45.789, -5.0, 1.0, 0.0));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%.5g %.0g %.0g %.0g %.0g\n", -0.0004745, -45.789, 5.0, 1.0, 0.0));
+	ft_putnbr(printf("%#g %#g %#g %#g %#g\n", -0.0004745, -45.789, -5.0, 1.0, 0.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 /*

@@ -12,51 +12,83 @@
 
 #include "printf.h"
 
-char	*nb_zero(int i)
+char	*add_zero_g(char *nb, int exp)
 {
-	char *nb;
+	char	*g;
+	int		i;
+	int		j;
+	int		len;
 
-	nb = ft_memalloc(i);
-	while (i > 0)
+	i = -1;
+	j = -1;
+	len = ft_strlen(nb) - exp;
+	if (!(g = (char*)ft_memalloc(sizeof(char) * len + 1)))
+		return (NULL);
+	while (++i < len)
 	{
-		nb[i - 1] = '0';
-		i--;
+		if (i < -exp)
+			g[i] = '0';
+		else
+			g[i] = nb[++j];
 	}
+	return (g);
+}
+
+char	*suppr_zero(char *nb)
+{
+	int i;
+
+	i = ft_strlen(nb);
+	while (nb[--i] == '0')
+		nb[i] = '\0';
+	if (nb[i] == '.')
+		nb[i] = '\0';
 	return (nb);
 }
 
-char	*nb_g(double g, long long *exp, int precision, long long i)
+char	*insert_point_sign(char *nb, int exp, int sign)
 {
-	char *nb;
+	char	*nbb;
+	int		len;
+	int		i;
+	int		j;
 
-	nb = NULL;
-	if (g >= 1)
+	len = ft_strlen(nb) + 1 + sign;
+	i = -1;
+	j = -1;
+	if (!(nbb = (char*)ft_memalloc(sizeof(char) * len + 1)))
+		return (NULL);
+	if (sign)
+		nbb[++i] = '-';
+	while (++i < len)
 	{
-//		ft_putendl("lala");
-		while (g < ft_power_double(10, precision))
-		{
-			g = g * 10;
-			exp[0]++;
-		}
-		nb = suppr_zero(round_g(ft_dtoa(g)));
+		nbb[i] = (i == exp + 1 + sign) ? '.' : nb[++j];
 	}
-	if (g > 0 && g < 1)
-	{
-//		ft_putendl("lulu");
-		while (g < 1)
-		{
-			g = g * 10;
-			exp[0]++;
-		}
-//		ft_putnbr(g);
-//		ft_putendl(" : g");
-		nb = ft_strjoin_free(nb_zero(exp[0]),
-			suppr_zero(round_g(ft_dtoa(g * ft_iterative_power_double(10, i)))), 0);
-	}
-	if (g == 0)
-	{
-//		ft_putendl("lolo");
-		nb = ft_strdup("0");
-	}
+	nbb[i] = '\0';
+	ft_strdel(&nb);
+	return (suppr_zero(nbb));
+}
+
+char	*add_exp(char *nb, int exp, char e)
+{
+	char	*nbexp;
+	char	sign_exp;
+	int		len;
+	int		i;
+
+	len = ft_strlen(nb) + 3;
+	sign_exp = (exp < 0) ? '-': '+';
+	exp = abs_value(exp);
+	i = -1;
+	if (!(nbexp = (char*)ft_memalloc(sizeof(char) * len + 1)))
+		return (NULL);
+	while (nb[++i])
+		nbexp[i] = nb[i];
+	nbexp[i] = e;
+	nbexp[++i] = sign_exp;
+	if (exp < 10)
+		nbexp[++i] = '0';
+	ft_strdel(&nb);
+	nb = ft_strjoin_free(nbexp, ft_itoa(exp), 0);
 	return (nb);
 }

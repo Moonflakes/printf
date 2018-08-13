@@ -41,18 +41,3 @@ void	init_struct_flags(t_flags *flags, int len)
 	(flags)->precision = ft_memalloc(sizeof(int) * len);
 	(flags)->width = ft_memalloc(sizeof(size_t) * len);
 }
-
-t_g		*init_struct_g(t_arg *arg, t_flags *flags, int num, char c)
-{
-	t_g	*val;
-
-	if (!(val = (t_g*)ft_memalloc(sizeof(t_g))))
-		return (NULL);
-	val->i = (arg->precision[num] == 1 && flags->precision[num] != 0) ?
-		-(flags->precision[num]) : -(flags->precision[num]) + 1;
-//	if (arg->d[flags->index_arg[num]] != 0 && arg->d[flags->index_arg[num]] != 1 && flags->precision[num] != 0)
-		val->sign_nb = ft_strdup("");
-	val->c = (c == 'g') ? 'e' : 'E';
-	val->num = num;
-	return (val);
-}

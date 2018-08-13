@@ -63,8 +63,3 @@ void	free_t_int(t_int *inc)
 {
 	ft_memdel((void**)&inc);
 }
-
-void	free_t_g(t_g *val)
-{
-	ft_memdel((void**)&val);
-}

@@ -78,15 +78,6 @@ typedef struct			s_sign
 	int					d_zero;
 }						t_sign;
 
-typedef struct			s_g
-{
-	char				c;
-	char				*sign_nb;
-	long long			i;
-	long long			exp;
-	int					num;
-}						t_g;
-
 typedef struct			s_tf
 {
 	char				*cond1;
@@ -111,11 +102,9 @@ long double				*dbl_tab_malloc(int len);
 
 void					init_struct_arg(t_arg *arg, int len);
 void					init_struct_flags(t_flags *flags, int len);
-t_g						*init_struct_g(t_arg *arg, t_flags *flags, int num, char c);
 
 void					free_struct(t_arg *arg, t_flags *flags);
 void					free_t_int(t_int *inc);
-void					free_t_g(t_g *val);
 
 void					init_flags(t_arg *arg, int i, t_flags *flags, int num);
 
@@ -156,16 +145,16 @@ char					*dtoa_base(long double d, t_sign *sign, int exp,
 char					*if_maj(char *str, char a);
 int						ft_nblen(long long nb);
 long double				ft_power(long double e, long long *i, long long *exp);
-char					*nb_g(double g, long long *exp, int precision, long long i);
-char					*suppr_zero(char *nb);
+
 void					stock_arg(va_list ap, t_arg *arg, t_flags *flags);
 char					*itob(long long nb);
 char					*add_plus_or_space(char *str, t_arg *arg, t_flags *flags,
 						int num);
-char					*ft_pr(long double g, t_flags *flags, t_g *val, char *nb);
-long long				pr_zero(long double g);
-double					ft_power_g(double e, long long *i, long long *exp);
-char					*process_nb(double g, int i, int precision);
-char					*putg(char *nb, long long nblen);
+
+char					*add_zero_g(char *nb, int exp);
+char					*suppr_zero(char *nb);
+char					*insert_point_sign(char *nb, int exp, int sign);
+char					*add_exp(char *nb, int exp, char e);
+int						abs_value(int value);
 
 #endif
