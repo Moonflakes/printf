@@ -1560,7 +1560,14 @@ int main(void)
 	ft_putnbr(printf("%g \n", 1.1));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
+	ft_putendl("g : 1.1");
+	ft_putnbr(ft_printf("%g \n", 999999.99));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%g \n", 999999.99));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+/*
 	ft_putendl("g : width");
 	ft_putnbr(ft_printf("%15g %15g \n", -0.0004745, -45.789));
 	ft_putendl(" : return mon printf");
@@ -1574,14 +1581,14 @@ int main(void)
 	ft_putnbr(printf("%#g %#g \n", -0.0004745, -45.789));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("g : #");
 	ft_putnbr(ft_printf("%#g %#g %#g %#g %#g\n", -0.0004745, -45.789, -5.0, 1.0, 0.0));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%#g %#g %#g %#g %#g\n", -0.0004745, -45.789, -5.0, 1.0, 0.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 	printf("%1$#g %1$#.g %1$#.0g %1$#.1g %1$#.2g %1$#.3g %1$#.4g %1$#.5g %1$#.6g %1$#.7g %1$#.8g %1$#.9g %1$#.10g\n", 1.0);
 	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", 1.12);
 	printf("%1$g %1$.g %1$.0g %1$.1g %1$.2g %1$.3g %1$.4g %1$.5g %1$.6g %1$.7g %1$.8g %1$.9g %1$.10g\n", 1.01);

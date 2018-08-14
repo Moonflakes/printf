@@ -42,7 +42,7 @@ int		abs_value(int value)
 	return (value);
 }
 
-char	*char_g(long double g, int precision)
+char	*char_g(long double g, int precision, int *exp)
 {
 	char	*nb;
 	int		i;
@@ -60,7 +60,7 @@ char	*char_g(long double g, int precision)
 		k = g;
 	}
 	nb[i] = '\0';
-	return (nb);
+	return (*exp < 0 && abs_value(*exp) <= 4) ? add_zero_g(nb, exp) : round_g(nb, exp);
 }
 
 int			print_g(char c, t_arg *arg, t_flags *flags, int num)
@@ -75,11 +75,16 @@ int			print_g(char c, t_arg *arg, t_flags *flags, int num)
 	g = (sign == 1) ? -g : g;
 	flags->precision[num]  = (flags->precision[num]) ? flags->precision[num] : 1;
 	exp = (g == 0.0) ? 0 : exposant_g(&g);
+//	ft_putnbr(exp);
+//	ft_putendl(" : exp before");
+	nb = char_g(g, flags->precision[num], &exp);
+//	ft_putnbr(exp);
+//	ft_putendl(" : exp after");
 	if (exp < 0 && abs_value(exp) <= 4)
-		nb = insert_point_sign(round_g(add_zero_g(char_g(g, flags->precision[num]), exp)), 0, sign);
+		nb = insert_point_sign(nb, 0, sign);
 	else if (exp >= 0 && exp <= flags->precision[num] - 1)
-		nb = insert_point_sign(round_g(char_g(g, flags->precision[num])), exp, sign);
+		nb = insert_point_sign(nb, exp, sign);
 	else
-		nb = add_exp(insert_point_sign(round_g(char_g(g, flags->precision[num])), 0, sign), exp, c - 2);
+		nb = add_exp(insert_point_sign(nb, 0, sign), exp, c - 2);
 	return (printing(&nb, arg, flags, num));
 }

@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-char	*add_zero_g(char *nb, int exp)
+char	*add_zero_g(char *nb, int *exp)
 {
 	char	*g;
 	int		i;
@@ -21,17 +21,17 @@ char	*add_zero_g(char *nb, int exp)
 
 	i = -1;
 	j = -1;
-	len = ft_strlen(nb) - exp;
+	len = ft_strlen(nb) - *exp;
 	if (!(g = (char*)ft_memalloc(sizeof(char) * len + 1)))
 		return (NULL);
 	while (++i < len)
 	{
-		if (i < -exp)
+		if (i < -*exp)
 			g[i] = '0';
 		else
 			g[i] = nb[++j];
 	}
-	return (g);
+	return (round_g(g, exp));
 }
 
 char	*suppr_zero(char *nb)
@@ -56,6 +56,8 @@ char	*insert_point_sign(char *nb, int exp, int sign)
 	len = ft_strlen(nb) + 1 + sign;
 	i = -1;
 	j = -1;
+//	ft_putstr(nb);
+//	ft_putendl(" : nb");
 	if (!(nbb = (char*)ft_memalloc(sizeof(char) * len + 1)))
 		return (NULL);
 	if (sign)

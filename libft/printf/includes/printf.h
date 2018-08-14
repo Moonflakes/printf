@@ -135,7 +135,7 @@ void					width(t_arg *arg, t_flags *flags, int num);
 void					process_strp(t_arg *arg, int num, t_flags *flags);
 char					*char_tab_malloc(int len);
 char					*pute(char *nb, char e, int exp, int nbb);
-char					*round_g(char *nb);
+char					*round_g(char *nb, int *exp);
 char					*round_e(long long i, char *nb);
 char					*round_f(char *nb);
 void					ft_round_hex(double d, t_sign *sign, char *str);
@@ -151,7 +151,7 @@ char					*itob(long long nb);
 char					*add_plus_or_space(char *str, t_arg *arg, t_flags *flags,
 						int num);
 
-char					*add_zero_g(char *nb, int exp);
+char					*add_zero_g(char *nb, int *exp);
 char					*suppr_zero(char *nb);
 char					*insert_point_sign(char *nb, int exp, int sign);
 char					*add_exp(char *nb, int exp, char e);
