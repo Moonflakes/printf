@@ -136,7 +136,6 @@ void					process_strp(t_arg *arg, int num, t_flags *flags);
 char					*char_tab_malloc(int len);
 char					*pute(char *nb, char e, int exp, int nbb);
 char					*round_d(char *nb, int *exp, int d);
-char					*round_e(int i, char *nb, int *exp);
 char					*round_f(char *nb);
 void					ft_round_hex(double d, t_sign *sign, char *str);
 char					*if_nbneg(char *str, int exp, char *signe, t_sign *sign);
@@ -144,7 +143,6 @@ char					*dtoa_base(long double d, t_sign *sign, int exp,
 						long long precision);
 char					*if_maj(char *str, char a);
 int						ft_nblen(long long nb);
-long double				ft_power(long double e, long long *i, int *exp);
 int						exposant_d(long double *d);
 
 void					stock_arg(va_list ap, t_arg *arg, t_flags *flags);

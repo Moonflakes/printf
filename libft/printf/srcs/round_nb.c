@@ -113,24 +113,3 @@ char	*round_f(char *n)
 	n = ft_strdup_free(nb);
 	return (n);
 }
-
-char	*round_e(int i, char *n, int *exp)
-{
-	int		j;
-	char	*nb;
-
-	nb = ft_strdup_free(n);
-//	ft_putendl(nb);
-	j = ft_strlen(nb);
-	if ((nb[j - 2] <= '5' && nb[j - 1] >= '5') ||
-		(nb[j - 2] > '5' && nb[j - 1] > '5') || (i == 1 && nb[j - 1] >= '5'))
-	{
-		nb[j - 1] = '\0';
-		round_char_d(&nb, j - 1, exp, 0);
-	}
-	else
-		nb[j - 1] = '\0';
-	n = ft_strdup_free(nb);
-//	ft_putendl(n);
-	return (n);
-}
