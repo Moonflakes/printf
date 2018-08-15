@@ -12,27 +12,7 @@
 
 #include "printf.h"
 
-char	*round_nb(char *n)
-{
-	int		j;
-	char	*nb;
-
-	nb = ft_strdup_free(n);
-	j = ft_strlen(nb);
-	if (nb[j - 1] > '5')
-	{
-		nb[j - 1] = '\0';
-		j = ft_atoi(nb) + 1;
-		ft_strdel(&nb);
-		nb = ft_itoa(j);
-	}
-	else
-		nb[j - 1] = '\0';
-	n = ft_strdup_free(nb);
-	return (n);
-}
-
-void	round_char_d(char **nb, int len)
+void	round_char_f(char **nb, int len)
 {
 	char *tmp;
 //	if (len - 1 <= 0)
@@ -55,7 +35,7 @@ void	round_char_d(char **nb, int len)
 		{
 //			ft_putnbr(len - 1);
 //			ft_putendl(" : len - 1 before recall");
-    		round_char_d(nb, --len);
+    		round_char_f(nb, --len);
 		}
     }
     else
@@ -64,68 +44,49 @@ void	round_char_d(char **nb, int len)
 	}
 }
 
-void	round_char_g(char **nb, int len, int *exp)
+void	round_char_d(char **nb, int len, int *exp, int d)
 {
 	char *tmp;
-//	if (len - 1 <= 0)
-//		return (0);
-//	ft_putnbr(len - 1);
-//	ft_putendl(" : len - 1");
-//	ft_putstr(*nb);
-//	ft_putendl(" : nb avant");
     if (nb[0][len - 1] == '9')
     {
         nb[0][len - 1] = '0';
 		if (len - 1 == 0)
 		{
-		//	nb = ft_strjoin_free("1", nb, 2);
-			tmp = ft_strjoin("1", *nb);
-			ft_strdel(nb);
-			*nb = ft_strdup(tmp);
+			if (d)
+			{
+				tmp = ft_strjoin("1", *nb);
+				ft_strdel(nb);
+				*nb = ft_strdup(tmp);
+			}
+			else
+				nb[0][len - 1] = '1';
 			*exp += 1;
 		}
-//		ft_putstr(*nb);
-//		ft_putendl(" : nb la");
         if (len - 1 > 0)
-		{
-//			ft_putnbr(len - 1);
-//			ft_putendl(" : len - 1 before recall");
-    		round_char_g(nb, --len, exp);
-		}
+    		round_char_d(nb, --len, exp, d);
     }
     else
-    {
         nb[0][len - 1] = nb[0][len - 1] + 1;
-	}
 }
-// a revoir pour 99999999
 
-char	*round_g(char *n, int *exp)
+char	*round_d(char *n, int *exp, int d)
 {
 	int		j;
 	char	*nb;
 
 	nb = ft_strdup_free(n);
-//	ft_putendl(nb);
 	j = ft_strlen(nb);
 	if (j > 1)
 	{
 		if (nb[j - 1] >= '5')
 		{
 			nb[j - 1] = '\0';
-//			j = ft_atoi(nb) + 1;
-//			ft_strdel(&nb);
-//			nb = ft_itoa(j);
-//			ft_putendl("Call de roundchar.");
-			round_char_g(&nb, j - 1, exp);
+			round_char_d(&nb, j - 1, exp, d);
 		}
 		else
 			nb[j - 1] = '\0';
-//		ft_putendl(nb);
 	}
 	n = ft_strdup_free(nb);
-//	ft_putstr(n);
-//	ft_putendl(" : round");
 	return (n);
 }
 
@@ -135,7 +96,6 @@ char	*round_f(char *n)
 	char	*nb;
 
 	nb = ft_strdup_free(n);
-//	ft_putendl(nb);
 	j = ft_strlen(nb);
 	if (j == 1 && nb[0] == '0')
 	{
@@ -146,11 +106,7 @@ char	*round_f(char *n)
 			(nb[0] != '0' && nb[j - 1] >= '5'))
 	{
 		nb[j - 1] = '\0';
-//		j = ft_atoi(nb) + 1;
-//		ft_strdel(&nb);
-//		nb = ft_itoa(j);
-		round_char_d(&nb, j - 1);
-//		ft_putendl(nb);
+		round_char_f(&nb, j - 1);
 	}
 	else
 		nb[j - 1] = '\0';
@@ -158,23 +114,19 @@ char	*round_f(char *n)
 	return (n);
 }
 
-char	*round_e(long long i, char *n)
+char	*round_e(int i, char *n, int *exp)
 {
 	int		j;
 	char	*nb;
 
 	nb = ft_strdup_free(n);
-//	ft_putstr(nb);
-//	ft_putendl(" : nb rde");
+//	ft_putendl(nb);
 	j = ft_strlen(nb);
 	if ((nb[j - 2] <= '5' && nb[j - 1] >= '5') ||
 		(nb[j - 2] > '5' && nb[j - 1] > '5') || (i == 1 && nb[j - 1] >= '5'))
 	{
 		nb[j - 1] = '\0';
-//		j = ft_atoi(nb) + 1;
-//		ft_strdel(&nb);
-//		nb = ft_itoa(j);
-		round_char_d(&nb, j - 1);
+		round_char_d(&nb, j - 1, exp, 0);
 	}
 	else
 		nb[j - 1] = '\0';

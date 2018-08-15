@@ -135,8 +135,8 @@ void					width(t_arg *arg, t_flags *flags, int num);
 void					process_strp(t_arg *arg, int num, t_flags *flags);
 char					*char_tab_malloc(int len);
 char					*pute(char *nb, char e, int exp, int nbb);
-char					*round_g(char *nb, int *exp);
-char					*round_e(long long i, char *nb);
+char					*round_d(char *nb, int *exp, int d);
+char					*round_e(int i, char *nb, int *exp);
 char					*round_f(char *nb);
 void					ft_round_hex(double d, t_sign *sign, char *str);
 char					*if_nbneg(char *str, int exp, char *signe, t_sign *sign);
@@ -144,7 +144,8 @@ char					*dtoa_base(long double d, t_sign *sign, int exp,
 						long long precision);
 char					*if_maj(char *str, char a);
 int						ft_nblen(long long nb);
-long double				ft_power(long double e, long long *i, long long *exp);
+long double				ft_power(long double e, long long *i, int *exp);
+int						exposant_d(long double *d);
 
 void					stock_arg(va_list ap, t_arg *arg, t_flags *flags);
 char					*itob(long long nb);
@@ -153,8 +154,8 @@ char					*add_plus_or_space(char *str, t_arg *arg, t_flags *flags,
 
 char					*add_zero_g(char *nb, int *exp);
 char					*suppr_zero(char *nb);
-char					*insert_point_sign(char *nb, int exp, int sign);
-char					*add_exp(char *nb, int exp, char e);
+char					*insert_point_sign(char *nb, int exp, int sign, int d);
+char					*add_exp(char *nb, int exp, char e, int sign);
 int						abs_value(int value);
 
 #endif

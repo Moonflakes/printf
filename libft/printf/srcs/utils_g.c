@@ -31,7 +31,7 @@ char	*add_zero_g(char *nb, int *exp)
 		else
 			g[i] = nb[++j];
 	}
-	return (round_g(g, exp));
+	return (round_d(g, exp, 1));
 }
 
 char	*suppr_zero(char *nb)
@@ -46,7 +46,7 @@ char	*suppr_zero(char *nb)
 	return (nb);
 }
 
-char	*insert_point_sign(char *nb, int exp, int sign)
+char	*insert_point_sign(char *nb, int exp, int sign, int d)
 {
 	char	*nbb;
 	int		len;
@@ -56,8 +56,6 @@ char	*insert_point_sign(char *nb, int exp, int sign)
 	len = ft_strlen(nb) + 1 + sign;
 	i = -1;
 	j = -1;
-//	ft_putstr(nb);
-//	ft_putendl(" : nb");
 	if (!(nbb = (char*)ft_memalloc(sizeof(char) * len + 1)))
 		return (NULL);
 	if (sign)
@@ -68,10 +66,10 @@ char	*insert_point_sign(char *nb, int exp, int sign)
 	}
 	nbb[i] = '\0';
 	ft_strdel(&nb);
-	return (suppr_zero(nbb));
+	return (d) ? suppr_zero(nbb) : nbb;
 }
 
-char	*add_exp(char *nb, int exp, char e)
+char	*add_exp(char *nb, int exp, char e, int sign)
 {
 	char	*nbexp;
 	char	sign_exp;
@@ -92,5 +90,6 @@ char	*add_exp(char *nb, int exp, char e)
 		nbexp[++i] = '0';
 	ft_strdel(&nb);
 	nb = ft_strjoin_free(nbexp, ft_itoa(exp), 0);
-	return (nb);
+	nbexp = (sign) ? ft_strjoin_free("-\0", nb, 2) : ft_strdup_free(nb);
+	return (nbexp);
 }

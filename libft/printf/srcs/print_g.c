@@ -12,24 +12,24 @@
 
 #include "printf.h"
 
-int		exposant_g(long double *g)
+int		exposant_d(long double *d)
 {
 	int	exp;
 	
 	exp = 0;
-	if (g[0] < 1)
+	if (d[0] < 1)
 	{
-		while (g[0] < 1)
+		while (d[0] < 1)
 		{
-			g[0] = g[0] * 10;
+			d[0] = d[0] * 10;
 			--exp;
 		}
 	}
 	else
 	{
-		while (g[0] / 10 > 1)
+		while (d[0] / 10 > 1)
 		{
-			g[0] = g[0] / 10;
+			d[0] = d[0] / 10;
 			++exp;
 		}
 	}
@@ -60,7 +60,7 @@ char	*char_g(long double g, int precision, int *exp)
 		k = g;
 	}
 	nb[i] = '\0';
-	return (*exp < 0 && abs_value(*exp) <= 4) ? add_zero_g(nb, exp) : round_g(nb, exp);
+	return (*exp < 0 && abs_value(*exp) <= 4) ? add_zero_g(nb, exp) : round_d(nb, exp, 1);
 }
 
 int			print_g(char c, t_arg *arg, t_flags *flags, int num)
@@ -74,17 +74,13 @@ int			print_g(char c, t_arg *arg, t_flags *flags, int num)
 	sign = (g < 0.0) ? 1 : 0;
 	g = (sign == 1) ? -g : g;
 	flags->precision[num]  = (flags->precision[num]) ? flags->precision[num] : 1;
-	exp = (g == 0.0) ? 0 : exposant_g(&g);
-//	ft_putnbr(exp);
-//	ft_putendl(" : exp before");
+	exp = (g == 0.0) ? 0 : exposant_d(&g);
 	nb = char_g(g, flags->precision[num], &exp);
-//	ft_putnbr(exp);
-//	ft_putendl(" : exp after");
 	if (exp < 0 && abs_value(exp) <= 4)
-		nb = insert_point_sign(nb, 0, sign);
+		nb = insert_point_sign(nb, 0, sign, 1);
 	else if (exp >= 0 && exp <= flags->precision[num] - 1)
-		nb = insert_point_sign(nb, exp, sign);
+		nb = insert_point_sign(nb, exp, sign, 1);
 	else
-		nb = add_exp(insert_point_sign(nb, 0, sign), exp, c - 2);
+		nb = add_exp(insert_point_sign(nb, 0, sign, 1), exp, c - 2, 0);
 	return (printing(&nb, arg, flags, num));
 }

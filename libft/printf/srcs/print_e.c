@@ -42,7 +42,11 @@ char	*pute(char *nb, char e, int exp, int nbb)
 
 	i = 0;
 	j = 0;
-//	ft_putendl(nb);
+	ft_putendl("");
+	ft_putstr(nb);
+	ft_putendl(" : nb");
+	ft_putnbr(exp);
+	ft_putendl(" : exp");
 	len = ft_strlen(nb) + ft_strlen(process_exp(exp, nbb)) + 1;
 	if (!(str = (char*)ft_memalloc(sizeof(char) * len + 1)))
 		return (NULL);
@@ -62,7 +66,7 @@ char	*pute(char *nb, char e, int exp, int nbb)
 	return (str);
 }
 
-long double	ft_power(long double e, long long *i, long long *exp)
+long double	ft_power(long double e, long long *i, int *exp)
 {
 	if (e < 1 && e > 0)
 	{
@@ -160,13 +164,50 @@ char	*ft_rest_e(long double e, int precision)
 	return (rest);
 }
 
+char	*char_e(long double e, int precision, int *exp)
+{
+	char	*nb;
+	int		i;
+	int		k;
+
+	i = -1;
+	k = e * 1;
+	if (!(nb = (char*)ft_memalloc(sizeof(char) * (precision + 3))))
+		return (NULL);
+	while (++i < precision + 2)
+	{
+		nb[i] = k + '0';
+		e = e - k;
+		e = e * 10;
+		k = e;
+	}
+	nb[i] = '\0';
+	i =  (nb[0] == 0) ? 1 : 0;
+	return (round_d(nb, exp, 0));
+}
+
 int		print_e(char c, t_arg *arg, t_flags *flags, int num)
 {
+	int sign;
+	int	exp;
+	long double e;
+	char *nb;
+
+	e = arg->d[flags->index_arg[num]];
+	sign = (e < 0.0) ? 1 : 0;
+	e = (sign == 1) ? -e : e;
+	exp = (e == 0.0) ? 0 : exposant_d(&e);
+	nb = char_e(e, flags->precision[num], &exp);
+	nb = (flags->precision[num]) ? add_exp(insert_point_sign(nb, 0, sign, 0), exp, c, 0) : add_exp(nb, exp, c, sign);
+
+
+
+/*	
 	long double	e;
 	char		*nb;
 	char		*sign_nb;
 	long long	i[2];
-	long long	exp;
+	int			exp;
 
 	e = arg->d[flags->index_arg[num]];
 //	ft_putnbr(e * 100);
@@ -181,7 +222,7 @@ int		print_e(char c, t_arg *arg, t_flags *flags, int num)
 	}
 	i[1] = (e < 1) ? 1 : 0;
 	e = ft_power(e, i, &exp);
-//	ft_putnbr(e * 10000000);
+	ft_putnbr(e * 10000000);
 //	ft_putendl(" : e");
 //	ft_putendl("");
 //	ft_putnbr(i[0]);
@@ -190,10 +231,11 @@ int		print_e(char c, t_arg *arg, t_flags *flags, int num)
 //	ft_putendl(" : flags->precision[num]");
 	if (e - i[0] == 0)
 		nb = ft_strjoin_free(sign_nb, pute(round_e(i[1],
-		ft_strjoin_free(ft_itoa(i[0]), ft_zero_e(flags->precision[num]), 0)), c, exp - 1, i[0]), 0);
+		ft_strjoin_free(ft_itoa(i[0]), ft_zero_e(flags->precision[num]), 0), &exp), c, exp - 1, i[0]), 0);
 	else
 		nb = ft_strjoin_free(sign_nb, pute(round_e(i[1],
-			ft_strjoin_free(ft_itoa(i[0]), ft_rest_e(e, flags->precision[num]), 0)), c, exp - 1, i[0]), 0);
+			ft_strjoin_free(ft_itoa(i[0]), ft_rest_e(e, flags->precision[num]), 0), &exp), c, exp - 1, i[0]), 0);
 //	ft_putendl(nb);
+*/
 	return (printing(&nb, arg, flags, num));
 }
