@@ -27,7 +27,7 @@ SRCS = 	ft_printf.c \
 		print_f.c \
 		print_e.c \
 		print_g.c \
-		utils_g.c \
+		utils_d.c \
 		print_p.c \
 		print_a.c \
 		print_long_a.c \

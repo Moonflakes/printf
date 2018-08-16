@@ -52,26 +52,6 @@ char	*pad_precision(char **str, t_flags *flags, int num)
 	return (str[0]);
 }
 
-int		ft_nblen(long long nb)
-{
-	int i;
-
-	i = 1;
-	if (nb < 0)
-	{
-		nb = -nb;
-		i++;
-	}
-	while (nb / 10 > 0)
-	{
-		nb = nb / 10;
-		i++;
-	}
-	if (nb == 0)
-		i = 1;
-	return (i);
-}
-
 int		print_nb(t_arg *arg, t_flags *flags, int num)
 {
 	long long	i;

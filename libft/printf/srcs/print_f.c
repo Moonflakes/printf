@@ -20,7 +20,7 @@ char	*char_f(long double f, int precision, int *exp)
 
 	i[0] = -1;
 	i[1] = f * 1;
-	len = (precision + 2 < 1 - *exp) ? precision + 2 : *exp +  1 + precision + 2;
+	len = (precision + 2 < 1 - *exp) ? precision + 2 : *exp + 1 + precision + 2;
 	if (!(nb = (char*)ft_memalloc(sizeof(char) * len)))
 		return (NULL);
 	while (++i[0] < len - 1)

@@ -87,6 +87,7 @@ typedef struct			s_tf
 }						t_tf;
 
 int						ft_printf(const char *format, ...);
+void					stock_arg(va_list ap, t_arg *arg, t_flags *flags);
 int						print_arg(t_arg *arg, t_flags *flags, int num);
 int						printing(char **str, t_arg *arg, t_flags *flags, int num);
 void					verif_next_arg(t_arg *arg, t_flags *flags, int next);
@@ -124,6 +125,8 @@ int						if_length(t_arg *arg, t_flags *flags, int num);
 
 char					*process_flags(char *str, t_arg *arg, t_flags *flags, int num);
 char					*htag_process(char *str, t_arg *arg, t_flags *flags, int num);
+char					*add_plus_or_space(char *str, t_arg *arg, t_flags *flags,
+						int num);
 int						ft_color(const char *format, int i);
 
 void					num_arg(const char *format, t_arg *arg, t_flags *flags);
@@ -134,26 +137,22 @@ int						extract_value(char *s, t_arg *arg, t_flags *flags, int num);
 void					width(t_arg *arg, t_flags *flags, int num);
 void					process_strp(t_arg *arg, int num, t_flags *flags);
 char					*char_tab_malloc(int len);
-char					*pute(char *nb, char e, int exp, int nbb);
-char					*round_d(char *nb, int *exp, int d);
-char					*round_f(char *nb);
+
 void					ft_round_hex(double d, t_sign *sign, char *str);
 char					*if_nbneg(char *str, int exp, char *signe, t_sign *sign);
 char					*dtoa_base(long double d, t_sign *sign, int exp,
 						long long precision);
 char					*if_maj(char *str, char a);
-int						ft_nblen(long long nb);
+
+/*
+** UTILS DOUBLE
+*/
 int						exposant_d(long double *d);
-
-void					stock_arg(va_list ap, t_arg *arg, t_flags *flags);
-char					*itob(long long nb);
-char					*add_plus_or_space(char *str, t_arg *arg, t_flags *flags,
-						int num);
-
 char					*add_zero_d(char *nb, int *exp, int *pr);
 char					*suppr_zero(char *nb);
 char					*insert_point_sign(char *nb, int exp, int *sign_point, int d);
 char					*add_exp(char *nb, int exp, char e, int sign);
 int						abs_value(int value);
+char					*round_d(char *nb, int *exp, int d);
 
 #endif

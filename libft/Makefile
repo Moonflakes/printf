@@ -27,11 +27,11 @@ SRCS = ft_bzero.c \
 	   ft_dtoa.c \
 	   ft_itoabase.c \
 	   ft_uitoabase.c \
-	   mon_itoabase.c \
 	   ft_recursive_power.c \
 	   ft_iterative_power.c \
 	   ft_iterative_power_double.c \
 	   ft_power_double.c \
+	   ft_nblen.c \
 	   ft_range.c \
 	   ft_strlen.c \
 	   ft_strdup.c \

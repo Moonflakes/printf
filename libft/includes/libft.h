@@ -36,7 +36,6 @@ long long			ft_atoi(const char *str);
 char				*ft_itoa(long long n);
 char				*ft_itoabase(long long jack, int base);
 char				*ft_uitoabase(unsigned long long jack, unsigned int base);
-char				*mon_itoabase(long long nb, long long base);
 char				*ft_dtoa(long double n);
 long long			nbase_len(long long nb, long long base);
 int					ft_recursive_power(long long nb, long long power);
@@ -44,6 +43,7 @@ long long			ft_iterative_power(long long nb, long long power);
 long double			ft_iterative_power_double(long double nb, long double power);
 long double			ft_power_double(long double nb, long long power);
 int					*ft_range(int min, int max);
+int					ft_nblen(long long nb);
 
 /*
 ** STRINGS
