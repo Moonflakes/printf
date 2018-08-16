@@ -150,9 +150,9 @@ char					*itob(long long nb);
 char					*add_plus_or_space(char *str, t_arg *arg, t_flags *flags,
 						int num);
 
-char					*add_zero_g(char *nb, int *exp);
+char					*add_zero_d(char *nb, int *exp, int *pr);
 char					*suppr_zero(char *nb);
-char					*insert_point_sign(char *nb, int exp, int sign, int d);
+char					*insert_point_sign(char *nb, int exp, int *sign_point, int d);
 char					*add_exp(char *nb, int exp, char e, int sign);
 int						abs_value(int value);
 

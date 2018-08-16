@@ -45,42 +45,42 @@ int		abs_value(int value)
 char	*char_g(long double g, int precision, int *exp)
 {
 	char	*nb;
-	int		i;
-	int		k;
+	int		i[2];
 
-	i = -1;
-	k = g * 1;
+	i[0] = -1;
+	i[1] = g * 1;
 	if (!(nb = (char*)ft_memalloc(sizeof(char) * (precision + 2))))
 		return (NULL);
-	while (++i < precision + 1)
+	while (++i[0] < precision + 1)
 	{
-		nb[i] = k + '0';
-		g = g - k;
+		nb[i[0]] = i[1] + '0';
+		g = g - i[1];
 		g = g * 10;
-		k = g;
+		i[1] = g;
 	}
-	nb[i] = '\0';
-	return (*exp < 0 && abs_value(*exp) <= 4) ? add_zero_g(nb, exp) : round_d(nb, exp, 1);
+	nb[i[0]] = '\0';
+	i[0] = 0;
+	i[1] = 'g';
+	return (*exp < 0 && abs_value(*exp) <= 4) ? add_zero_d(nb, exp, i) : round_d(nb, exp, 1);
 }
 
 int			print_g(char c, t_arg *arg, t_flags *flags, int num)
 {
-	int sign;
+	int			sign_point[2];
 	int	exp;
 	long double g;
 	char *nb;
 
 	g = arg->d[flags->index_arg[num]];
-	sign = (g < 0.0) ? 1 : 0;
-	g = (sign == 1) ? -g : g;
+	sign_point[0] = (g < 0.0) ? 1 : 0;
+	sign_point[1] = 0;
+	g = (sign_point[0] == 1) ? -g : g;
 	flags->precision[num]  = (flags->precision[num]) ? flags->precision[num] : 1;
 	exp = (g == 0.0) ? 0 : exposant_d(&g);
 	nb = char_g(g, flags->precision[num], &exp);
-	if (exp < 0 && abs_value(exp) <= 4)
-		nb = insert_point_sign(nb, 0, sign, 1);
-	else if (exp >= 0 && exp <= flags->precision[num] - 1)
-		nb = insert_point_sign(nb, exp, sign, 1);
+	if ((exp < 0 && abs_value(exp) <= 4) || (exp >= 0 && exp <= flags->precision[num] - 1))
+		nb = insert_point_sign(nb, exp, sign_point, 1);
 	else
-		nb = add_exp(insert_point_sign(nb, 0, sign, 1), exp, c - 2, 0);
+		nb = add_exp(insert_point_sign(nb, 0, sign_point, 1), exp, c - 2, 0);
 	return (printing(&nb, arg, flags, num));
 }

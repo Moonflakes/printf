@@ -48,7 +48,7 @@ void	extract_arg(va_list ap, t_arg *arg, t_flags *flags, int num)
 	if (arg->precision[num] == 0)
 		flags->precision[num] = (arg->d[num] != 0 || (arg->d[num] == 0 &&
 			(arg->type[num] == 'e' || arg->type[num] == 'E' || arg->type[num] == 'g' ||
-			arg->type[num] == 'G'))) ? 6 : 1;
+			arg->type[num] == 'G'|| arg->type[num] == 'f' || arg->type[num] == 'F'))) ? 6 : 1;
 //	ft_putnbr(flags->precision[num]);
 //	ft_putendl(" : pr after");
 }

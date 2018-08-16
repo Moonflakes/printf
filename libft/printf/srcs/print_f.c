@@ -12,142 +12,43 @@
 
 #include "printf.h"
 
-void	nb_inf_zero(int *i, char *str)
+char	*char_f(long double f, int precision, int *exp)
 {
-	if (i[0] < 0)
-	{
-		i[0] = -i[0];
-		while (i[0] > -1)
-		{
-			if (i[1] == 1)
-			{
-				str[i[1]] = '.';
-				i[1]++;
-			}
-			str[i[1]] = '0';
-			i[0]--;
-			i[1]++;
-		}
-	}
-}
-
-int		lenmalloc(char *nb, int precision)
-{
-	int lennb;
-
-	lennb = ft_strlen(nb);
-	if (lennb >= precision)
-		return (lennb + 2);
-	else
-		return (precision + 3);
-}
-
-char	*putf(char *nb, char *sign_nb, int precision)
-{
-	int		i[3];
+	char	*nb;
+	int		i[2];
 	int		len;
-	char	*str;
 
-	len = lenmalloc(nb, precision);
-	if (!(str = (char*)ft_memalloc(sizeof(char) * len)))
+	i[0] = -1;
+	i[1] = f * 1;
+	len = (precision + 2 < 1 - *exp) ? precision + 2 : *exp +  1 + precision + 2;
+	if (!(nb = (char*)ft_memalloc(sizeof(char) * len)))
 		return (NULL);
-	i[0] = ft_strlen(nb) - precision;
-//	ft_putnbr(ft_strlen(nb));
-//	ft_putendl(" : len");
-//	ft_putnbr(i[0]);
-//	ft_putendl(" : i0");
-	i[2] = 0;
-	i[1] = 0;
-	if (i[0] == 0)
+	while (++i[0] < len - 1)
 	{
-		str[0] = '0';
-		i[1] = 1;
-		i[0] = i[0] + 1;
+		nb[i[0]] = i[1] + '0';
+		f = f - i[1];
+		f = f * 10;
+		i[1] = f;
 	}
-//	ft_putstr(nb);
-//	ft_putendl(" : nb");
-//	ft_putnbr(precision);
-//	ft_putendl(" : pr");
-	nb_inf_zero(i, str);
-	while (nb[i[2]])
-	{
-//		ft_putnbr(i[1]);
-//		ft_putendl(" : i1");
-//		ft_putnbr(i[0]);
-//		ft_putendl(" : i0");
-		if (i[1] == i[0])
-		{
-//			ft_putendl("l");
-			str[i[1]] = '.';
-			i[1]++;
-		}
-//		ft_putnbr(i[1]);
-//		ft_putendl(" : i1");
-		str[i[1]] = nb[i[2]];
-		i[1]++;
-		i[2]++;
-	}
-	str[i[1]] = '\0';
-//	ft_putendl(str);
-	ft_strdel(&nb);
-	str = ft_strjoin_free(sign_nb, str, 0);
-	return (str);
-}
-
-char	*make_zeros(int precision)
-{
-	int i;
-	char *nb;
-
-	i = 0;
-	nb = ft_strdup("0");
-	while(i < precision)
-	{
-		nb = ft_strjoin_free(nb, "0", 1);
-		i++;
-	}
-	return (nb);
+	nb[i[0]] = '\0';
+	i[0] = precision;
+	i[1] = 'f';
+	return (*exp < 0) ? add_zero_d(nb, exp, i) : round_d(nb, exp, 1);
 }
 
 int		print_f(t_arg *arg, t_flags *flags, int num)
 {
+	int			sign_point[2];
+	int			exp;
 	long double	f;
 	char		*nb;
-	long double	i;
-	char		*sign_nb;
 
 	f = arg->d[flags->index_arg[num]];
-	if (f == 0 && arg->precision[num] == 0)
-		flags->precision[num] = 6;
-//	if (f == 0x0)
-//		ft_putendl("je suis negatif");
-//	ft_putendl("");
-//	ft_putnbr(f/100000000000);
-//	ft_putendl(" : f");
-//	ft_putnbr(flags->precision[num]);
-//	ft_putendl(" : precision");
-//	ft_putnbr(flags->width[num]);
-//	ft_putendl(" : width");
-	i = f * ft_power_double(10, flags->precision[num] + 1);
-//	ft_putnbr(i/100000000000000000);
-//	ft_putendl(" : i");
-	sign_nb = ft_strdup("");
-	if (f == 0)
-	{
-		nb = make_zeros(flags->precision[num] + 1);
-	}
-	else if (i < 0)
-	{
-		sign_nb = ft_strdup_del("-", sign_nb);
-		nb = ft_dtoa(i * -1);
-	}
-	else
-		nb = ft_dtoa(i);
-//	ft_putendl(nb);
-	nb = putf(round_f(nb), sign_nb, flags->precision[num]);
-//	ft_putendl(nb);
-	if (flags->htag[num] == 1 && flags->precision[num] == 0 && arg->precision[num] == 1)
-		nb = ft_strjoin_free(nb, ".", 1);
-//	ft_putendl(nb);
+	sign_point[0] = (f < 0.0) ? 1 : 0;
+	sign_point[1] = (flags->precision[num] == 0) ? 1 : 0;
+	f = (sign_point[0] == 1) ? -f : f;
+	exp = (f == 0.0) ? 0 : exposant_d(&f);
+	nb = char_f(f, flags->precision[num], &exp);
+	nb = insert_point_sign(nb, exp, sign_point, 0);
 	return (printing(&nb, arg, flags, num));
 }

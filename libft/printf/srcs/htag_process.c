@@ -142,6 +142,8 @@ char	*htag_process(char *str, t_arg *arg, t_flags *flags, int num)
 		{
 			str = ht_process_a(str, arg->type[num]);
 		}
+		if ((arg->type[num] == 'f' || arg->type[num] == 'F') && flags->precision[num] == 0)
+			str = ft_strjoin_free(str, ".\0", 1);
 	}
 	if (arg->ull[num] == 0 && flags->precision[num] == 0 && (arg->type[num] == 'x' || arg->type[num] == 'X'))
 	{

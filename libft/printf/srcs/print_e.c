@@ -36,17 +36,17 @@ char	*char_e(long double e, int precision, int *exp)
 
 int		print_e(char c, t_arg *arg, t_flags *flags, int num)
 {
-	int sign;
+	int sign_point[2];
 	int	exp;
 	long double e;
 	char *nb;
 
 	e = arg->d[flags->index_arg[num]];
-	sign = (e < 0.0) ? 1 : 0;
-	e = (sign == 1) ? -e : e;
+	sign_point[0] = (e < 0.0) ? 1 : 0;
+	sign_point[1] = 0;
+	e = (sign_point[0] == 1) ? -e : e;
 	exp = (e == 0.0) ? 0 : exposant_d(&e);
 	nb = char_e(e, flags->precision[num], &exp);
-	nb = (flags->precision[num]) ? add_exp(insert_point_sign(nb, 0, sign, 0), exp, c, 0) : add_exp(nb, exp, c, sign);
-
+	nb = (flags->precision[num]) ? add_exp(insert_point_sign(nb, 0, sign_point, 0), exp, c, 0) : add_exp(nb, exp, c, sign_point[0]);
 	return (printing(&nb, arg, flags, num));
 }

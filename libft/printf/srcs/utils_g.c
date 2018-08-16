@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-char	*add_zero_g(char *nb, int *exp)
+char	*add_zero_d(char *nb, int *exp, int *pr)
 {
 	char	*g;
 	int		i;
@@ -24,6 +24,7 @@ char	*add_zero_g(char *nb, int *exp)
 	len = ft_strlen(nb) - *exp;
 	if (!(g = (char*)ft_memalloc(sizeof(char) * len + 1)))
 		return (NULL);
+	len = (pr[1] == 'f') ? pr[0] + 2 : len;
 	while (++i < len)
 	{
 		if (i < -*exp)
@@ -46,27 +47,28 @@ char	*suppr_zero(char *nb)
 	return (nb);
 }
 
-char	*insert_point_sign(char *nb, int exp, int sign, int d)
+char	*insert_point_sign(char *nb, int exp, int *sign_point, int d)
 {
 	char	*nbb;
 	int		len;
 	int		i;
 	int		j;
 
-	len = ft_strlen(nb) + 1 + sign;
+	len = ft_strlen(nb) + 1 + sign_point[0];
 	i = -1;
 	j = -1;
+	exp = (exp < 0) ? 0 : exp;
 	if (!(nbb = (char*)ft_memalloc(sizeof(char) * len + 1)))
 		return (NULL);
-	if (sign)
+	if (sign_point[0])
 		nbb[++i] = '-';
 	while (++i < len)
 	{
-		nbb[i] = (i == exp + 1 + sign) ? '.' : nb[++j];
+		nbb[i] = (i == exp + 1 + sign_point[0]) ? '.' : nb[++j];
 	}
 	nbb[i] = '\0';
 	ft_strdel(&nb);
-	return (d) ? suppr_zero(nbb) : nbb;
+	return (d || sign_point[1]) ? suppr_zero(nbb) : nbb;
 }
 
 char	*add_exp(char *nb, int exp, char e, int sign)
