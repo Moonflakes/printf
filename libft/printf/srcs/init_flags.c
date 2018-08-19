@@ -27,7 +27,7 @@ void	init_flags(t_arg *arg, int i, t_flags *flags, int num)
 		&& before <= '9') || before == '*')) && flags->left[num] != 1)) ? 1 : 0;
 	flags->space[num] = (flags->space[num] != 0 ||
 		(c == ' ' && flags->plus[num] != 1)) ? 1 : 0;
-	if (arg->strp[num][i] == 'l' || arg->strp[num][i] == 'L' 
+	if ((arg->strp[num][i] == 'l' && !ft_strchr("aA", arg->type[num])) || arg->strp[num][i] == 'L' 
 		|| ft_strchr("DUOX", arg->type[num]))
 		arg->length[num] = 1;
 	if (arg->strp[num][i] == 'z' || arg->strp[num][i] == 'j')
@@ -107,6 +107,16 @@ void	if_point(t_arg *arg, t_flags *flags, int num, int i)
 			flags->precision[num] = 1;
 }
 
+void	init_precision(t_arg *arg, t_flags *flags, int num)
+{
+	if (ft_strchr("eEgGfF", arg->type[num]))
+		flags->precision[num] =  6;
+	else if (ft_strchr("aA", arg->type[num]))
+		flags->precision[num] = (arg->length[num]) ? 15 : 13;
+	else
+		flags->precision[num] =  1;
+}
+
 void	process_strp(t_arg *arg, int num, t_flags *flags)
 {
 	int		i;
@@ -127,5 +137,7 @@ void	process_strp(t_arg *arg, int num, t_flags *flags)
 			if_point(arg, flags, num, i);
 		init_flags(arg, i, flags, num);
 	}
+	if (!arg->precision[num])
+		init_precision(arg, flags, num);
 	width(arg, flags, num);
 }

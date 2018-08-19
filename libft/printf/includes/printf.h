@@ -154,5 +154,6 @@ char					*insert_point_sign(char *nb, int exp, int *sign_point, int d);
 char					*add_exp(char *nb, int exp, char e, int sign);
 int						abs_value(int value);
 char					*round_d(char *nb, int *exp, int d);
+char					*round_hex(char *hex);
 
 #endif

@@ -72,32 +72,100 @@ char	*if_maj(char *str, char a)
 	return (str);
 }
 
-int		dble_process(long double *d, int *exp)
+int		dble_process(long double *d, int length)
 {
-	if (d[0] == 0)
-		return (0);
+	int		exp;
+	double	i;
+
+	exp = (length && d[0] != 0) ? -4 : 0;
 	if (d[0] >= 1)
 	{
-		while (d[0] >= 2)
+		i = (length) ? 1 : 2;
+		while (d[0] >= i)
 		{
 			d[0] = d[0] / 2;
-			exp[0]++;
+			++exp;
 		}
 	}
-	else
+	else if (d[0] < 1 && d[0] != 0)
 	{
-		while (d[0] < 1)
+		i = (length) ? 0.5 : 1;
+		while (d[0] < i)
 		{
 			d[0] = d[0] * 2;
-			exp[0]--;
+			--exp;
 		}
-		return (1);
 	}
-	return (0);
+	return (exp);
 }
+
+char	*insert_x_point(char *str, int pr)
+{
+	char	*hex;
+	int		len;
+	int		i;
+	int		j;
+
+	len = ft_strlen(str) + 3;
+	i = -1;
+	j = -1;
+	if (!(hex = (char*)ft_memalloc(sizeof(char) * len + 1)))
+		return (NULL);
+	hex[++i] = '0';
+	hex[++i] = 'x';
+	while (++i < len)
+		hex[i] = (i == 3) ? '.' : str[++j];
+	hex[i] = '\0';
+	ft_strdel(&str);
+	return (pr) ? hex : suppr_zero(hex);
+}
+
+char	*convert_hex(long double d, int precision, int length)
+{
+	int		i;
+	int		j;
+	char	*hex;
+
+	if (!(hex = (char*)ft_memalloc(sizeof(char) * (precision + 2))))
+		return (NULL);
+	i = -1;
+	j = d;
+	if (!length)
+		hex[++i] = (j > 9) ? 'a' + j - 10 : j + '0';
+	while (++i <= precision + 1)
+	{
+		d = d * 16;
+		j = d;
+		d = d - j;
+		if (i == 1 && j && !length)
+			j = j - 16;
+		hex[i] = (j > 9) ? 'a' + j - 10 : j + '0';
+	}
+	hex[i] = '\0';
+	return (round_hex(hex));
+}
+
 
 int		print_a(char a, t_arg *arg, t_flags *flags, int num)
 {
+	long double	d;
+	int			exp;
+	int			sign_pr[2];
+	char		*hex;
+
+	d = arg->d[flags->index_arg[num]];
+	sign_pr[0] = 0;
+	sign_pr[1] = ((arg->precision[num] && !flags->precision[num]) || !arg->precision[num]) ? 0 : 1;
+	if (d < 0)
+	{
+		d = -d;
+		sign_pr[0] = 1;
+	}
+	exp = dble_process(&d, arg->length[num]);
+	hex = convert_hex(d, flags->precision[num], arg->length[num]);
+	hex = if_maj(add_exp(insert_x_point(hex, sign_pr[1]), exp, 'p', sign_pr[0]), a);
+
+/*
 	long double	d;
 	int			exp;
 	t_sign		sign;
@@ -114,6 +182,10 @@ int		print_a(char a, t_arg *arg, t_flags *flags, int num)
 		sign.nb = 1;
 	}
 	sign.exp = dble_process(&d, &exp);
+	hex = convert_hex(d, flags->precision[num]);
 	hex = dtoa_base(d, &sign, exp, flags->precision[num] + 1);
+//	ft_putendl("");
+//	ft_putstr(hex);
+//	ft_putendl(" : hex");*/
 	return (printing(&hex, arg, flags, num));
 }

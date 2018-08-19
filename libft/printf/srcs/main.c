@@ -1144,14 +1144,46 @@ int main(void)
 	ft_putnbr(printf("%f \n", 5.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("f : precision .0");
-	ft_putnbr(ft_printf("%.0f %.0f %.0f %.0f %.0f \n", 0.0004745, -45.789, 5.0, 1.0, 0.0));
+	ft_putnbr(ft_printf("%.0f %.0f %.0f %.0f %.0f %.15f \n", 0.0004745, -45.789, 5.0, 1.0, 0.0, 999999.9999));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%.0f %.0f %.0f %.0f %.0f \n", 0.0004745, -45.789, 5.0, 1.0, 0.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
+//
+	long double h;
+	double		g;
+	int i;
+	int k;
+
+	h = 999999.9999;
+	g = 999999.9999;
+	i = -1;
+
+	while (h / 10 > 1)
+		h = h / 10;
+	while (g / 10 > 1)
+		g = g / 10;
+	while (++i < 20)
+	{
+		k = h * 1;
+		ft_putchar(k + '0');
+		h = h - k;
+		h = h * 10;
+	}
+	ft_putchar('\n');
+	i = -1;
+	while (++i < 20)
+	{
+		k = g * 1;
+		ft_putchar(k + '0');
+		g = g - k;
+		g = g * 10;
+	}
+//
+
 	ft_putendl("f : 0");
 	ft_putnbr(ft_printf("%.15f \n", 0.0));
 	ft_putendl(" : return mon printf");
@@ -1911,6 +1943,86 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putnbr(printf("%.1a %.1a \n", -0.0004745, -45.789));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
+*/
+	ft_putendl("a : \n%a     %.a     %.0a     %.1a     %.2a            %.12a           %.15a ");
+	ft_putnbr(ft_printf("%.a %.1a %.2a %.3a %.5a %.7a %.9a %.11a \n", 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%.a %.1a %.2a %.3a %.5a %.7a %.9a %.11a \n", 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+/*
+	ft_putendl("a : \n%a     %.a     %.0a     %.1a     %.2a            %.12a           %.15a ");
+	ft_putnbr(ft_printf("%#a %#a %#.a %a %a %a %.11a \n", 0.0, 1.0, 16777215.0, -5.0, 9.99, 0.00045, 999999.9999));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%#a %#a %#.a %a %a %a %.11a \n", 0.0, 1.0, 16777215.0, -5.0, 9.99, 0.00045, 999999.9999));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+
+	ft_putendl("la : \n%la     %.la     %.0la     %.1la     %.2la            %.12la           %.15la ");
+	ft_putnbr(ft_printf("%A %.A %.0A %.1A %.2A %.12A %.15A \n", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%A %.A %.0A %.1A %.2A %.12A %.15A \n", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+
+	printf("a : %1$a %1$.a %1$.0a %1$.1a %1$.2a %1$.3a %1$.4a %1$.5a %1$.6a %1$.7a %1$.8a %1$.9a %1$.10a\n", 0.0);
+	printf("la : %1$la %1$.la %1$.0la %1$.1la %1$.2la %1$.3la %1$.4la %1$.5la %1$.6la %1$.7la %1$.8la %1$.9la %1$.10la\n", 0.0);
+	printf("La : %1$La %1$.La %1$.0La %1$.1La %1$.2La %1$.3La %1$.4La %1$.5La %1$.6La %1$.7La %1$.8La %1$.9La %1$.10La\n", 0.0L);
+	printf("A : %1$A %1$.A %1$.0A %1$.1A %1$.2A %1$.3A %1$.4A %1$.5A %1$.6A %1$.7A %1$.8A %1$.9A %1$.10A\n", 0.0);
+	printf("lA : %1$lA %1$.lA %1$.0lA %1$.1lA %1$.2lA %1$.3lA %1$.4lA %1$.5lA %1$.6lA %1$.7lA %1$.8lA %1$.9lA %1$.10lA\n", 0.0);
+	printf("LA : %1$LA %1$.LA %1$.0LA %1$.1LA %1$.2LA %1$.3LA %1$.4LA %1$.5LA %1$.6LA %1$.7LA %1$.8LA %1$.9LA %1$.10LA\n\n", 0.0L);
+
+	printf("a : %1$a %1$.a %1$.0a %1$.1a %1$.2a %1$.3a %1$.4a %1$.5a %1$.6a %1$.7a %1$.8a %1$.9a %1$.10a\n", 0.12);
+	printf("la : %1$la %1$.la %1$.0la %1$.1la %1$.2la %1$.3la %1$.4la %1$.5la %1$.6la %1$.7la %1$.8la %1$.9la %1$.10la\n", 0.12);
+	printf("La : %1$La %1$.La %1$.0La %1$.1La %1$.2La %1$.3La %1$.4La %1$.5La %1$.6La %1$.7La %1$.8La %1$.9La %1$.10La\n", 0.12L);
+	printf("A : %1$A %1$.A %1$.0A %1$.1A %1$.2A %1$.3A %1$.4A %1$.5A %1$.6A %1$.7A %1$.8A %1$.9A %1$.10A\n", 0.12);
+	printf("lA : %1$lA %1$.lA %1$.0lA %1$.1lA %1$.2lA %1$.3lA %1$.4lA %1$.5lA %1$.6lA %1$.7lA %1$.8lA %1$.9lA %1$.10lA\n", 0.12);
+	printf("LA : %1$LA %1$.LA %1$.0LA %1$.1LA %1$.2LA %1$.3LA %1$.4LA %1$.5LA %1$.6LA %1$.7LA %1$.8LA %1$.9LA %1$.10LA\n\n", 0.12L);
+
+	printf("a : %1$a %1$.a %1$.0a %1$.1a %1$.2a %1$.3a %1$.4a %1$.5a %1$.6a %1$.7a %1$.8a %1$.9a %1$.10a\n", 0.01);
+	printf("la : %1$la %1$.la %1$.0la %1$.1la %1$.2la %1$.3la %1$.4la %1$.5la %1$.6la %1$.7la %1$.8la %1$.9la %1$.10la\n", 0.01);
+	printf("La : %1$La %1$.La %1$.0La %1$.1La %1$.2La %1$.3La %1$.4La %1$.5La %1$.6La %1$.7La %1$.8La %1$.9La %1$.10La\n", 0.01L);
+	printf("A : %1$A %1$.A %1$.0A %1$.1A %1$.2A %1$.3A %1$.4A %1$.5A %1$.6A %1$.7A %1$.8A %1$.9A %1$.10A\n", 0.01);
+	printf("lA : %1$lA %1$.lA %1$.0lA %1$.1lA %1$.2lA %1$.3lA %1$.4lA %1$.5lA %1$.6lA %1$.7lA %1$.8lA %1$.9lA %1$.10lA\n", 0.01);
+	printf("LA : %1$LA %1$.LA %1$.0LA %1$.1LA %1$.2LA %1$.3LA %1$.4LA %1$.5LA %1$.6LA %1$.7LA %1$.8LA %1$.9LA %1$.10LA\n\n", 0.01L);
+
+	printf("a : %1$a %1$.a %1$.0a %1$.1a %1$.2a %1$.3a %1$.4a %1$.5a %1$.6a %1$.7a %1$.8a %1$.9a %1$.10a\n", 12.7639);
+	printf("la : %1$la %1$.la %1$.0la %1$.1la %1$.2la %1$.3la %1$.4la %1$.5la %1$.6la %1$.7la %1$.8la %1$.9la %1$.10la\n", 12.7639);
+	printf("La : %1$La %1$.La %1$.0La %1$.1La %1$.2La %1$.3La %1$.4La %1$.5La %1$.6La %1$.7La %1$.8La %1$.9La %1$.10La\n", 12.7639L);
+	printf("A : %1$A %1$.A %1$.0A %1$.1A %1$.2A %1$.3A %1$.4A %1$.5A %1$.6A %1$.7A %1$.8A %1$.9A %1$.10A\n", 12.7639);
+	printf("lA : %1$lA %1$.lA %1$.0lA %1$.1lA %1$.2lA %1$.3lA %1$.4lA %1$.5lA %1$.6lA %1$.7lA %1$.8lA %1$.9lA %1$.10lA\n", 12.7639);
+	printf("LA : %1$LA %1$.LA %1$.0LA %1$.1LA %1$.2LA %1$.3LA %1$.4LA %1$.5LA %1$.6LA %1$.7LA %1$.8LA %1$.9LA %1$.10LA\n\n", 12.7639L);
+
+
+
+	printf("u : %1$u %1$.u %1$.0u %1$.1u %1$.2u %1$.3u %1$.4u %1$.5u %1$.6u %1$.7u %1$.8u %1$.9u %1$.10u\n", 0);
+	printf("lu : %1$lu %1$.lu %1$.0lu %1$.1lu %1$.2lu %1$.3lu %1$.4lu %1$.5lu %1$.6lu %1$.7lu %1$.8lu %1$.9lu %1$.10lu\n", 0);
+	printf("llu : %1$llu %1$.llu %1$.0llu %1$.1llu %1$.2llu %1$.3llu %1$.4llu %1$.5llu %1$.6llu %1$.7llu %1$.8llu %1$.9llu %1$.10Lu\n", 0L);
+	printf("U : %1$U %1$.U %1$.0U %1$.1U %1$.2U %1$.3U %1$.4U %1$.5U %1$.6U %1$.7U %1$.8U %1$.9U %1$.10U\n", 0);
+	printf("lU : %1$lU %1$.lU %1$.0lU %1$.1lU %1$.2lU %1$.3lU %1$.4lU %1$.5lU %1$.6lU %1$.7lU %1$.8lU %1$.9lU %1$.10lU\n", 0);
+	printf("llU : %1$llU %1$.llU %1$.0llU %1$.1llU %1$.2llU %1$.3llU %1$.4llU %1$.5llU %1$.6llU %1$.7llU %1$.8llU %1$.9llU %1$.10llU\n\n", 0L);
+
+	printf("u : %1$u %1$.u %1$.0u %1$.1u %1$.2u %1$.3u %1$.4u %1$.5u %1$.6u %1$.7u %1$.8u %1$.9u %1$.10u\n", 12);
+	printf("lu : %1$lu %1$.lu %1$.0lu %1$.1lu %1$.2lu %1$.3lu %1$.4lu %1$.5lu %1$.6lu %1$.7lu %1$.8lu %1$.9lu %1$.10lu\n", 12);
+	printf("llu : %1$llu %1$.llu %1$.0llu %1$.1llu %1$.2llu %1$.3llu %1$.4llu %1$.5llu %1$.6llu %1$.7llu %1$.8llu %1$.9llu %1$.10llu\n", 12L);
+	printf("U : %1$U %1$.U %1$.0U %1$.1U %1$.2U %1$.3U %1$.4U %1$.5U %1$.6U %1$.7U %1$.8U %1$.9U %1$.10U\n", 12);
+	printf("lU : %1$lU %1$.lU %1$.0lU %1$.1lU %1$.2lU %1$.3lU %1$.4lU %1$.5lU %1$.6lU %1$.7lU %1$.8lU %1$.9lU %1$.10lU\n", 12);
+	printf("llU : %1$llU %1$.llU %1$.0llU %1$.1llU %1$.2llU %1$.3llU %1$.4llU %1$.5llU %1$.6llU %1$.7llU %1$.8llU %1$.9llU %1$.10llU\n\n", 12L);
+
+	printf("u : %1$u %1$.u %1$.0u %1$.1u %1$.2u %1$.3u %1$.4u %1$.5u %1$.6u %1$.7u %1$.8u %1$.9u %1$.10u\n", -45);
+	printf("lu : %1$lu %1$.lu %1$.0lu %1$.1lu %1$.2lu %1$.3lu %1$.4lu %1$.5lu %1$.6lu %1$.7lu %1$.8lu %1$.9lu %1$.10lu\n", -45);
+	printf("Lu : %1$Lu %1$.Lu %1$.0Lu %1$.1Lu %1$.2Lu %1$.3Lu %1$.4Lu %1$.5Lu %1$.6Lu %1$.7Lu %1$.8Lu %1$.9Lu %1$.10Lu\n", -45L);
+	printf("U : %1$U %1$.U %1$.0U %1$.1U %1$.2U %1$.3U %1$.4U %1$.5U %1$.6U %1$.7U %1$.8U %1$.9U %1$.10U\n", -45);
+	printf("lU : %1$lU %1$.lU %1$.0lU %1$.1lU %1$.2lU %1$.3lU %1$.4lU %1$.5lU %1$.6lU %1$.7lU %1$.8lU %1$.9lU %1$.10lU\n", -45);
+	printf("LU : %1$LU %1$.LU %1$.0LU %1$.1LU %1$.2LU %1$.3LU %1$.4LU %1$.5LU %1$.6LU %1$.7LU %1$.8LU %1$.9LU %1$.10LU\n\n", -45L);
+
+	printf("u : %1$u %1$.u %1$.0u %1$.1u %1$.2u %1$.3u %1$.4u %1$.5u %1$.6u %1$.7u %1$.8u %1$.9u %1$.10u\n", 127639);
+	printf("lu : %1$lu %1$.lu %1$.0lu %1$.1lu %1$.2lu %1$.3lu %1$.4lu %1$.5lu %1$.6lu %1$.7lu %1$.8lu %1$.9lu %1$.10lu\n", 127639);
+	printf("llu : %1$llu %1$.llu %1$.0llu %1$.1llu %1$.2llu %1$.3llu %1$.4llu %1$.5llu %1$.6llu %1$.7llu %1$.8llu %1$.9llu %1$.10llu\n", 127639);
+	printf("U : %1$U %1$.U %1$.0U %1$.1U %1$.2U %1$.3U %1$.4U %1$.5U %1$.6U %1$.7U %1$.8U %1$.9U %1$.10U\n", 127639);
+	printf("lU : %1$lU %1$.lU %1$.0lU %1$.1lU %1$.2lU %1$.3lU %1$.4lU %1$.5lU %1$.6lU %1$.7lU %1$.8lU %1$.9lU %1$.10lU\n", 127639);
+	printf("llU : %1$llU %1$.llU %1$.0llU %1$.1llU %1$.2llU %1$.3llU %1$.4llU %1$.5llU %1$.6llU %1$.7llU %1$.8llU %1$.9llU %1$.10llU\n\n", 127639);
+
 
 	ft_putendl("a : #");
 	ft_putnbr(ft_printf("%#a \n", 0.0));

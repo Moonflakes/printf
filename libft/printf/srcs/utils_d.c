@@ -112,7 +112,7 @@ char	*add_exp(char *nb, int exp, char e, int sign)
 		nbexp[i] = nb[i];
 	nbexp[i] = e;
 	nbexp[++i] = sign_exp;
-	if (exp < 10)
+	if (exp < 10 && e != 'p')
 		nbexp[++i] = '0';
 	ft_strdel(&nb);
 	nb = ft_strjoin_free(nbexp, ft_itoa(exp), 0);

@@ -74,7 +74,7 @@ char	*ft_convert_pr(long double d, char *str, t_sign *sign,
 	while (i < precision + 1)
 	{
 		d = (d == 1) ? d : d * 16;
-		sign->j =(d == 1) ? 0 : d;
+		sign->j = (d == 1) ? 0 : d;
 		i = ft_ft(i, sign, precision, str);
 		d = d - sign->j;
 		if (precision == 0)

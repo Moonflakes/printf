@@ -132,10 +132,10 @@ char	*htag_process(char *str, t_arg *arg, t_flags *flags, int num)
 		}
 		if (arg->type[num] == 'g' || arg->type[num] == 'G')
 			str = ht_process_g(str, flags->precision[num], arg->type[num] - 2);
-		if ((arg->type[num] == 'a' || arg->type[num] == 'A') && (flags->precision[num] == 0
-			|| (arg->precision[num] == 0 && flags->precision[num] == 1)))
+		if ((arg->type[num] == 'a' || arg->type[num] == 'A')/* && (flags->precision[num] == 0
+			|| (arg->precision[num] == 0 && flags->precision[num] == 1))*/)
 		{
-			str = ht_process_a(str, arg->type[num] + 15);
+			str = (ft_strchr(str, '.')) ? str : ht_process_a(str, arg->type[num] + 15);
 		}
 		if ((arg->type[num] == 'e' || arg->type[num] == 'E') && (flags->precision[num] == 0
 			|| (arg->precision[num] == 0 && flags->precision[num] == 1)))
