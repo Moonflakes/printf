@@ -44,6 +44,7 @@ char	*pad_precision(char **str, t_flags *flags, int num)
 		}
 		ft_strdel(str);
 		str[0] = ft_strdup(padstr);
+		ft_strdel(&padstr);
 		flags->prpass = 1;
 	}
 //	ft_putendl("");

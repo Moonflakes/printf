@@ -4,24 +4,25 @@
 
 int main(void)
 {
+    int i5 = 0;
 /*
 ************
 ** BASICS **
 ************
-
-	ft_putendl("BASICS");
+*/
+	ft_putendl("--------BASICS-------------------------------------------------------------------");
 	ft_putendl("s :");
 	ft_putnbr(ft_printf("coco\net titi \n"));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("coco\net titi \n"));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 ****************
 ** STRING : s **
 ****************
-
-	ft_putendl("STRING : s");
+*/
+	ft_putendl("--------STRING : s---------------------------------------------------------------");
 	ft_putnbr(ft_printf("{y__}%s : {bW_}%s\n{d__}", "red", "green"));
 	ft_putendl(" : return mon printf");
 //	ft_putnbr(printf("%s%s : %s%s\n", KRED, "red", KGRN, "green"));
@@ -139,12 +140,12 @@ int main(void)
 	ft_putnbr(printf("%1.4s et %-6.8s et %4.2s\n", "tuuu", "12345", "hu"));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 ****************
 ** STRING : S **
 ****************
-
-	ft_putendl("STRING : big_S");
+*/
+	ft_putendl("--------STRING : big_S-----------------------------------------------------------");
 	wchar_t k[4];
 
 	k[0] = 0x53;
@@ -388,12 +389,12 @@ int main(void)
 	ft_putnbr(printf("%-10.2ls!!\n", L"〻"));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 **************
 ** CHAR : c **
 **************
-
-	ft_putendl("CHAR : c");
+*/
+	ft_putendl("--------CHAR : c-----------------------------------------------------------------");
 	ft_putendl("c :");
 	ft_putnbr(ft_printf("%25c \n", 'c'));
 	ft_putendl(" : return mon printf");
@@ -414,12 +415,12 @@ int main(void)
 	ft_putnbr(printf("hello ca**%----4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 **************
 ** CHAR : C **
 **************
-
-	ft_putendl("CHAR : big_C");
+*/
+	ft_putendl("--------CHAR : big_C-------------------------------------------------------------");
 	ft_putendl("C :");
 	ft_putnbr(ft_printf("%C \n", L'Æ'));
 	ft_putendl(" : return mon printf");
@@ -594,12 +595,12 @@ int main(void)
 	ft_putnbr(printf("yo%2C%-12lc et %C titi %C tyty\n", 'u', 254, 256, 'a'));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 *********************
 ** INT : i, d et D **
 *********************
-
-	ft_putendl("INT : i, d, D");
+*/
+	ft_putendl("--------INT : i, d, D------------------------------------------------------------");
 	ft_putendl("test : ");
 	ft_putnbr(ft_printf("%#020X", 12));
 	ft_putendl(" : return mon printf");
@@ -745,12 +746,12 @@ int main(void)
 	ft_putnbr(printf("%0*.*i %*.*f  \n", 15, 2, 45456, 20, 8, 12.45));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 *******************************
 ** UNSIGNED base 10 : u et U **
 *******************************
-
-	ft_putendl("UNSIGNED base 10 : u et U");
+*/
+	ft_putendl("--------UNSIGNED base 10 : u et U------------------------------------------------");
 	ft_putendl("u :");
 	ft_putnbr(ft_printf("%.u\n", 0));
 	ft_putendl(" : return mon printf");
@@ -834,12 +835,12 @@ int main(void)
 	ft_putnbr(printf("ko%-4.2hhu et %05.2u!", (unsigned char)-456, 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 ******************************
 ** UNSIGNED base 8 : o et O **
 ******************************
-
-	ft_putendl("UNSIGNED base 8 : o et O");
+*/
+	ft_putendl("--------UNSIGNED base 8 : o et O-------------------------------------------------");
 	ft_putendl("o basic_01 :");
 	ft_putnbr(ft_printf("%o", 0));
 	ft_putendl(" : return mon printf");
@@ -954,12 +955,12 @@ int main(void)
 	ft_putnbr(printf("%8.5lo \n", 45L));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");	
-
+/*
 ******************************
 ** UNSIGNED base 2 : b et B **
 ******************************
-
-	ft_putendl("UNSIGNED base 2 : b et B");
+*/
+	ft_putendl("--------UNSIGNED base 2 : b et B--------------------------------------------------");
 	ft_putendl("b :");
 	ft_putnbr(ft_printf("%b \n", 45));
 	ft_putendl(" : return mon printf");
@@ -979,12 +980,13 @@ int main(void)
 	ft_putendl("b :");
 	ft_putnbr(ft_printf("%b \n", 3));
 	ft_putendl(" : return mon printf");
-
+    
+/*
 *******************************
 ** UNSIGNED base 16 : x et X **
 *******************************
-
-	ft_putendl("UNSIGNED base 16 : x et X");
+*/
+	ft_putendl("--------UNSIGNED base 16 : x et X------------------------------------------------");
 	ft_putendl("x et X :");
 	ft_putnbr(ft_printf("%x \n", 64));
 	ft_putendl(" : return mon printf");
@@ -1103,12 +1105,12 @@ int main(void)
 	ft_putnbr(printf("%0#10.0x", 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 *********************
 ** DOUBLE : f et F **
 *********************
-
-	ft_putendl("DOUBLE : f et F");
+*/
+	ft_putendl("--------DOUBLE : f et F----------------------------------------------------------");
 	ft_putendl("f : #");
 	ft_putnbr(ft_printf("%f \n", 0.0));
 	ft_putendl(" : return mon printf");
@@ -1160,8 +1162,9 @@ int main(void)
 	ft_putnbr(printf("%.0f %.0f %.0f %.0f %.0f \n", 0.0004745, -45.789, 5.0, 1.0, 0.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
+    scanf("%d", &i5);
 
-
+/*
 	long double h;
 	double		g;
 	int i;
@@ -1191,7 +1194,7 @@ int main(void)
 		g = g - k;
 		g = g * 10;
 	}
-
+*/
 
 	ft_putendl("f : 0");
 	ft_putnbr(ft_printf("%.15f \n", 0.0));
@@ -1362,7 +1365,7 @@ int main(void)
 	ft_putnbr(printf("%.20f  \n", 4895.457));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 printf("67.8463756,   67.8463755,   67.8463745,   67.8463754,   67.8463785,   67.8463758,   67.8463786,   67.8463786\n");
 printf("%f     %f     %f     %f     %f     %f     %f     %f \n\n", 67.8463756, 67.8463755, 67.8463745, 67.8463754, 67.8463785, 67.8463758, 67.8463786, 67.8463786);
 printf("0.7843756, 0.7843755, 0.7843745, 0.7843754, 0.7843785, 0.7843756, 0.7843786, 0.7843786\n");
@@ -1371,13 +1374,14 @@ printf("67.8463765,  67.8463775,  67.8463755,   67.8463745,   67.8463754,   67.8
 printf("%f     %f     %f     %f     %f     %f     %f     %f     %f   \n\n", 67.8463765, 67.8463775, 67.8463755, 67.8463745, 67.8463754, 67.8463785, 67.8463758, 67.8463786, 67.843786);
 printf("0.7843765, 0.7843775, 0.7843755, 0.7843745, 0.7843754, 0.7843785, 0.7843756, 0.7843786, 0.7843786\n");
 printf("%f   %f   %f   %f   %f   %f   %f   %f   %f   \n\n", 0.7843765, 0.7843775, 0.7843755, 0.7843745, 0.7843754, 0.7843785, 0.7843756, 0.7843786, 0.7843786);
-
+*/
+/*
 
 *********************
 ** DOUBLE : e et E **
 *********************
-
-	ft_putendl("DOUBLE : e et E");
+*/
+	ft_putendl("--------DOUBLE : e et E----------------------------------------------------------");
 	ft_putendl("e : 0");
 	ft_putnbr(ft_printf("%e \n", 0.0));
 	ft_putendl(" : return mon printf");
@@ -1469,7 +1473,7 @@ printf("%f   %f   %f   %f   %f   %f   %f   %f   %f   \n\n", 0.7843765, 0.7843775
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
-
+/*
 printf("67.843756,   67.843755,   67.843745,   67.843754,   67.843785,   67.843758,   67.843786,   67.843786\n");
 printf("%e %e %e %e %e %e %e %e \n\n", 67.843756, 67.843755, 67.843745, 67.843754, 67.843785, 67.843758, 67.843786, 67.843786);
 printf("0.067843756, 0.067843755, 0.067843745, 0.067843754, 0.067843785, 0.067843756, 0.067843786, 0.067843786\n");
@@ -1478,7 +1482,7 @@ printf("67.843765,  67.843775,  67.843755,   67.843745,   67.843754,   67.843785
 printf("%e %e %e %e %e %e %e %e %e \n\n", 67.843765, 67.843775, 67.843755, 67.843745, 67.843754, 67.843785, 67.843758, 67.843786, 67.843786);
 printf("0.067843765, 0.067843775, 0.067843755, 0.067843745, 0.067843754, 0.067843785, 0.067843756, 0.067843786, 0.067843786\n");
 printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0.067843745, 0.067843754, 0.067843785, 0.067843756, 0.067843786, 0.067843786);
-
+*/
 
 	ft_putendl("e :"); // double en double, long double en long double
 	ft_putnbr(ft_printf("%.0e \n", -0.00000048787895));
@@ -1563,12 +1567,12 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putnbr(printf("%#7.5e %#0.12e \n", 0.0004745, 45.789));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 *********************
 ** DOUBLE : g et G **
 *********************
-
-	ft_putendl("C : s");
+*/
+	ft_putendl("--------DOUBLE : g et G----------------------------------------------------------");
 	ft_putendl("g : 0");
 	ft_putnbr(ft_printf("%g \n", 0.0));
 	ft_putendl(" : return mon printf");
@@ -1659,7 +1663,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putnbr(printf("%#g %#g %#g %#g %#g\n", -0.0004745, -45.789, -5.0, 1.0, 0.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 	printf("%1$#f %1$#.f %1$#.0f %1$#.1f %1$#.2f %1$#.3f %1$#.4f %1$#.5f %1$#.6f %1$#.7f %1$#.8f %1$#.9f %1$#.10f\n", 0.0);
 	printf("%1$f %1$.f %1$.0f %1$.1f %1$.2f %1$.3f %1$.4f %1$.5f %1$.6f %1$.7f %1$.8f %1$.9f %1$.10f\n", 0.12);
 	printf("%1$f %1$.f %1$.0f %1$.1f %1$.2f %1$.3f %1$.4f %1$.5f %1$.6f %1$.7f %1$.8f %1$.9f %1$.10f\n", 0.01);
@@ -1678,7 +1682,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	printf("%1$f %1$.f %1$.0f %1$.1f %1$.2f %1$.3f %1$.4f %1$.5f %1$.6f %1$.7f %1$.8f %1$.9f %1$.10f\n", -0.000001);
 	printf("%1$f %1$.f %1$.0f %1$.1f %1$.2f %1$.3f %1$.4f %1$.5f %1$.6f %1$.7f %1$.8f %1$.9f %1$.10f\n", -0.0000001);
 	printf("%1$f %1$.f %1$.0f %1$.1f %1$.2f %1$.3f %1$.4f %1$.5f %1$.6f %1$.7f %1$.8f %1$.9f %1$.10f\n", -0.00000001);
-
+*/
 //		chiffre < 1
 // a partir de 5 zero apres la virgule mettre en e -> nb < 1
 // . .0 et .1 = 1 chiffre apres la virgule si nb < 1, chiffre seule sans virgule si nb > 1
@@ -1837,12 +1841,12 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putnbr(printf("%Lg \n", 4565445.5546456L));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 *************************
 ** DOUBLE HEX : a et A **
 *************************
-
-	ft_putendl("C : s");
+*/
+	ft_putendl("--------DOUBLE HEX : a et A------------------------------------------------------");
 	ft_putendl("a : 0");
 	ft_putnbr(ft_printf("%a \n", 0.0));
 	ft_putendl(" : return mon printf");
@@ -1975,7 +1979,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putnbr(printf("%A %.A %.0A %.1A %.2A %.12A %.15A \n", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 	printf("a : %1$a %1$.a %1$.0a %1$.1a %1$.2a %1$.3a %1$.4a %1$.5a %1$.6a %1$.7a %1$.8a %1$.9a %1$.10a\n", 0.0);
 	printf("la : %1$la %1$.la %1$.0la %1$.1la %1$.2la %1$.3la %1$.4la %1$.5la %1$.6la %1$.7la %1$.8la %1$.9la %1$.10la\n", 0.0);
 	printf("La : %1$La %1$.La %1$.0La %1$.1La %1$.2La %1$.3La %1$.4La %1$.5La %1$.6La %1$.7La %1$.8La %1$.9La %1$.10La\n", 0.0L);
@@ -2034,7 +2038,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	printf("lU : %1$lU %1$.lU %1$.0lU %1$.1lU %1$.2lU %1$.3lU %1$.4lU %1$.5lU %1$.6lU %1$.7lU %1$.8lU %1$.9lU %1$.10lU\n", 127639);
 	printf("llU : %1$llU %1$.llU %1$.0llU %1$.1llU %1$.2llU %1$.3llU %1$.4llU %1$.5llU %1$.6llU %1$.7llU %1$.8llU %1$.9llU %1$.10llU\n\n", 127639);
 
-
+*/
 	ft_putendl("a : #");
 	ft_putnbr(ft_printf("%#a \n", 0.0));
 	ft_putendl(" : return mon printf");
@@ -2245,12 +2249,12 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putnbr(printf("%.a \n", 16777215.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 ****************
 ** ADRESS : p **
 ****************
-
-	ft_putendl("ADRESS : p");
+*/
+	ft_putendl("--------ADRESS : p---------------------------------------------------------------");
 //	char *s = "la maison est bleue";
 //	long long p = 45648675425;
 //	int f = 456456;
@@ -2318,12 +2322,12 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putnbr(printf("%----24p et hello %2p %12p\n", &ret, &main, NULL));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 ***********************
 ** NB WRITE CHAR : n **
 ***********************
 */
-	ft_putendl("NB WRITE CHAR : n");
+	ft_putendl("--------NB WRITE CHAR : n--------------------------------------------------------");
 	int n;
 	
 	ft_putendl("n :");
@@ -2339,8 +2343,8 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 ******************
 ** POURCENT : % **
 ******************
-
-	ft_putendl("POURCENT : %");
+*/
+	ft_putendl("--------POURCENT : %-------------------------------------------------------------");
 	ft_putendl("% basic_01 : %%");
 	ft_putnbr(ft_printf("%% \n"));
 	ft_putendl(" : return mon printf");
@@ -2431,12 +2435,12 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putnbr(printf(""));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 ***********
 ** MIXED **
 ***********
-
-	ft_putendl("MIXED");
+*/
+	ft_putendl("--------MIXED--------------------------------------------------------------------");
 	int ret1;
 
 	ft_putendl("test_01 :");
@@ -2478,7 +2482,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 //	printf("%.s", 42);
 //	ft_printf("%.s", 42);
 
-int i5 = 0;
+
 scanf("%d", &i5);
-*/
+
 }

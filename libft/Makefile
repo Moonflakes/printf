@@ -88,7 +88,8 @@ SRCS = ft_bzero.c \
 	   ft_lstdel.c \
 	   ft_lstadd.c \
 	   ft_lstiter.c \
-	   ft_lstmap.c
+	   ft_lstmap.c \
+	   nbase_len.c
 
 SRC_PATH = srcs_lib/
 SRC = $(addprefix $(SRC_PATH),$(SRCS))

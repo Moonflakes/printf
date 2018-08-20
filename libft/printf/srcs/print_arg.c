@@ -154,7 +154,7 @@ int	print_arg(t_arg *arg, t_flags *flags, int num)
 	int		i;
 
 	i = 0;
-	if (arg->type)
+	if (arg->type && arg->type[num] != 'n')
 	{
 		if (arg->type[num] == '%')
 		{
