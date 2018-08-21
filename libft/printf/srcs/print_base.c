@@ -20,11 +20,6 @@ char	*pad_precision(char **str, t_flags *flags, int num)
 
 	padstr = NULL;
 	i = (str[0][0] == '-') ? ft_strlen(str[0]) : ft_strlen(str[0]) + 1;
-//	ft_putendl("");
-//	ft_putnbr(i);
-//	ft_putendl(" : i");
-//	ft_putnbr(flags->precision[num]);
-//	ft_putendl(" : pr");
 	if (flags->precision[num] >= i && flags->precision[num] != 0)
 	{
 		j = flags->precision[num] + 1;
@@ -47,9 +42,6 @@ char	*pad_precision(char **str, t_flags *flags, int num)
 		ft_strdel(&padstr);
 		flags->prpass = 1;
 	}
-//	ft_putendl("");
-//	ft_putstr(str[0]);
-//	ft_putendl(" : str");
 	return (str[0]);
 }
 
@@ -57,24 +49,15 @@ int		print_nb(t_arg *arg, t_flags *flags, int num)
 {
 	long long	i;
 	char		*str;
-//	char		*tmp;
 
-//	tmp = NULL;
 	i = arg->i[flags->index_arg[num]];
 	str = NULL;
-//	ft_putnbr(i);
-//	ft_putendl(" : i");
-//	ft_putnbr(flags->precision[num]);
-//	ft_putstr(" - ");
-//	ft_putnbr(arg->precision[num]);
-//	ft_putendl(" : precision");
 	if (i == 0 && flags->precision[num] == 1 && arg->precision[num] == 1)
 		str = ft_memalloc(sizeof(char));
 	else
 	{
 		str = ft_itoa(i);
 		str = pad_precision(&str, flags, num);
-//		ft_strdel(&str);
 	}
 	return (printing(&str, arg, flags, num));
 }
@@ -85,9 +68,6 @@ int		print_base(char base, t_arg *arg, t_flags *flags, int num)
 	char		*str;
 
 	i = arg->ull[flags->index_arg[num]];
-//	ft_putendl("");
-//	ft_putunsignednbr(i);
-//	ft_putendl(" : i");
 	if (i == 0 && flags->precision[num] == 1 && arg->precision[num] == 1
 		&& (arg->type[num] == 'u' || arg->type[num] == 'U') &&
 		flags->width[num] == 0)

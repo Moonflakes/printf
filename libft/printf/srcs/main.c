@@ -559,14 +559,14 @@ int main(void)
 	ft_putnbr(printf("%-1C \n", 2250));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
 	ft_putendl("c all_01 :");
-	ft_putnbr(ft_printf("hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0));
+	ft_putnbr(ft_printf("hello ca**%----4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("hello ca%----4c %1c va %10c%-c ??", '\0', '\n', (char)564, 0));
+	ft_putnbr(printf("hello ca**%----4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+/*
 	ft_putendl("C all_01 :");
 	ft_putnbr(ft_printf("%8C et coco %C titi %lc\n", 3250, 0x11ffff, 'a'));
 	ft_putendl(" : return mon printf");
@@ -1638,6 +1638,8 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putnbr(printf("%g %i %s \n", 999999.99, -76, "il fait beau"));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
+	int i1 = 0;
+	scanf("%d", &i1);
 
 	ft_putendl("g : width");
 	ft_putnbr(ft_printf("%15g %15g \n", -0.0004745, -45.789));
@@ -1956,12 +1958,14 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putendl("");
 
 	ft_putendl("a : \n%a     %.a     %.0a     %.1a     %.2a            %.12a           %.15a ");
-	ft_putnbr(ft_printf("%.a %.1a %.2a %.3a %.5a %.7a %.9a %.11a \n", 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449));
+	ft_putnbr(ft_printf("%a %.1a %.2a %.3a %.5a %.7a %.9a %.11a \n", 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%.a %.1a %.2a %.3a %.5a %.7a %.9a %.11a \n", 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449));
+	ft_putnbr(printf("%a %.1a %.2a %.3a %.5a %.7a %.9a %.11a \n", 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449, 1.470834294502112449));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
+// 0x7.88898a8b8c84 = 1.470834294502112449
+// 0x7.88898a8b8c8d8e8 = 7.533348712033832939L
 	ft_putendl("a : \n%a     %.a     %.0a     %.1a     %.2a            %.12a           %.15a ");
 	ft_putnbr(ft_printf("%#a %#a %#.a %a %a %a %.11a \n", 0.0, 1.0, 16777215.0, -5.0, 9.99, 0.00045, 999999.9999));
 	ft_putendl(" : return mon printf");
@@ -2322,7 +2326,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 ***********************
 ** NB WRITE CHAR : n **
 ***********************
-*/
+
 	ft_putendl("NB WRITE CHAR : n");
 	int n;
 	
@@ -2335,7 +2339,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putendl(" : return vrai printf");
 	ft_putnbr(n);
 	ft_putendl(" : n");
-/*
+
 ******************
 ** POURCENT : % **
 ******************
@@ -2477,6 +2481,23 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 //	condition segfault sans -WWW :
 //	printf("%.s", 42);
 //	ft_printf("%.s", 42);
+*//*
+	double	i = -0.;
+	double	a;
+	int		b;
+
+	//i = (size_t)i & 0x8000000000000000;
+	a = (int)i;
+	b = ~(size_t)i;
+	/*if (i == -0.0)
+		ft_putendl("=");
+	if (i == -0)
+		ft_putendl("===");*//*
+	printf("i = %f\n", i);
+	printf("a = %f\n", a);
+	printf("b = %d\n", b);
+/*
+
 
 int i5 = 0;
 scanf("%d", &i5);

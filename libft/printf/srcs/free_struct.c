@@ -23,19 +23,12 @@ void	free_tab_str(t_arg *arg)
 		i++;
 	}
 	free((void*)arg->strp);
-	/*i = 0;
-	while (arg->s[i] && arg->s && arg->type[i] != 'n' && arg->type[i] != 's' && arg->type[i] != 'S')
-	{
-		ft_memdel((void**)&arg->s[i]);
-		i++;
-	}*/
-	free((void*)arg->s);
-//	ft_memdel((void**)arg->s);
 }
 
 void	free_struct(t_arg *arg, t_flags *flags)
 {
 	free_tab_str(arg);
+	free((void*)arg->s);
 	ft_memdel((void**)&arg->type);
 	ft_memdel((void**)&arg->size);
 	ft_memdel((void**)&arg->length);
@@ -43,7 +36,6 @@ void	free_struct(t_arg *arg, t_flags *flags)
 	ft_memdel((void**)&arg->ull);
 	ft_memdel((void**)&arg->d);
 	ft_memdel((void**)&arg->precision);
-//	ft_memdel((void**)&arg);
 	ft_memdel((void**)&flags->htag);
 	ft_memdel((void**)&flags->zero);
 	ft_memdel((void**)&flags->left);
@@ -56,7 +48,6 @@ void	free_struct(t_arg *arg, t_flags *flags)
 	ft_memdel((void**)&flags->index_arg);
 	ft_memdel((void**)&flags->precision);
 	ft_memdel((void**)&flags->width);
-//	ft_memdel((void**)&flags);
 }
 
 void	free_t_int(t_int *inc)

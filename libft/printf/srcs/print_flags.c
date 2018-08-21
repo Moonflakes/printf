@@ -47,10 +47,6 @@ char	*put_pad_l(char **padstr, t_arg *arg, t_flags *flags, t_int *inc)
 
 	k = 0;
 	len = ft_strlen(inc->str);
-//	ft_putnbr(arg->precision[inc->num]);
-//	ft_putendl(" : arg pr");
-//	ft_putnbr(len);
-//	ft_putendl(" : len");
 	pad = ((ft_strchr("%aAgGfFeE", arg->type[inc->num]) && flags->zero[inc->num] == 1) ||
 			(!ft_strchr("sScCp", arg->type[inc->num]) && ft_strchr("idDuUoOxXb", arg->type[inc->num])
 			&& flags->zero[inc->num] == 1 && arg->precision[inc->num] == 0)) ? '0' : ' ';
@@ -83,7 +79,7 @@ char	*put_pad_r(char **padstr, t_arg *arg, t_flags *flags, t_int *inc)
 	unsigned long	k;
 	char			pad;
 
-	k = (inc->str[0] == '\0'/* && inc->str[1] == 0 */&& arg->type[inc->num] != 's') ? 1 : 0;
+	k = (inc->str[0] == '\0' && arg->type[inc->num] != 's') ? 1 : 0;
 	pad = ' ';
 	while (inc->str[inc->j])
 	{

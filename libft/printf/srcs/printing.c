@@ -16,9 +16,7 @@ int	printing(char **str, t_arg *arg, t_flags *flags, int num)
 {
 	int i;
 	if (arg->ret == -1)
-	{
 		i = -1;
-	}
 	else
 	{
 		*str = process_flags(*str, arg, flags, num);

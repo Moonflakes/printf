@@ -76,20 +76,12 @@ void	width(t_arg *arg, t_flags *flags, int num)
 	if (arg->precision[num] == 1)
 	{
 		i = -1;
-//		ft_putstr(arg->strp[num]);
-//		ft_putendl(" : strp");
 		while (arg->strp[num][++i] != '.')
-		{
 			if (arg->strp[num][i] == '*')
 				flags->asterix_w[num] = 1;
-//			ft_putnbr(flags->asterix_w[num]);
-//			ft_putendl(" : *_w la");
-		}
 		tmp = ft_strndup(arg->strp[num], i);
 		flags->width[num] = extract_value(tmp, arg, flags, num);
 		ft_strdel(&tmp);
-//		ft_putnbr(flags->asterix_w[num]);
-//		ft_putendl(" : *_w ici");
 		return ;
 	}
 	flags->width[num] = extract_value(&arg->strp[num][i], arg, flags, num);

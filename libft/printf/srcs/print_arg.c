@@ -94,7 +94,6 @@ int	print_string(t_arg *arg, t_flags *flags, int num)
 	else if (arg->type[num] == 's' && arg->length[num] == 0
 			&& arg->s[flags->index_arg[num]] != NULL)
 		str = ft_strdup((char*)arg->s[flags->index_arg[num]]);
-		
 	else
 	{
 		if (w_str[i])

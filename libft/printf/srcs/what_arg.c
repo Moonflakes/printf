@@ -31,8 +31,6 @@ int		nb_prct(const char *format)
 			num++;
 		i++;
 	}
-//	ft_putnbr(num);
-//	ft_putendl(" : nb %");
 	return (num);
 }
 
@@ -49,27 +47,15 @@ int		len_and_type(const char *s, t_arg *arg, int num, t_flags *flags)
 	while (s[++i])
 	{
 		j = -1;
-//		ft_putchar('\n');
-//		ft_putchar(s[i]);
 		while (type[++j])
-		{
-//			ft_putchar(type[j]);
 			if (s[i] == type[j])
-			{
-//				ft_putendl("je passe la");
 				arg->type[num] = type[j];
-			}
-		}
 		if (s[i] == '%' && arg->type)
 			arg->type[num] = '%';
 		if (arg->type && arg->type[num])
 		{
-//			ft_putendl("je passe ici");
 			arg->size[num] = i + 1;
 			arg->strp[num] = ft_strndup(s, arg->size[num]);
-//			ft_putendl("");
-//			ft_putstr(arg->strp[num]);
-//			ft_putendl(" : strp");
 			process_strp(arg, num, flags);
 			ft_strdel(&type);
 			return (i + 1);
@@ -86,7 +72,6 @@ void	set_nb_arg(t_arg *arg, t_flags *flags)
 	i = 0;
 	while (i < arg->nb_prct)
 	{
-	//	if (flags->index_arg[i] >= flags->index_arg[i + 1])
 			arg->nb_arg = flags->index_arg[i] + 1;
 		i++;
 	}
@@ -139,7 +124,5 @@ void	num_arg(const char *format, t_arg *arg, t_flags *flags)
 		i++;
 	}
 	arg->nb_prct = num + 1;
-//	ft_putnbr(arg->nb_prct);
-//	ft_putendl(" : nb_prct");
 	set_index_arg(arg, flags);
 }

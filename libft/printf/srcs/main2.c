@@ -1162,7 +1162,7 @@ int main(void)
 	ft_putnbr(printf("%.0f %.0f %.0f %.0f %.0f \n", 0.0004745, -45.789, 5.0, 1.0, 0.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-    scanf("%d", &i5);
+
 
 /*
 	long double h;
@@ -1841,6 +1841,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putnbr(printf("%Lg \n", 4565445.5546456L));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
+
 /*
 *************************
 ** DOUBLE HEX : a et A **
@@ -2249,6 +2250,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putnbr(printf("%.a \n", 16777215.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
+
 /*
 ****************
 ** ADRESS : p **

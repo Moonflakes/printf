@@ -29,8 +29,6 @@ long long	btoi(char *octet)
 		j--;
 		i++;
 	}
-//	ft_putnbr(nb);
-//	ft_putendl(" : nb");
 	return (nb);
 }
 
@@ -68,14 +66,6 @@ void		octet_process(int k, char **octet, char *b, int nb_octet)
 	int i;
 
 	i = ft_strlen(b);
-//	ft_putstr(b);
-//	ft_putendl(" : b");
-//	ft_putnbr(i);
-//	ft_putendl(" : i");
-//	ft_putnbr(k);
-//	ft_putendl(" : k");
-//	ft_putnbr(nb_octet);
-//	ft_putendl(" : nb_octet");
 	while (i >= 0)
 	{
 		if (k == 0)
@@ -83,23 +73,13 @@ void		octet_process(int k, char **octet, char *b, int nb_octet)
 			if (!(octet[k] = (char*)ft_memalloc(sizeof(char) * 9)))
 				return ;
 			octect_zero(i, b, octet, nb_octet);
-//			ft_strdel(&b);
-//			ft_putstr(octet[k]);
-//			ft_putstr(" : octet[");
-//			ft_putnbr(k);
-//			ft_putendl("]");
 			return ;
 		}
 		else if (k > 0)
 		{
-//			ft_strdel(&octet[k]);
 			octet[k] = ft_strjoin("10", &b[i - 6]);
 			b[i - 6] = '\0';
 			i = i - 6;
-//			ft_putstr(octet[k]);
-//			ft_putstr(" : octet\n");
-//			ft_putnbr(k);
-//			ft_putendl("]");
 			return ;
 		}
 	}
@@ -112,15 +92,12 @@ char		**split_octet(char *b)
 	int		k;
 
 	nb_octet = (ft_strlen(b) / 6) + 1;
-//	ft_putnbr(nb_octet);
-//	ft_putendl(" : nb_octet split");
 	k = nb_octet - 1;
 	if (!(octet = (char**)ft_memalloc(sizeof(char*) * (nb_octet + 2))))
 		return (NULL);
 	octet[nb_octet] = NULL;
 	while (k >= 0)
 	{
-//		ft_putendl("while");
 		octet_process(k, octet, b, nb_octet);
 		k--;
 	}
@@ -136,12 +113,6 @@ char		*printable_w(long long w, t_arg *arg)
 	int		i;
 
 	nb_octet = (nbase_len(w, 2) / 6) + 1;
-//	ft_putnbr(w);
-//	ft_putendl(" : w");
-//	ft_putnbr(nb_octet);
-//	ft_putendl(" : nb_octet");
-//	ft_putnbr(MB_LEN_MAX);
-//	ft_putendl(" : MB_LEN_MAX");
 	str = NULL;
 	if (w <= 127 && w >= 0)
 	{
@@ -149,7 +120,6 @@ char		*printable_w(long long w, t_arg *arg)
 			return (0);
 		str[0] = w;
 		str[1] = '\0';
-//		ft_putstr(str);
  	}
 	else
 	{
@@ -160,26 +130,10 @@ char		*printable_w(long long w, t_arg *arg)
 		arg->ret = 0;
 		while (octet[i] && i < nb_octet)
 		{
-//			ft_putnbr(i);
-//			ft_putendl(" : num octet");
-//			ft_putendl("lala");
-//			ft_putstr(octet[i]);
-//			ft_putendl(" : octet ici");
-/*			if (btoi(octet[i]) < 256)
-			{
-				arg->ret = -1;
-				return (ft_strdup(""));
-			}*/
 			str[i] = (char)btoi(octet[i]);
-//			ft_putendl("lolo");
-//			ft_strdel(&octet[i]);
-//			ft_putendl("lili");
 			i++;
 		}
 		str[i] = '\0';
-//		ft_putstr(str);
-//		ft_putnbr(mblen(str, MB_CUR_MAX));
-//		ft_putendl(" : mblen");
 		i = -1;
 		while (octet[++i])
 			ft_strdel(&octet[i]);

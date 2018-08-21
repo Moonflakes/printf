@@ -103,21 +103,6 @@ char	*ht_process_a(char *str, char a)
 
 char	*htag_process(char *str, t_arg *arg, t_flags *flags, int num)
 {
-//	ft_putendl("");
-//	ft_putnbr(arg->precision[num]);
-//	ft_putendl(" : arg pr");
-//	ft_putnbr(flags->precision[num]);
-//	ft_putendl(" : flags pr");
-//	ft_putnbr(flags->htag[num]);
-//	ft_putendl(" : htag");
-//	ft_putunsignednbr(arg->ull[num]);
-//	ft_putendl(" : ull");
-//	ft_putstr(str);
-//	ft_putendl(" : str");
-//	ft_putchar(arg->type[num]);
-//	ft_putendl(" : type");
-//	ft_putnbr(flags->prpass);
-//	ft_putendl(" : pr pass");
 	if (flags->htag[num] == 1)
 	{
 		if ((arg->type[num] == 'o' || arg->type[num] == 'O') &&
@@ -132,8 +117,7 @@ char	*htag_process(char *str, t_arg *arg, t_flags *flags, int num)
 		}
 		if (arg->type[num] == 'g' || arg->type[num] == 'G')
 			str = ht_process_g(str, flags->precision[num], arg->type[num] - 2);
-		if ((arg->type[num] == 'a' || arg->type[num] == 'A')/* && (flags->precision[num] == 0
-			|| (arg->precision[num] == 0 && flags->precision[num] == 1))*/)
+		if (arg->type[num] == 'a' || arg->type[num] == 'A')
 		{
 			str = (ft_strchr(str, '.')) ? str : ht_process_a(str, arg->type[num] + 15);
 		}
