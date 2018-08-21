@@ -56,6 +56,7 @@ char	*add_zero_d(char *nb, int *exp, int *pr)
 		else
 			g[i] = nb[++j];
 	}
+	ft_strdel(&nb);
 	return (round_d(g, exp, 1));
 }
 
