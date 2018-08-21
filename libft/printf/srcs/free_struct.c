@@ -16,12 +16,9 @@ void	free_tab_str(t_arg *arg)
 {
 	int i;
 
-	i = 0;
-	while (arg->strp[i] && arg->strp)
-	{
+	i = -1;
+	while (arg->strp[++i] && arg->strp)
 		ft_memdel((void**)&arg->strp[i]);
-		i++;
-	}
 	free((void*)arg->strp);
 }
 

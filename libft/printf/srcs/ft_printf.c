@@ -38,24 +38,6 @@ void	print_rest(int *i, const char *format)
 	i[0]++;
 }
 
-int		nb_bn(const char *format)
-{
-	int i;
-	int bn;
-
-	i = 0;
-	bn = 0;
-	while (format[i])
-	{
-		if (format[i] == '\n')
-		{
-			bn++;
-		}
-		i++;
-	}
-	return (bn);
-}
-
 int		ft_printf(const char *format, ...)
 {
 	int			i[4];
@@ -74,7 +56,6 @@ int		ft_printf(const char *format, ...)
 		init_struct_flags(&flags, nb_prct(format));
 		num_arg(format, &arg, &flags);
 		stock_arg(ap, &arg, &flags);
-		arg.nb_bn = nb_bn(format);
 		if (i[2] == 0)
 		{
 			while (format[i[0]])

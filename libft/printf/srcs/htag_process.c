@@ -80,20 +80,22 @@ char	*ht_process_g(char *str, int precision, char e)
 	len_e = ft_strlen(str) - ft_strlen(ft_strchr(str, e));
 	if (!(nb = (char*)ft_memalloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	nb = add_rest(add_zeros(add_point(copy_nb(str, nb, len_e), precision), precision), str);
+	nb = add_rest(add_zeros(add_point(copy_nb(str, nb, len_e),
+								precision), precision), str);
 	ft_strdel(&str);
 	return (nb);
 }
 
 char	*ht_process_a(char *str, char a)
 {
-	int i;
-	char *end;
-	char *start;
+	int		i;
+	char	*end;
+	char	*start;
 
-	i = 0;
-	while (str[i] != a)
-		i++;
+	i = -1;
+	a = (ft_strchr("aA", a)) ? a + 15 : a;
+	while (str[++i] != a)
+		;
 	end = ft_strdup(&str[i]);
 	start = ft_strndup(str, i);
 	ft_strdel(&str);
@@ -105,33 +107,27 @@ char	*htag_process(char *str, t_arg *arg, t_flags *flags, int num)
 {
 	if (flags->htag[num] == 1)
 	{
-		if ((arg->type[num] == 'o' || arg->type[num] == 'O') &&
-		((flags->precision[num] <= 1 || flags->prpass == 0) && arg->ull[num] != 0))
+		if (ft_strchr("oO", arg->type[num]) && ((flags->precision[num] <= 1 ||
+			flags->prpass == 0) && arg->ull[num] != 0))
 			str = ft_strjoin_free("0", str, 2);
-		if (arg->type[num] == 'x' || arg->type[num] == 'X')
+		if (ft_strchr("xX", arg->type[num]))
 		{
 			if (arg->ull[num] != 0)
-				str = ft_strjoin_free(if_maj(ft_strdup("0x"), arg->type[num]), str, 0);
-			str = (arg->ull[num] == 0 && flags->precision[num] == 0 
-				&& arg->precision[num] == 1) ? ft_strdup_del("", str) : ft_strdup_free(str);
+				str = ft_strjoin_free(if_maj(ft_strdup("0x"),
+					arg->type[num]), str, 0);
+			else
+				str = (flags->precision[num] == 0 && arg->precision[num] == 1) ?
+					ft_strdup_del("", str) : str;
 		}
-		if (arg->type[num] == 'g' || arg->type[num] == 'G')
+		if (ft_strchr("gG", arg->type[num]))
 			str = ht_process_g(str, flags->precision[num], arg->type[num] - 2);
-		if (arg->type[num] == 'a' || arg->type[num] == 'A')
-		{
-			str = (ft_strchr(str, '.')) ? str : ht_process_a(str, arg->type[num] + 15);
-		}
-		if ((arg->type[num] == 'e' || arg->type[num] == 'E') && (flags->precision[num] == 0
-			|| (arg->precision[num] == 0 && flags->precision[num] == 1)))
-		{
-			str = ht_process_a(str, arg->type[num]);
-		}
-		if ((arg->type[num] == 'f' || arg->type[num] == 'F') && flags->precision[num] == 0)
+		if (ft_strchr("aAeE", arg->type[num]))
+			str = (ft_strchr(str, '.')) ? str : ht_process_a(str, arg->type[num]);
+		if (ft_strchr("fF", arg->type[num]) && flags->precision[num] == 0)
 			str = ft_strjoin_free(str, ".\0", 1);
 	}
-	if (arg->ull[num] == 0 && flags->precision[num] == 0 && (arg->type[num] == 'x' || arg->type[num] == 'X'))
-	{
+	if (arg->ull[num] == 0 && flags->precision[num] == 0 &&
+		ft_strchr("xX", arg->type[num]))
 		str = ft_strdup_del("", str);
-	}
 	return (str);
 }

@@ -26,7 +26,6 @@ typedef struct			s_arg
 {
 	int					nb_arg;
 	int					nb_prct;
-	int					nb_bn;
 	int					ret;
 	char				*type;
 	size_t				*size;
