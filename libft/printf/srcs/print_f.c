@@ -42,11 +42,13 @@ int		print_f(t_arg *arg, t_flags *flags, int num)
 	int			exp;
 	long double	f;
 	char		*nb;
+	int			u;	
 
 	f = arg->d[flags->index_arg[num]];
-	sign_point[0] = (f < 0.0) ? 1 : 0;
+	u = *(((size_t *)&arg->d[flags->index_arg[num]]) + 1);
+	sign_point[0] = ((f == 0 && u != 0) || f < 0) ? 1 : 0;
 	sign_point[1] = (flags->precision[num] == 0) ? 1 : 0;
-	f = (sign_point[0] == 1) ? -f : f;
+	f = f < 0 ? -f : f;
 	exp = (f == 0.0) ? 0 : exposant_d(&f);
 	nb = char_f(f, flags->precision[num], &exp);
 	nb = insert_point_sign(nb, exp, sign_point, 0);

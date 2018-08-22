@@ -47,11 +47,13 @@ int		print_g(char c, t_arg *arg, t_flags *flags, int num)
 	int			exp;
 	long double	g;
 	char		*nb;
+	int			u;
 
 	g = arg->d[flags->index_arg[num]];
-	sign_point[0] = (g < 0.0) ? 1 : 0;
+	u = *(((size_t *)&arg->d[flags->index_arg[num]]) + 1);
+	sign_point[0] = ((g == 0 && u != 0) || g < 0) ? 1 : 0;
 	sign_point[1] = 0;
-	g = (sign_point[0] == 1) ? -g : g;
+	g = (sign_point[0]) ? -g : g;
 	flags->precision[num] = (flags->precision[num]) ? flags->precision[num] : 1;
 	exp = (g == 0.0) ? 0 : exposant_d(&g);
 	nb = char_g(g, flags->precision[num], &exp);

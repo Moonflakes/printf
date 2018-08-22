@@ -559,14 +559,14 @@ int main(void)
 	ft_putnbr(printf("%-1C \n", 2250));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("c all_01 :");
 	ft_putnbr(ft_printf("hello ca**%----4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0));
 	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("hello ca**%----4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 	ft_putendl("C all_01 :");
 	ft_putnbr(ft_printf("%8C et coco %C titi %lc\n", 3250, 0x11ffff, 'a'));
 	ft_putendl(" : return mon printf");
@@ -1110,9 +1110,9 @@ int main(void)
 
 	ft_putendl("DOUBLE : f et F");
 	ft_putendl("f : #");
-	ft_putnbr(ft_printf("%f \n", 0.0));
+	ft_putnbr(ft_printf("%f %f \n", 0.0, -0.0));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%f \n", 0.0));
+	ft_putnbr(printf("%f %f \n", 0.0, -0.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
@@ -1263,9 +1263,9 @@ int main(void)
 	ft_putendl("");
 
 	ft_putendl("f : precision .15");
-	ft_putnbr(ft_printf("%.15f %.15f %.15f %.15f %.15f \n", 0.0004745, -45.789, 5.0, 1.0, 0.0));
+	ft_putnbr(ft_printf("%.15f %.15f %.15f %.15f %.15f \n", -0.0004745, -45.789, 5.0, 1.0, -0.0));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%.15f %.15f %.15f %.15f %.15f \n", 0.0004745, -45.789, 5.0, 1.0, 0.0));
+	ft_putnbr(printf("%.15f %.15f %.15f %.15f %.15f \n", -0.0004745, -45.789, 5.0, 1.0, -0.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
@@ -1275,7 +1275,14 @@ int main(void)
 	ft_putnbr(printf("%.0f %.0f \n", -0.0004745, -45.789));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
+	ft_putendl("f : precision .0");
+	ft_putnbr(ft_printf("%.19f \n", 42.5180));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%.19f \n", 42.5180));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+/*
 	ft_putendl("f : precision .1");
 	ft_putnbr(ft_printf("%.1f %.1f \n", -0.0004745, -45.789));
 	ft_putendl(" : return mon printf");

@@ -152,15 +152,13 @@ int		print_a(char a, t_arg *arg, t_flags *flags, int num)
 	int			exp;
 	int			sign_pr[2];
 	char		*hex;
+	int			u;
 
 	d = arg->d[flags->index_arg[num]];
-	sign_pr[0] = 0;
+	u = *(((size_t *)&arg->d[flags->index_arg[num]]) + 1);
+	sign_pr[0] = ((d == 0 && u != 0) || d < 0) ? 1 : 0;
 	sign_pr[1] = ((arg->precision[num] && !flags->precision[num]) || !arg->precision[num]) ? 0 : 1;
-	if (d < 0)
-	{
-		d = -d;
-		sign_pr[0] = 1;
-	}
+	d = (sign_pr[0]) ? -d : d;
 	exp = dble_process(&d, arg->length[num]);
 	hex = convert_hex(d, flags->precision[num], arg->length[num]);
 	hex = if_maj(add_exp(insert_x_point(hex, sign_pr[1]), exp, 'p', sign_pr[0]), a);

@@ -40,11 +40,13 @@ int		print_e(char c, t_arg *arg, t_flags *flags, int num)
 	int			exp;
 	long double	e;
 	char		*nb;
+	int			u;
 
 	e = arg->d[flags->index_arg[num]];
-	sign_point[0] = (e < 0.0) ? 1 : 0;
+	u = *(((size_t *)&arg->d[flags->index_arg[num]]) + 1);
+	sign_point[0] = ((e == 0 && u != 0) || e < 0) ? 1 : 0;
 	sign_point[1] = 0;
-	e = (sign_point[0] == 1) ? -e : e;
+	e = (sign_point[0]) ? -e : e;
 	exp = (e == 0.0) ? 0 : exposant_d(&e);
 	nb = char_e(e, flags->precision[num], &exp);
 	nb = (flags->precision[num]) ? add_exp(insert_point_sign(nb, 0,
