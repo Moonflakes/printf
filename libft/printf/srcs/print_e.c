@@ -47,7 +47,7 @@ int		print_e(char c, t_arg *arg, t_flags *flags, int num)
 	sign_point[0] = ((e == 0 && u != 0) || e < 0) ? 1 : 0;
 	sign_point[1] = 0;
 	e = (sign_point[0]) ? -e : e;
-	exp = (e == 0.0) ? 0 : exposant_d(&e);
+	exp = (e == 0.0) ? 0 : exposant_d(e);
 	nb = char_e(e, flags->precision[num], &exp);
 	nb = (flags->precision[num]) ? add_exp(insert_point_sign(nb, 0,
 			sign_point, 0), exp, c, 0) : add_exp(nb, exp, c, sign_point[0]);

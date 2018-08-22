@@ -16,6 +16,7 @@
 # include "../../includes/libft.h"
 # include "stdarg.h"
 # include <stdio.h>
+# include <stdint.h>
 # include <wchar.h>
 # include <locale.h>
 # include <limits.h>
@@ -146,7 +147,7 @@ char					*if_maj(char *str, char a);
 /*
 ** UTILS DOUBLE
 */
-int						exposant_d(long double *d);
+int						exposant_d(long double d);
 char					*add_zero_d(char *nb, int *exp, int *pr);
 char					*suppr_zero(char *nb);
 char					*insert_point_sign(char *nb, int exp, int *sign_point, int d);

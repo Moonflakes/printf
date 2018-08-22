@@ -51,6 +51,6 @@ void	ft_putfloat(long double f, int precis)
 
 int		main(void)
 {
-	ft_putfloat(-0.5180, 36);
+	ft_putfloat(-0.0004745, 12);
 	printf("\n%.36f\n", -0.5180);
 }

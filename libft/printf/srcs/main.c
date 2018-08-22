@@ -1268,14 +1268,14 @@ int main(void)
 	ft_putnbr(printf("%.15f %.15f %.15f %.15f %.15f \n", -0.0004745, -45.789, 5.0, 1.0, -0.0));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
 	ft_putendl("f : precision .0");
-	ft_putnbr(ft_printf("%.0f %.0f \n", -0.0004745, -45.789));
+	ft_putnbr(ft_printf("%.12f %.12f \n", -0.0004745, -45.789));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%.0f %.0f \n", -0.0004745, -45.789));
+	ft_putnbr(printf("%.12f %.12f \n", -0.0004745, -45.789));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+/*
 	long double h = 42.5180;
 	int u = 42;
 	long double j = h * 10000000000000000000;
@@ -1286,7 +1286,7 @@ int main(void)
 	ft_putnbr(printf("%.19Lf %.19Lf \n", h, j));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 	ft_putendl("f : precision .1");
 	ft_putnbr(ft_printf("%.1f %.1f \n", -0.0004745, -45.789));
 	ft_putendl(" : return mon printf");

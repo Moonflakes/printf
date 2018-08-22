@@ -12,24 +12,24 @@
 
 #include "printf.h"
 
-int		exposant_d(long double *d)
+int		exposant_d(long double d)
 {
 	int	exp;
 	
 	exp = 0;
-	if (d[0] < 1)
+	if (d < 1)
 	{
-		while (d[0] < 1)
+		while (d < 1)
 		{
-			d[0] = d[0] * 10;
+			d = d * 10;
 			--exp;
 		}
 	}
 	else
 	{
-		while (d[0] / 10 > 1)
+		while (d / 10 > 1)
 		{
-			d[0] = d[0] / 10;
+			d = d / 10;
 			++exp;
 		}
 	}

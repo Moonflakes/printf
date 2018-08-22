@@ -55,7 +55,7 @@ int		print_g(char c, t_arg *arg, t_flags *flags, int num)
 	sign_point[1] = 0;
 	g = (sign_point[0]) ? -g : g;
 	flags->precision[num] = (flags->precision[num]) ? flags->precision[num] : 1;
-	exp = (g == 0.0) ? 0 : exposant_d(&g);
+	exp = (g == 0.0) ? 0 : exposant_d(g);
 	nb = char_g(g, flags->precision[num], &exp);
 	if ((exp < 0 && abs_value(exp) <= 4) ||
 		(exp >= 0 && exp <= flags->precision[num] - 1))
