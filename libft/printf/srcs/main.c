@@ -1276,10 +1276,14 @@ int main(void)
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 */
+	long double h = 42.5180;
+	int u = 42;
+	long double j = h * 10000000000000000000;
+
 	ft_putendl("f : precision .0");
-	ft_putnbr(ft_printf("%.19f \n", 42.5180));
+	ft_putnbr(ft_printf("%.19Lf %.19Lf \n", h, j));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%.19f \n", 42.5180));
+	ft_putnbr(printf("%.19Lf %.19Lf \n", h, j));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 /*
