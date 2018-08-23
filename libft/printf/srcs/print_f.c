@@ -36,13 +36,13 @@ char	*char_f(long double f, int precision, int *exp)
 	return (*exp < 0) ? add_zero_d(nb, exp, i) : round_d(nb, exp, 1);
 }
 
-void	reset_nb(char **nb, int i)
+void	reset_nb(char **nb, int i, int precision)
 {
 	int		sign;
 	char	*tmp;
 
 	sign = (*nb)[0] == '-' ? 1 : 0;
-	while (--i >=0 && (*nb)[i] == '9')
+	while (--i > 0 && (*nb)[i] == '9')
 	{
 		(*nb)[i] = '0';
 	}
@@ -54,7 +54,18 @@ void	reset_nb(char **nb, int i)
 			tmp = ft_strjoin("-", *nb);
 			ft_strdel(nb);
 			*nb = tmp;
-			return ;
+		}
+		else if ((*nb)[i] == '9')
+		{
+			if (precision)
+			{
+				(*nb)[i] = '0';
+				tmp = ft_strjoin("1", *nb);
+				ft_strdel(nb);
+				*nb = tmp;
+			}
+			else
+				(*nb)[i] = '1';
 		}
 		else
 			(*nb)[i] = (*nb)[i] + 1;
@@ -62,29 +73,34 @@ void	reset_nb(char **nb, int i)
 	}
 	else if (i == 0 && (*nb)[i] == '0')
 	{
-		tmp = ft_strjoin("1", *nb);
-		ft_strdel(nb);
-		*nb = tmp;
+		(*nb)[i] = (*nb)[i] + 1;
 		return ;
 	}
 	if ((*nb)[i] != '.')
 		(*nb)[i] = (*nb)[i] + 1;
 	else
-		reset_nb(nb, i);
+		reset_nb(nb, i, precision);
 	
 }
 
-void	round_dbl(long double d, char **nb, int i)
+void	round_dbl(long double d, char **nb, int i, int precision)
 {
-	if ((int)((d - (int)d) * 10) == 9)
+//	ft_putnbr((int)((d - (int)d) * 10));
+//	ft_putendl(" : int");
+	if ((int)((d - (int)d) * 10) >= 8 && (int)d == 9)
 	{
 		(*nb)[++i] = '0';
-		reset_nb(nb, i);
+		reset_nb(nb, i, precision);
 	}
 	else
 	{
-		d += 1;
-		(*nb)[++i] = (int)d + '0';
+		if (precision)
+		{
+			d += 1;
+			(*nb)[++i] = (int)d + '0';
+		}
+		else
+			(*nb)[i] = (*nb)[i] + 1;
 	}
 }
 
@@ -102,10 +118,10 @@ void	start_d(unsigned long long n, int *i, char **nb)
 
 char	*char_d(long double d, int precision, int *sign_point, int exp)
 {
-	int64_t	a;
-	int		i;
-	int		len;
-	char	*nb;
+	uint64_t	a;
+	int			i;
+	int			len;
+	char		*nb;
 
 	a = 10;
 	i = -1;
@@ -125,9 +141,9 @@ char	*char_d(long double d, int precision, int *sign_point, int exp)
 		d -= (int)d;
 	}
 	d *= 10;
-	if ((d - (int)d) * 10 >= 5)
-		round_dbl(d, &nb, i);
-	else
+	if ((int)((d - (int)d) * 10) >= 5)
+		round_dbl(d, &nb, i, precision);
+	else if (precision)
 		nb[++i] = (int)d + '0';
 	return (nb);
 }

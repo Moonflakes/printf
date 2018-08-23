@@ -1261,18 +1261,25 @@ int main(void)
 	ft_putnbr(printf("%0f %0f \n", -0.0004745, -45.789));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
 	ft_putendl("f : precision .15");
-	ft_putnbr(ft_printf("%.15f %.15f %.15f %.15f %.15f \n", -0.0004745, -45.789, 5.0, 1.0, -0.0));
+	ft_putnbr(ft_printf("%.0f %.0f %.0f %.0f %.0f %.0f \n", -0.0004745, -45.789, 5.0, 1.0, -0.0, 999999.9999));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%.15f %.15f %.15f %.15f %.15f \n", -0.0004745, -45.789, 5.0, 1.0, -0.0));
+	ft_putnbr(printf("%.0f %.0f %.0f %.0f %.0f %.0f \n", -0.0004745, -45.789, 5.0, 1.0, -0.0, 999999.9999));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-*/
+
 	ft_putendl("f : precision .0");
-	ft_putnbr(ft_printf("%.12f %.12f \n", -0.0004745, -45.789));
+	ft_putnbr(ft_printf(" %f %.35f %.35f %f %.4f %.4f\n", 12.0785438794, 0.99999, -99.99999, -9999.9999999, 99.999944, -999.999935));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%.12f %.12f \n", -0.0004745, -45.789));
+	ft_putnbr(printf(" %f %.35f %.35f %f %.4f %.4f\n", 12.0785438794, 0.99999, -99.99999, -9999.9999999, 99.999944, -999.999935));
+	ft_putendl(" : return vrai printf");
+	ft_putendl("");
+
+	ft_putendl("f : precision .0");
+	ft_putnbr(ft_printf("%f\n", 12.07854387946));
+	ft_putendl(" : return mon printf");
+	ft_putnbr(printf("%f\n", 12.07854387946));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 /*
