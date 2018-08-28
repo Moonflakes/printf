@@ -92,16 +92,43 @@ int		round_dbl(long double d, char **nb, int i, int precision)
 	return (a);
 }
 
-void	start_d(unsigned long long n, int *i, char **nb)
+int		ft_doublen(long double nb)
 {
-	char				value;
-	unsigned long long	cast;
+	int i;
 
-	cast = n;
-	if (cast > 9)
-		start_d(cast / 10, i, nb);
-	value = '0' + cast % 10;
-	(*nb)[++(*i)] = value;
+	i = nb < 1 ? 1 : 0;
+	while (nb > 1)
+	{
+		nb /= 10;
+		++i;
+	}
+	return (i);
+}
+
+int		start_d(long double n, char **nb)
+{
+	int i;
+	int u;
+	long double len;
+	long double a;
+
+	a = 10;
+	i = 0;
+	u = -1;
+	len = 10;
+	while (n / a > 1)
+	{
+		a *= 10;
+		++i;
+	}
+	a /= 10;
+	while (a >= 1)
+	{
+		(*nb)[++u] = (n / a) + '0';
+		n -= (int)(n / a) * a;
+		a /= 10;
+	}
+	return (i);
 }
 
 void	end_d(long double *d, int precision, int *i, char **nb)
@@ -137,14 +164,13 @@ char	*char_d(long double d, int precision, int *sign_point, int exp)
 	int			len;
 	char		*nb;
 
-	i = -1;
-	len = ft_nblen((unsigned long long)d) + sign_point[0] +
+	len = ft_doublen(d) + sign_point[0] +
 		sign_point[1] + precision + ft_nblen(exp);
 //	ft_putnbr(len);
 //	ft_putendl(" : len malloc");
 	if (!(nb = (char*)ft_memalloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	start_d((unsigned long long)d, &i, &nb);
+	i = start_d(d, &nb);
 	len = i + 1;
 	d -= (uint64_t)d;
 	end_d(&d,  precision, &i, &nb);
