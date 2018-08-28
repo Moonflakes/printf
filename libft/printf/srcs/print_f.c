@@ -58,7 +58,12 @@ int		reset_nb(char **nb, int i, int precision)
 			(*nb)[i] = '1';
 		return (a);
 	}
+//	ft_putchar((*nb)[i]);
+//	ft_putendl(" : nb[i]");
+	if (i && (*nb)[i] == '0')
+		--i;
 	(*nb)[i] = (*nb)[i] + 1;
+//	ft_putendl("je passe ici");
 	return (a);
 }
 
@@ -67,6 +72,8 @@ int		round_dbl(long double d, char **nb, int i, int precision)
 	int a;
 
 	a = 0;
+//	ft_putstr(*nb);
+//	ft_putendl(" : nb");
 	if ((int)((d - (int)d) * 10) >= 8 && (int)d == 9)
 	{
 		(*nb)[++i] = '0';
@@ -115,13 +122,6 @@ void insert_point_sign_d(int place_point, char **nb, int *sign_point)
 	int len;
 
 	len = ft_strlen((*nb));
-//	ft_putstr(*nb);
-//	ft_putendl(" : nb");
-//	ft_putnbr(len);
-//	ft_putendl(" : strlen");
-	(void)place_point;
-
-
 	if (sign_point[0])
 		ft_memmove((*nb) + 1, (*nb), sizeof(char) * len);
 	if (sign_point[1])
@@ -144,10 +144,8 @@ char	*char_d(long double d, int precision, int *sign_point, int exp)
 //	ft_putendl(" : len malloc");
 	if (!(nb = (char*)ft_memalloc(sizeof(char) * (len + 1))))
 		return (NULL);
-//	sign_point[0] ? nb[++i] = '-' : 0;
 	start_d((unsigned long long)d, &i, &nb);
 	len = i + 1;
-//	sign_point[1] ? nb[++i] = '.' : 0;
 	d -= (uint64_t)d;
 	end_d(&d,  precision, &i, &nb);
 	d *= 10;

@@ -1263,9 +1263,9 @@ int main(void)
 	ft_putendl("");
 */
 	ft_putendl("f : precision .15");
-	ft_putnbr(ft_printf("%.0f %.0f %.0f %.0f %.0f %.0f \n", -0.0004745, -45.789, 5.0, 1.0, -0.0, 999999.9999));
+	ft_putnbr(ft_printf("%f %f %f %f %f %f \n", -0.0004745, -45.789, 5.0, 9999.9, -0.0, 999999.999));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%.0f %.0f %.0f %.0f %.0f %.0f \n", -0.0004745, -45.789, 5.0, 1.0, -0.0, 999999.9999));
+	ft_putnbr(printf("%f %f %f %f %f %f \n", -0.0004745, -45.789, 5.0, 9999.9, -0.0, 999999.999));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
