@@ -12,72 +12,46 @@
 
 #include "printf.h"
 
-char	*char_f(long double f, int precision, int *exp)
-{
-	char	*nb;
-	int		i[2];
-	int		len;
-
-	i[0] = -1;
-	i[1] = f * 1;
-	len = (precision + 2 < 1 - *exp) ? precision + 2 : *exp + 1 + precision + 2;
-	if (!(nb = (char*)ft_memalloc(sizeof(char) * len)))
-		return (NULL);
-	while (++i[0] < len - 1)
-	{
-		nb[i[0]] = i[1] + '0';
-		f = f - i[1];
-		f = f * 10;
-		i[1] = f;
-	}
-	nb[i[0]] = '\0';
-	i[0] = precision;
-	i[1] = 'f';
-	return (*exp < 0) ? add_zero_d(nb, exp, i) : round_d(nb, exp, 1);
-}
-
-int		reset_nb(char **nb, int i, int precision)
+int		reset_nb(char **nb, int i, int precision, int len)
 {
 	char	*tmp;
-	int		a;
 
-	a = 0;
 	while (--i >= 0 && (*nb)[i] == '9')
 		(*nb)[i] = '0';
 	if (++i == 0 && (*nb)[i] == '0')
 	{
-		if (precision) // du coup plus le meme malloc...
+		if (precision)
 		{
 			(*nb)[i] = '0';
-			tmp = ft_strjoin("1", *nb);
+			if (!(tmp = (char*)ft_memalloc(sizeof(char) * (len + 2))))
+				return (0);
+			ft_memcpy(tmp + 1, (*nb), sizeof(char) * len);
+			tmp[0] = '1';
 			ft_strdel(nb);
 			*nb = tmp;
-			a = 1;
+			return (1);	
 		}
 		else
 			(*nb)[i] = '1';
-		return (a);
+		return (0);
 	}
-//	ft_putchar((*nb)[i]);
-//	ft_putendl(" : nb[i]");
 	if (i && (*nb)[i] == '0')
 		--i;
 	(*nb)[i] = (*nb)[i] + 1;
-//	ft_putendl("je passe ici");
-	return (a);
+	return (0);
 }
 
-int		round_dbl(long double d, char **nb, int i, int precision)
+int		round_dbl(long double d, char **nb, int len, int precision)
 {
 	int a;
+	int	i;
 
 	a = 0;
-//	ft_putstr(*nb);
-//	ft_putendl(" : nb");
+	i = ft_strlen(*nb) - 1;
 	if ((int)((d - (int)d) * 10) >= 8 && (int)d == 9)
 	{
 		(*nb)[++i] = '0';
-		a = reset_nb(nb, i, precision);
+		a = reset_nb(nb, i, precision, len);
 	}
 	else
 	{
@@ -162,31 +136,29 @@ char	*char_d(long double d, int precision, int *sign_point, int exp)
 {
 	int			i;
 	int			len;
+	int			point;
 	char		*nb;
 
 	len = ft_doublen(d) + sign_point[0] +
 		sign_point[1] + precision + ft_nblen(exp);
-//	ft_putnbr(len);
-//	ft_putendl(" : len malloc");
 	if (!(nb = (char*)ft_memalloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	i = start_d(d, &nb);
-	len = i + 1;
+	point = i + 1;
 	d -= (uint64_t)d;
 	end_d(&d,  precision, &i, &nb);
 	d *= 10;
 	if ((int)((d - (int)d) * 10) >= 5)
-		len = len + round_dbl(d, &nb, i, precision);
+		point = point + round_dbl(d, &nb, len, precision);
 	else if (precision)
 		nb[++i] = (int)d + '0';
-	insert_point_sign_d(len, &nb, sign_point);
+	insert_point_sign_d(point, &nb, sign_point);
 	return (nb);
 }
 
 int		print_f(t_arg *arg, t_flags *flags, int num)
 {
 	int			sign_point[2];
-//	int			exp;
 	long double	f;
 	char		*nb;
 	int			u;	
@@ -196,7 +168,6 @@ int		print_f(t_arg *arg, t_flags *flags, int num)
 	sign_point[0] = ((f == 0 && u != 0) || f < 0) ? 1 : 0;
 	sign_point[1] = (flags->precision[num] == 0) ? 0 : 1;
 	f = f < 0 ? -f : f;
-//	exp = (f == 0.0) ? 0 : exposant_d(f);
 	nb = char_d(f, flags->precision[num], sign_point, 0);
 //	nb = char_f(f, flags->precision[num], &exp);
 //	nb = insert_point_sign(nb, exp, sign_point, 0);
