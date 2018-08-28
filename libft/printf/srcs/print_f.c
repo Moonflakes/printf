@@ -36,61 +36,41 @@ char	*char_f(long double f, int precision, int *exp)
 	return (*exp < 0) ? add_zero_d(nb, exp, i) : round_d(nb, exp, 1);
 }
 
-void	reset_nb(char **nb, int i, int precision)
+int		reset_nb(char **nb, int i, int precision)
 {
-	int		sign;
 	char	*tmp;
+	int		a;
 
-	sign = (*nb)[0] == '-' ? 1 : 0;
-	while (--i > 0 && (*nb)[i] == '9')
-	{
+	a = 0;
+	while (--i >= 0 && (*nb)[i] == '9')
 		(*nb)[i] = '0';
-	}
-	if (i == 0 && (*nb)[i] != '0')
+	if (++i == 0 && (*nb)[i] == '0')
 	{
-		if ((*nb)[i] == '-')
+		if (precision) // du coup plus le meme malloc...
 		{
-			(*nb)[i] = '1';
-			tmp = ft_strjoin("-", *nb);
+			(*nb)[i] = '0';
+			tmp = ft_strjoin("1", *nb);
 			ft_strdel(nb);
 			*nb = tmp;
-		}
-		else if ((*nb)[i] == '9')
-		{
-			if (precision)
-			{
-				(*nb)[i] = '0';
-				tmp = ft_strjoin("1", *nb);
-				ft_strdel(nb);
-				*nb = tmp;
-			}
-			else
-				(*nb)[i] = '1';
+			a = 1;
 		}
 		else
-			(*nb)[i] = (*nb)[i] + 1;
-		return ;
+			(*nb)[i] = '1';
+		return (a);
 	}
-	else if (i == 0 && (*nb)[i] == '0')
-	{
-		(*nb)[i] = (*nb)[i] + 1;
-		return ;
-	}
-	if ((*nb)[i] != '.')
-		(*nb)[i] = (*nb)[i] + 1;
-	else
-		reset_nb(nb, i, precision);
-	
+	(*nb)[i] = (*nb)[i] + 1;
+	return (a);
 }
 
-void	round_dbl(long double d, char **nb, int i, int precision)
+int		round_dbl(long double d, char **nb, int i, int precision)
 {
-//	ft_putnbr((int)((d - (int)d) * 10));
-//	ft_putendl(" : int");
+	int a;
+
+	a = 0;
 	if ((int)((d - (int)d) * 10) >= 8 && (int)d == 9)
 	{
 		(*nb)[++i] = '0';
-		reset_nb(nb, i, precision);
+		a = reset_nb(nb, i, precision);
 	}
 	else
 	{
@@ -102,6 +82,7 @@ void	round_dbl(long double d, char **nb, int i, int precision)
 		else
 			(*nb)[i] = (*nb)[i] + 1;
 	}
+	return (a);
 }
 
 void	start_d(unsigned long long n, int *i, char **nb)
@@ -116,35 +97,65 @@ void	start_d(unsigned long long n, int *i, char **nb)
 	(*nb)[++(*i)] = value;
 }
 
+void	end_d(long double *d, int precision, int *i, char **nb)
+{
+	int j;
+
+	j = 0;
+	while (++j < precision)
+	{
+		(*d) *= 10;
+		(*nb)[++(*i)] = (int)(*d) + '0';
+		(*d) -= (int)(*d);
+	}
+}
+
+void insert_point_sign_d(int place_point, char **nb, int *sign_point)
+{
+	int len;
+
+	len = ft_strlen((*nb));
+//	ft_putstr(*nb);
+//	ft_putendl(" : nb");
+//	ft_putnbr(len);
+//	ft_putendl(" : strlen");
+	(void)place_point;
+
+
+	if (sign_point[0])
+		ft_memmove((*nb) + 1, (*nb), sizeof(char) * len);
+	if (sign_point[1])
+		ft_memmove((*nb) + place_point + sign_point[0] + 1, (*nb) + place_point + sign_point[0], sizeof(char) * (len - place_point));
+	sign_point[0] ? (*nb)[0] = '-' : 0;
+	sign_point[1] ? (*nb)[place_point + sign_point[0]] = '.' : 0;
+
+}
+
 char	*char_d(long double d, int precision, int *sign_point, int exp)
 {
-	uint64_t	a;
 	int			i;
 	int			len;
 	char		*nb;
 
-	a = 10;
 	i = -1;
 	len = ft_nblen((unsigned long long)d) + sign_point[0] +
 		sign_point[1] + precision + ft_nblen(exp);
+//	ft_putnbr(len);
+//	ft_putendl(" : len malloc");
 	if (!(nb = (char*)ft_memalloc(sizeof(char) * (len + 1))))
 		return (NULL);
-	sign_point[0] ? nb[++i] = '-' : 0;
+//	sign_point[0] ? nb[++i] = '-' : 0;
 	start_d((unsigned long long)d, &i, &nb);
-	!sign_point[1] ? nb[++i] = '.' : 0;
+	len = i + 1;
+//	sign_point[1] ? nb[++i] = '.' : 0;
 	d -= (uint64_t)d;
-	len = 0;
-	while (++len < precision)
-	{
-		d *= 10;
-		nb[++i] = (int)d + '0';
-		d -= (int)d;
-	}
+	end_d(&d,  precision, &i, &nb);
 	d *= 10;
 	if ((int)((d - (int)d) * 10) >= 5)
-		round_dbl(d, &nb, i, precision);
+		len = len + round_dbl(d, &nb, i, precision);
 	else if (precision)
 		nb[++i] = (int)d + '0';
+	insert_point_sign_d(len, &nb, sign_point);
 	return (nb);
 }
 
@@ -159,7 +170,7 @@ int		print_f(t_arg *arg, t_flags *flags, int num)
 	f = arg->d[flags->index_arg[num]];
 	u = *(((size_t *)&arg->d[flags->index_arg[num]]) + 1);
 	sign_point[0] = ((f == 0 && u != 0) || f < 0) ? 1 : 0;
-	sign_point[1] = (flags->precision[num] == 0) ? 1 : 0;
+	sign_point[1] = (flags->precision[num] == 0) ? 0 : 1;
 	f = f < 0 ? -f : f;
 //	exp = (f == 0.0) ? 0 : exposant_d(f);
 	nb = char_d(f, flags->precision[num], sign_point, 0);
