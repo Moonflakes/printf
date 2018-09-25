@@ -55,10 +55,10 @@ int		round_dbl(long double d, char **nb, int len, int precision)
 	}
 	else
 	{
-		if (precision)
+		if (precision && ++i <= len)
 		{
 			d += 1;
-			(*nb)[++i] = (int)d + '0';
+			(*nb)[i] = (int)d + '0';
 		}
 		else
 			(*nb)[i] = (*nb)[i] + 1;
@@ -83,13 +83,11 @@ int		start_d(long double n, char **nb)
 {
 	int i;
 	int u;
-	long double len;
 	long double a;
 
 	a = 10;
 	i = 0;
 	u = -1;
-	len = 10;
 	while (n / a > 1)
 	{
 		a *= 10;

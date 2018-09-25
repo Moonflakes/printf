@@ -147,13 +147,18 @@ char					*if_maj(char *str, char a);
 /*
 ** UTILS DOUBLE
 */
+char					*char_d(long double d, int precision, int *sign_point, int exp);
+void 					insert_point_sign_d(int place_point, char **nb, int *sign_point);
+int						round_dbl(long double d, char **nb, int len, int precision);
 int						exposant_d(long double d);
 char					*add_zero_d(char *nb, int *exp, int *pr);
 char					*suppr_zero(char *nb);
+int						suppr_zero_g(char **nb);
 char					*insert_point_sign(char *nb, int exp, int *sign_point, int d);
 char					*add_exp(char *nb, int exp, char e, int sign);
 int						abs_value(int value);
 char					*round_d(char *nb, int *exp, int d);
 char					*round_hex(char *hex);
+int		reset_nb(char **nb, int i, int precision, int len);
 
 #endif
