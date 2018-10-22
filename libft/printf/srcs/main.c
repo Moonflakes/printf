@@ -1668,7 +1668,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 
 	ft_putendl("g : precision .0");
 	ft_putnbr(ft_printf("%g %.35g %.35g %.35g %g %.4g %.4g\n", 12.0785438794, 15438.7543323, 0.99999, -99.99999, -9999.9999999, 99.999944, -999.999935));
-	ft_putendl(" : return mon printg");
+	ft_putendl(" : return mon printf");
 	ft_putnbr(printf("%g %.35g %.35g %.35g %g %.4g %.4g\n", 12.0785438794, 15438.7543323, 0.99999, -99.99999, -9999.9999999, 99.999944, -999.999935));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
@@ -2513,7 +2513,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 //	condition segfault sans -WWW :
 //	printf("%.s", 42);
 //	ft_printf("%.s", 42);
-*//*
+
 	double	i = -0.;
 	double	a;
 	int		b;
@@ -2521,14 +2521,14 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	//i = (size_t)i & 0x8000000000000000;
 	a = (int)i;
 	b = ~(size_t)i;
-	/*if (i == -0.0)
+	if (i == -0.0)
 		ft_putendl("=");
 	if (i == -0)
-		ft_putendl("===");*//*
+		ft_putendl("===");
 	printf("i = %f\n", i);
 	printf("a = %f\n", a);
 	printf("b = %d\n", b);
-/*
+
 
 
 int i5 = 0;

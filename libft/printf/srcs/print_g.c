@@ -89,8 +89,6 @@ void	start_g(long double d, int *precision, int *i, char **nb)
 	while (a >= 1 && (*precision) > 0)
 	{
 		d > 1 ? --(*precision) : ++(*precision);
-		ft_putnbr(*precision);
-		ft_putendl(" : precision");
 		(*nb)[++u] = (d / a) + '0';
 		d -= (int)(d / a) * a;
 		a /= 10;
@@ -103,7 +101,7 @@ void	end_g(long double *d, int precision, int *i, char **nb)
 
 	j = 0;
 	++(*i);
-	while (++j < precision)
+	while (++j < precision + 1)
 	{
 		(*d) *= 10;
 		(*nb)[++(*i)] = (int)(*d) + '0';
@@ -111,27 +109,87 @@ void	end_g(long double *d, int precision, int *i, char **nb)
 	}
 }
 
-int		round_dbl_g(long double d, char **nb, int len, int precision)
+int		round_dbl_g(long double d, char **nb, int *len, int precision)
 {
 	int a;
 	int	i;
 
 	a = 0;
 	i = ft_strlen(*nb) - 1;
+/*	ft_putstr(*nb);
+	ft_putendl(" : nb avant round");
+	ft_putnbr(i);
+	ft_putendl(" : i");
+	ft_putnbr(len[1]);
+	ft_putendl(" : len[1]");
+	ft_putnbr(len[0]);
+	ft_putendl(" : len[0]");*/
 	if ((int)((d - (int)d) * 10) >= 8 && (int)d == 9)
 	{
 		(*nb)[++i] = '0';
-		a = reset_nb(nb, i, precision, len);
+		a = reset_nb(nb, i, precision, len[0]);
 	}
 	else
 	{
-		if (precision && ++i <= len)
+		if (precision && i + 1 < len[1])
 		{
 			d += d * 10 - ((int)d * 10) >= 5 ? 1 : 0;
-			(*nb)[i] = (int)d + '0';
+			(*nb)[++i] = (int)d + '0';
 		}
 		else
-			(*nb)[i] = (*nb)[i] + 1;
+		{
+			if (i == len[1]) // si le nb est neg
+			{
+				d += d * 10 - ((int)d * 10) >= 5 ? 1 : 0;
+		//		ft_putnbr((int)d);
+		//		ft_putendl(" : int d");
+		//		ft_putchar((*nb)[i]);
+		//		ft_putendl(" : nb[i]");
+				if ((int)d >= 5)
+				{
+					while ((*nb)[i] == '9' && i > 0)
+					{
+						(*nb)[i] = '\0';
+						--i;
+					}
+					(*nb)[i] = (*nb)[i] + 1;
+				}
+			}
+			else if ((*nb)[i] >= '5')
+			{
+				if ((*nb)[0] == '0' && i - 1 == len[1])
+				{
+					(*nb)[i] = '\0';
+					--i;
+				}
+				while ((*nb)[i] == '9' && i > 0)
+					{
+						(*nb)[i] = '\0';
+						--i;
+					}
+					if (i + 1 != len[1])
+						(*nb)[i] = (*nb)[i] + 1;
+				/*ft_putchar((*nb)[i]);
+				ft_putendl(" : nb[i]");
+				ft_putchar((*nb)[0]);
+				ft_putendl(" : nb[0]");
+				ft_putnbr(i);
+	ft_putendl(" : i");
+	ft_putnbr(len[1]);
+	ft_putendl(" : len[1]");
+				if ((i + 1 == len[1] && (*nb)[i] >= '5') || ((*nb)[0] == '0' && i - 1 == len[1]))
+				{
+					(*nb)[i] = '\0';
+					--i;
+					(*nb)[i] = (*nb)[i] + 1;
+				}
+				while ((*nb)[i] == '9' && i > 0)
+				{
+					--i;
+					(*nb)[i] = (*nb)[i] + 1;
+				}*/
+			}
+		}
 	}
 	return (a);
 }
@@ -140,18 +198,21 @@ char	*char_g_bis(long double d, int precision, int *sign_point, int *exp)
 {
 	int			i;
 	int			k;
-	int			len;
+	int			len[2];
 	char		*nb;
 
-	len = sign_point[0] + sign_point[1] + precision + 1;
+	len[0] = sign_point[0] + sign_point[1] + precision + 1;
+	len[1] = precision - sign_point[0];
 	i = -1;
-	if (!(nb = (char*)ft_memalloc(sizeof(char) * (len + 1))))
+	if (!(nb = (char*)ft_memalloc(sizeof(char) * (len[0] + 1))))
 		return (NULL);
 	start_g(d, &precision, &i, &nb);
 	d -= (uint64_t)d;
 	k = *exp < 0 ? precision - *exp : precision;
 	end_g(&d, k, &i, &nb);
-	ft_putendl(nb);
+//	ft_putendl("");
+//	ft_putstr(nb);
+//	ft_putendl(" : nb");
 	i = suppr_zero_g(&nb);
 	sign_point[1] = i ? 1 : 0;
 	d *= 10;
