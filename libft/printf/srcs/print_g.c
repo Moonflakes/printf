@@ -56,15 +56,26 @@ int		suppr_zero_g(char **nb)
 void	convert_sc(long double *d, int precision, int *i, char **nb)
 {
 	int j;
-	long double a;
+	double a;
 
 	j = 0;
 	a = 10;
-	while (((*d) / a > 1 && (*d) > 1) || ((*d) / a < 1 && (*d) < 1))
+	while (((*d) / a > 1 && (*d) > 1) || ((*d) / a < 1 && (*d) < 1)){
 		a = ((*d) < 1) ? a / 10 : a * 10;
-	a = ((*d) < 1) ? a * 10 : a / 10;
+	}
+	ft_putnbr(a * 100000);
+	ft_putendl(" : a here");
+	// a = ((*d) < 1) ? a * 10 : a / 10;
+	ft_putnbr((int)((*d) / a));
+	ft_putendl(" : *d / a");
 	(*nb)[++(*i)] = ((*d) / a) + '0';
-	(*d) -= (int)((*d) / a);
+	(*d) = ((*d) / a) - (int)((*d) / a);
+	// ca c'est pas bon 
+	ft_putendl("");
+	ft_putnbr((*d) * 100000);
+	ft_putendl(" : *d");
+	ft_putnbr(a * 100000);
+	ft_putendl(" : a");
 	while (++j < precision)
 	{
 		(*d) *= 10;
@@ -237,6 +248,9 @@ char	*char_sc(long double d, int precision, int *sign_point, int *exp)
 		return (NULL);
 	convert_sc(&d,  precision, &i, &nb);
 	d *= 10;
+	ft_putendl("");
+	ft_putnbr((int)((d - (int)d) * 10));
+	ft_putendl(" : d");
 	if ((int)((d - (int)d) * 10) >= 5)
 		*exp = *exp + round_dbl(d, &nb, len, precision);
 	else if (precision)
@@ -284,6 +298,9 @@ int		print_g(char c, t_arg *arg, t_flags *flags, int num)
 	g = (sign_point[0]) ? -g : g;
 	flags->precision[num] = (flags->precision[num]) ? flags->precision[num] : 1;
 	exp = (g == 0.0) ? 0 : exposant_d(g);
+	// ft_putendl("");
+	// ft_putnbr(exp);
+	// ft_putendl(" : nb");
 	if ((exp < 0 && abs_value(exp) <= 4) ||
 		(exp >= 0 && exp <= flags->precision[num] - 1))
 		{
