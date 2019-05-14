@@ -65,7 +65,7 @@ void	convert_sc(long double *d, int precision, int *i, char **nb)
 	}
 	ft_putnbr(a * 100000);
 	ft_putendl(" : a here");
-	// a = ((*d) < 1) ? a * 10 : a / 10;
+	a = ((*d) < 1) ? a : a / 10;
 	ft_putnbr((int)((*d) / a));
 	ft_putendl(" : *d / a");
 	(*nb)[++(*i)] = ((*d) / a) + '0';
