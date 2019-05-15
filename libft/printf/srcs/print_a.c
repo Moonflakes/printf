@@ -42,9 +42,6 @@ void	ft_round_hex(double d, t_sign *sign, char *str)
 
 	i = 0;
 	d = (sign->pr_z == 1) ? sign->j : d * 16;
-//	ft_putnbr(d);
-//	ft_putendl(" : d");
-//	ft_putendl(str);
 	if (d == 16 && str[i] == '0')
 		str[i] = '0';
 	else if (d > 8 && str[i] != '9' && str[i] != 'f')
@@ -53,7 +50,6 @@ void	ft_round_hex(double d, t_sign *sign, char *str)
 		str[i] = 'a';
 	else if (d > 8 && str[i] == 'f')
 		roundf_hex(str, i, sign);
-//	ft_putendl(str);
 }
 
 char	*if_maj(char *str, char a)

@@ -21,8 +21,6 @@ char		*ft_dtoa(long double n)
 
     i = 0;
     j = 0;
-//    ft_putnbr(n);
-//    ft_putendl(" : ndtoa");
     while (n >= 1)
     {
         n = n / 10;
@@ -44,7 +42,5 @@ char		*ft_dtoa(long double n)
         j++;
         i--;
     }
-//    ft_putstr(str);
-//    ft_putendl(" : dtoa");
 	return (str);
 }
