@@ -63,19 +63,9 @@ void	convert_sc(long double *d, int precision, int *i, char **nb)
 	while (((*d) / a > 1 && (*d) > 1) || ((*d) / a < 1 && (*d) < 1)){
 		a = ((*d) < 1) ? a / 10 : a * 10;
 	}
-	// ft_putnbr(a * 100000);
-	// ft_putendl(" : a here");
 	a = ((*d) < 1) ? a : a / 10;
-	// ft_putnbr((int)((*d) / a));
-	// ft_putendl(" : *d / a");
 	(*nb)[++(*i)] = ((*d) / a) + '0';
 	(*d) = ((*d) / a) - (int)((*d) / a);
-	// ca c'est pas bon 
-	// ft_putendl("");
-	// ft_putnbr((*d) * 100000);
-	// ft_putendl(" : *d");
-	// ft_putnbr(a * 100000);
-	// ft_putendl(" : a");
 	while (++j < precision - 1)
 	{
 		(*d) *= 10;
@@ -104,9 +94,9 @@ void	start_g(long double d, int *precision, int *i, char **nb)
 		d -= (int)(d / a) * a;
 		a /= 10;
 	}
-	ft_putendl("");
-	ft_putnbr(*precision);
-	ft_putendl(" : precision");
+	// ft_putendl("");
+	// ft_putnbr(*precision);
+	// ft_putendl(" : precision");
 }
 
 void	end_g(long double *d, int precision, int *i, char **nb)
@@ -130,14 +120,11 @@ int		round_dbl_g(long double d, char **nb, int *len, int precision)
 
 	a = 0;
 	i = ft_strlen(*nb) - 1;
-/*	ft_putstr(*nb);
-	ft_putendl(" : nb avant round");
-	ft_putnbr(i);
-	ft_putendl(" : i");
-	ft_putnbr(len[1]);
-	ft_putendl(" : len[1]");
-	ft_putnbr(len[0]);
-	ft_putendl(" : len[0]");*/
+	// ft_putendl("");
+	// ft_putnbr(i);
+	// ft_putendl(" : i");
+	// ft_putnbr(len[1]);
+	// ft_putendl(" : len[1]");
 	if ((int)((d - (int)d) * 10) >= 8 && (int)d == 9)
 	{
 		(*nb)[++i] = '0';
@@ -155,10 +142,6 @@ int		round_dbl_g(long double d, char **nb, int *len, int precision)
 			if (i == len[1]) // si le nb est neg
 			{
 				d += d * 10 - ((int)d * 10) >= 5 ? 1 : 0;
-		//		ft_putnbr((int)d);
-		//		ft_putendl(" : int d");
-		//		ft_putchar((*nb)[i]);
-		//		ft_putendl(" : nb[i]");
 				if ((int)d >= 5)
 				{
 					while ((*nb)[i] == '9' && i > 0)
@@ -183,25 +166,6 @@ int		round_dbl_g(long double d, char **nb, int *len, int precision)
 					}
 					if (i + 1 != len[1])
 						(*nb)[i] = (*nb)[i] + 1;
-				/*ft_putchar((*nb)[i]);
-				ft_putendl(" : nb[i]");
-				ft_putchar((*nb)[0]);
-				ft_putendl(" : nb[0]");
-				ft_putnbr(i);
-	ft_putendl(" : i");
-	ft_putnbr(len[1]);
-	ft_putendl(" : len[1]");
-				if ((i + 1 == len[1] && (*nb)[i] >= '5') || ((*nb)[0] == '0' && i - 1 == len[1]))
-				{
-					(*nb)[i] = '\0';
-					--i;
-					(*nb)[i] = (*nb)[i] + 1;
-				}
-				while ((*nb)[i] == '9' && i > 0)
-				{
-					--i;
-					(*nb)[i] = (*nb)[i] + 1;
-				}*/
 			}
 		}
 	}
@@ -224,16 +188,18 @@ char	*char_g_bis(long double d, int precision, int *sign_point, int *exp)
 	d -= (uint64_t)d;
 	k = *exp < 0 ? precision - *exp : precision;
 	end_g(&d, k, &i, &nb);
-	ft_putendl("");
-	ft_putstr(nb);
-	ft_putendl(" : nb");
+	// ft_putendl("");
+	// ft_putstr(nb);
+	// ft_putendl(" : nb");
 	i = suppr_zero_g(&nb);
 	sign_point[1] = i ? 1 : 0;
 	d *= 10;
-	if (nb[i] >= '5' && i)
+	if ((nb[i] >= '5' && i))
 		*exp = *exp + round_dbl_g(d, &nb, len, precision);
-	else if (i)
-		nb[i] = '\0';
+	else if (i) {
+		if (sign_point[0] && nb[0] == '0') nb[i - 1] = '\0';
+		else nb[i] = '\0';
+	}
 	k = (*exp < 0) ? 1 : *exp + 1;
 	insert_point_sign_d(k, &nb, sign_point);
 	return (nb);
@@ -253,11 +219,6 @@ char	*char_sc(long double d, int precision, int *sign_point, int *exp)
 		return (NULL);
 	convert_sc(&d,  precision, &i, &nb);
 	d *= 10;
-	// ft_putendl("");
-	// ft_putnbr(len);
-	// ft_putendl(" : len malloc");
-	// ft_putnbr((int)((d - (int)d) * 10));
-	// ft_putendl(" : d");
 	if ((int)((d - (int)d) * 10) >= 5)
 		*exp = *exp + round_dbl(d, &nb, len, precision);
 	else if (precision)
@@ -283,19 +244,10 @@ void	char_nbr(int exp, char **nb, int i)
 void	add_exp_sc(char **nb, char e, int exp)
 {
 	int i;
-	// ft_putnbr(exp);
-	// ft_putendl(" : exp here");
 	i = ft_strlen(*nb);
-	// ft_putnbr(i);
-	// ft_putendl(" : i here");
 	(*nb)[i] = e;
 	(*nb)[++i] = exp < 0 ? '-' : '+';
 	exp = exp < 0 ? -exp : exp;
-	// ft_putendl("");
-	// ft_putchar(e);
-	// ft_putendl(" : e here");
-	// ft_putstr(*nb);
-	// ft_putendl(" : nb here");
 	char_nbr(exp, nb, i);
 }
 
@@ -314,9 +266,6 @@ int		print_g(char c, t_arg *arg, t_flags *flags, int num)
 	g = (sign_point[0]) ? -g : g;
 	flags->precision[num] = (flags->precision[num]) ? flags->precision[num] : 1;
 	exp = (g == 0.0) ? 0 : exposant_d(g);
-	// ft_putendl("");
-	// ft_putnbr(exp);
-	// ft_putendl(" : nb");
 	if ((exp < 0 && abs_value(exp) <= 4) ||
 		(exp >= 0 && exp <= flags->precision[num] - 1))
 		{
