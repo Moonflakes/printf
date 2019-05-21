@@ -179,18 +179,23 @@ char	*char_g_bis(long double d, int precision, int *sign_point, int *exp)
 	int			len[2];
 	char		*nb;
 
-	len[0] = sign_point[0] + sign_point[1] + precision + 1;
+	len[0] = *exp < 0 ? sign_point[0] + sign_point[1] + precision + abs_value(*exp) : sign_point[0] + sign_point[1] + precision;
 	len[1] = precision - sign_point[0];
 	i = -1;
+	ft_putendl("");
+	ft_putnbr(len[0]);
+	ft_putendl(" : len[0]");
+	ft_putnbr(*exp);
+	ft_putendl(" : exp");
 	if (!(nb = (char*)ft_memalloc(sizeof(char) * (len[0] + 1))))
 		return (NULL);
 	start_g(d, &precision, &i, &nb);
 	d -= (uint64_t)d;
 	k = *exp < 0 ? precision - *exp : precision;
 	end_g(&d, k, &i, &nb);
-	// ft_putendl("");
-	// ft_putstr(nb);
-	// ft_putendl(" : nb");
+	ft_putendl("");
+	ft_putstr(nb);
+	ft_putendl(" : nb");
 	i = suppr_zero_g(&nb);
 	sign_point[1] = i ? 1 : 0;
 	d *= 10;
