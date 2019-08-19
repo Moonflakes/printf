@@ -20,7 +20,8 @@ int	printing(char **str, t_arg *arg, t_flags *flags, int num)
 	else
 	{
 		*str = process_flags(*str, arg, flags, num);
-			ft_putstr(*str);
+		if (!arg->i[flags->index_arg[num]] && arg->type[num] == 'c') ft_putchar('\0');
+		ft_putstr(*str);
 		i = ft_strlen(*str);
 	}
 	ft_strdel(str);

@@ -127,7 +127,14 @@ char	*process_flags(char *str, t_arg *arg, t_flags *flags, int num)
 {
 	
 	str = htag_process(str, arg, flags, num);
+	// ft_putendl("");
+	// ft_putstr("htag :");
+	// ft_putendl(str);
 	str = add_plus_or_space(str, arg, flags, num);
+	// ft_putstr("space :");
+	// ft_putendl(str);
 	str = padding(str, arg, flags, num);
+	// ft_putstr("padding :");
+	// ft_putendl(str);
 	return (str);
 }

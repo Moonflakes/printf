@@ -559,13 +559,19 @@ int main(void)
 	ft_putnbr(printf("%-1C \n", 2250));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-
+*/
 	ft_putendl("c all_01 :");
-	ft_putnbr(ft_printf("hello ca**%----4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0));
-	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("hello ca**%----4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0));
-	ft_putendl(" : return vrai printf");
-	ft_putendl("");
+	ft_putendl("====== ft_printf ======");
+	int a = ft_printf("hello ca**%----4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0);
+	ft_putstr("\n====== /ft_printf ====== (return: ");
+	ft_putnbr(a);
+	ft_putendl(")");
+	ft_putendl("====== printf ======");
+	a = printf("hello ca**%----4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0);
+	ft_putstr("\n====== /printf ====== (return: ");
+	ft_putnbr(a);
+	ft_putendl(")");
+/*	ft_putendl("");
 
 	ft_putendl("C all_01 :");
 	ft_putnbr(ft_printf("%8C et coco %C titi %lc\n", 3250, 0x11ffff, 'a'));
@@ -1658,11 +1664,11 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putendl("");
 	int i1 = 0;
 	scanf("%d", &i1);
-*/
+
 	ft_putendl("g : #");
-	ft_putnbr(ft_printf("%.2g %.3g %g %g %g %.3g %.4g\n", -0.0004745, -45.789, -5.0, 1.0, 0.0, -0.000064300000078884389, 782456482.5662223));
+	ft_putnbr(ft_printf("%g %.15g %.2g %.3g %g %g %g %.3g %.4g\n", -45486486456456456445648.789, -0.0004745, -0.0004745, -45.789, -5.0, 1.0, 0.0, -0.000064300000078884389, 782456482.5662223));
 	ft_putendl(" : return mon printf");
-	ft_putnbr(printf("%.2g %.3g %g %g %g %.3g %.4g\n", -0.0004745, -45.789, -5.0, 1.0, 0.0, -0.000064300000078884389, 782456482.5662223));
+	ft_putnbr(printf("%g %.15g %.2g %.3g %g %g %g %.3g %.4g\n", -45486486456456456445648.789, -0.0004745, -0.0004745, -45.789, -5.0, 1.0, 0.0, -0.000064300000078884389, 782456482.5662223));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
 
@@ -1672,7 +1678,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putnbr(printf("%g %.35g %.35g %.35g %g %.4g %.4g\n", 12.0785438794, 15438.7543323, 0.99999, -99.99999, -9999.9999999, 99.999944, -999.999935));
 	ft_putendl(" : return vrai printf");
 	ft_putendl("");
-/*
+
 	ft_putendl("g : width");
 	ft_putnbr(ft_printf("%15g %15g \n", -0.0004745, -45.789));
 	ft_putendl(" : return mon printf");

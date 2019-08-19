@@ -59,8 +59,13 @@ int	print_char(t_arg *arg, t_flags *flags, int num)
 	setlocale(LC_ALL, "");
 	if ((arg->type[num] == 'c' && arg->length[num] == 0) ||
 		(arg->i[flags->index_arg[num]] <= 127 &&
-		arg->i[flags->index_arg[num]] >= 0))
+		arg->i[flags->index_arg[num]] >= 0)) {
 		str = ft_strndup(&c, 1);
+		// ft_putstr("je passe la\n");
+		// ft_putstr(str);
+		// ft_putnbr(arg->i[flags->index_arg[num]]);
+		// ft_putchar(c);
+		}
 	else
 	{
 		str = printable_w(arg->i[flags->index_arg[num]], arg);
