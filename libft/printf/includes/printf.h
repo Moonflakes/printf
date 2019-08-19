@@ -21,7 +21,7 @@
 # include <locale.h>
 # include <limits.h>
 
-int **n;
+int						**n;
 
 typedef struct			s_arg
 {
@@ -34,7 +34,7 @@ typedef struct			s_arg
 	int					*length;
 	long long			*i;
 	unsigned long long	*ull;
-	long double 		*d;
+	long double			*d;
 	int					**s;
 	int					dollar;
 	int					*precision;
@@ -89,7 +89,8 @@ typedef struct			s_tf
 int						ft_printf(const char *format, ...);
 void					stock_arg(va_list ap, t_arg *arg, t_flags *flags);
 int						print_arg(t_arg *arg, t_flags *flags, int num);
-int						printing(char **str, t_arg *arg, t_flags *flags, int num);
+int						printing(char **str, t_arg *arg, t_flags *flags,
+						int num);
 void					verif_next_arg(t_arg *arg, t_flags *flags, int next);
 
 int						*int_tab_malloc(int len);
@@ -113,7 +114,8 @@ int						print_char(t_arg *arg, t_flags *flags, int num);
 char					*printable_w(long long w, t_arg *arg);
 int						print_string(t_arg *arg, t_flags *flags, int num);
 int						print_nb(t_arg *arg, t_flags *flags, int num);
-int						print_base(char base, t_arg *arg, t_flags *flags, int num);
+int						print_base(char base, t_arg *arg, t_flags *flags,
+						int num);
 int						print_hex(char c, t_arg *arg, t_flags *flags, int num);
 int						print_f(t_arg *arg, t_flags *flags, int num);
 int						print_e(char c, t_arg *arg, t_flags *flags, int num);
@@ -123,23 +125,27 @@ int						print_la(char a, t_arg *arg, t_flags *flags, int num);
 int						print_p(t_arg *arg, t_flags *flags, int num);
 int						if_length(t_arg *arg, t_flags *flags, int num);
 
-char					*process_flags(char *str, t_arg *arg, t_flags *flags, int num);
-char					*htag_process(char *str, t_arg *arg, t_flags *flags, int num);
-char					*add_plus_or_space(char *str, t_arg *arg, t_flags *flags,
-						int num);
+char					*process_flags(char *str, t_arg *arg,
+						t_flags *flags, int num);
+char					*htag_process(char *str, t_arg *arg,
+						t_flags *flags, int num);
+char					*add_plus_or_space(char *str, t_arg *arg,
+						t_flags *flags, int num);
 int						ft_color(const char *format, int i);
 
 void					num_arg(const char *format, t_arg *arg, t_flags *flags);
 int						nb_prct(const char *format);
 int						len_and_type(const char *s, t_arg *arg, int num,
 						t_flags *flags);
-int						extract_value(char *s, t_arg *arg, t_flags *flags, int num);
+int						extract_value(char *s, t_arg *arg, t_flags *flags,
+						int num);
 void					width(t_arg *arg, t_flags *flags, int num);
 void					process_strp(t_arg *arg, int num, t_flags *flags);
 char					*char_tab_malloc(int len);
 
 void					ft_round_hex(double d, t_sign *sign, char *str);
-char					*if_nbneg(char *str, int exp, char *signe, t_sign *sign);
+char					*if_nbneg(char *str, int exp, char *signe,
+						t_sign *sign);
 char					*dtoa_base(long double d, t_sign *sign, int exp,
 						long long precision);
 char					*if_maj(char *str, char a);
@@ -147,18 +153,22 @@ char					*if_maj(char *str, char a);
 /*
 ** UTILS DOUBLE
 */
-char					*char_d(long double d, int precision, int *sign_point, int exp);
-void 					insert_point_sign_d(int place_point, char **nb, int *sign_point);
-int						round_dbl(long double d, char **nb, int len, int precision);
+char					*char_d(long double d, int precision, int *sign_point,
+						int exp);
+void					insert_point_sign_d(int place_point, char **nb,
+						int *sign_point);
+int						round_dbl(long double d, char **nb, int len,
+						int precision);
 int						exposant_d(long double d);
 char					*add_zero_d(char *nb, int *exp, int *pr);
 char					*suppr_zero(char *nb);
 int						suppr_zero_g(char **nb);
-char					*insert_point_sign(char *nb, int exp, int *sign_point, int d);
+char					*insert_point_sign(char *nb, int exp,
+						int *sign_point, int d);
 char					*add_exp(char *nb, int exp, char e, int sign);
 int						abs_value(int value);
 char					*round_d(char *nb, int *exp, int d);
 char					*round_hex(char *hex);
-int		reset_nb(char **nb, int i, int precision, int len);
+int						reset_nb(char **nb, int i, int precision, int len);
 
 #endif

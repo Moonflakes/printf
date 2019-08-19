@@ -41,6 +41,26 @@ void	print_rest(int *i, const char *format)
 	i[0]++;
 }
 
+void	init_all(const char *format, t_arg *arg, t_flags *flags, va_list ap)
+{
+	init_struct_arg(arg, nb_prct(format));
+	init_struct_flags(flags, nb_prct(format));
+	num_arg(format, arg, flags);
+	stock_arg(ap, arg, flags);
+}
+
+void	loop_format(const char *format, t_arg *arg, t_flags *flags, int *i)
+{
+	while (format[i[0]])
+	{
+		i[0] = ft_color(&format[i[0]], i[0]);
+		if (format[i[0]] == '%')
+			print_args(i, arg, flags);
+		if (format[i[0]] && format[i[0]] != '%')
+			print_rest(i, format);
+	}
+}
+
 int		ft_printf(const char *format, ...)
 {
 	int			i[4];
@@ -55,21 +75,9 @@ int		ft_printf(const char *format, ...)
 	va_start(ap, format);
 	if (format[i[0]])
 	{
-		init_struct_arg(&arg, nb_prct(format));
-		init_struct_flags(&flags, nb_prct(format));
-		num_arg(format, &arg, &flags);
-		stock_arg(ap, &arg, &flags);
+		init_all(format, &arg, &flags, ap);
 		if (i[2] == 0)
-		{
-			while (format[i[0]])
-			{
-				i[0] = ft_color(&format[i[0]], i[0]);
-				if (format[i[0]] == '%')
-					print_args(i, &arg, &flags);
-				if (format[i[0]] && format[i[0]] != '%')
-					print_rest(i, format);
-			}
-		}
+			loop_format(format, &arg, &flags, i);
 		free_struct(&arg, &flags);
 	}
 	va_end(ap);
