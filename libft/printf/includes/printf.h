@@ -129,6 +129,7 @@ char					*process_flags(char *str, t_arg *arg,
 						t_flags *flags, int num);
 char					*htag_process(char *str, t_arg *arg,
 						t_flags *flags, int num);
+char					*ht_process_g(char *str, int precision, char e);
 char					*add_plus_or_space(char *str, t_arg *arg,
 						t_flags *flags, int num);
 int						ft_color(const char *format, int i);
