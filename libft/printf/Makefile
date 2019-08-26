@@ -36,6 +36,7 @@ SRCS = 	ft_printf.c \
 		print_flags.c \
 		add_plus_space.c \
 		htag_process.c \
+		ht_process_g.c \
 		color.c
 
 SRC_PATH = srcs/

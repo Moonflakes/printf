@@ -562,15 +562,17 @@ int main(void)
 */
 	ft_putendl("c all_01 :");
 	ft_putendl("====== ft_printf ======");
-	int a = ft_printf("hello ca**%----4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0);
+	int a = ft_printf("hello ca**%4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0);
 	ft_putstr("\n====== /ft_printf ====== (return: ");
 	ft_putnbr(a);
 	ft_putendl(")");
 	ft_putendl("====== printf ======");
-	a = printf("hello ca**%----4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0);
+	a = printf("hello ca**%4c** **%1c** va **%10c****%-c** ??", '\0', '\n', (char)564, 0);
 	ft_putstr("\n====== /printf ====== (return: ");
 	ft_putnbr(a);
 	ft_putendl(")");
+
+	// while(1);
 /*	ft_putendl("");
 
 	ft_putendl("C all_01 :");
