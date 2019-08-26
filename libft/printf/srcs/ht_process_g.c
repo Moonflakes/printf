@@ -26,7 +26,6 @@ char	*add_zeros(char *nb, int precision)
 	while (++len < precision)
 		nb[++i] = '0';
 	return (nb);
-
 }
 
 char	*add_point(char *nb, int precision)
@@ -43,8 +42,8 @@ char	*add_point(char *nb, int precision)
 
 char	*copy_nb(char *str, char *nb, int len)
 {
-	int		i;
-	
+	int	i;
+
 	i = -1;
 	while (++i < len)
 		nb[i] = str[i];
@@ -67,7 +66,6 @@ char	*add_rest(char *nb, char *str)
 		ft_strdel(&rest);
 	}
 	return (nb);
-
 }
 
 char	*ht_process_g(char *str, int precision, char e)

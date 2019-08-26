@@ -48,12 +48,12 @@ char	*htag_process(char *str, t_arg *arg, t_flags *flags, int num)
 		if (ft_strchr("gG", arg->type[num]))
 			str = ht_process_g(str, flags->precision[num], arg->type[num] - 2);
 		if (ft_strchr("aAeE", arg->type[num]))
-			str = (ft_strchr(str, '.')) ? str : ht_process_a(str, arg->type[num]);
+			str = (ft_strchr(str, '.')) ? str :
+				ht_process_a(str, arg->type[num]);
 		if (ft_strchr("fF", arg->type[num]) && flags->precision[num] == 0)
 			str = ft_strjoin_free(str, ".\0", 1);
 	}
-	if (arg->ull[num] == 0 && flags->precision[num] == 0 &&
-		ft_strchr("xX", arg->type[num]))
-		str = ft_strdup_del("", str);
+	str = (arg->ull[num] == 0 && flags->precision[num] == 0 &&
+		ft_strchr("xX", arg->type[num])) ? ft_strdup_del("", str) : str;
 	return (str);
 }

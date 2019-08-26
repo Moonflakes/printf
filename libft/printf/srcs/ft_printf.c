@@ -23,9 +23,6 @@ void	print_args(int *i, t_arg *arg, t_flags *flags)
 	i[2] = (arg->ret != -1) ? i[2] : -1;
 	i[2] = ((arg->type[i[1]] == 'c' || arg->type[i[1]] == 'C')
 			&& arg->i[i[1]] == 0) ? i[2] + 1 : i[2];
-	// ft_putstr("\ni2 : ");
-	// ft_putnbr(i[2]);
-	// ft_putchar('\n');
 	if (arg->type[i[1]] == 'n')
 		*arg->s[i[1]] = i[2];
 }
@@ -68,10 +65,10 @@ int		ft_printf(const char *format, ...)
 	t_arg		arg;
 	t_flags		flags;
 
-	i[0] = 0; // i
-	i[1] = -1; // num
+	i[0] = 0;
+	i[1] = -1;
 	i[2] = 0;
-	i[3] = 0; //passé par \n
+	i[3] = 0;
 	va_start(ap, format);
 	if (format[i[0]])
 	{
