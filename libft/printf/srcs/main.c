@@ -572,7 +572,7 @@ int main(void)
 	ft_putnbr(a);
 	ft_putendl(")");
 
-	while(1);
+	// while(1);
 /*	ft_putendl("");
 
 	ft_putendl("C all_01 :");
@@ -2366,7 +2366,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 ***********************
 ** NB WRITE CHAR : n **
 ***********************
-
+*/
 	ft_putendl("NB WRITE CHAR : n");
 	int n;
 	
@@ -2379,7 +2379,7 @@ printf("%e %e %e %e %e %e %e %e %e \n", 0.067843765, 0.067843775, 0.067843755, 0
 	ft_putendl(" : return vrai printf");
 	ft_putnbr(n);
 	ft_putendl(" : n");
-
+/*
 ******************
 ** POURCENT : % **
 ******************

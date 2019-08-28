@@ -21,8 +21,6 @@
 # include <locale.h>
 # include <limits.h>
 
-int						**n;
-
 typedef struct			s_arg
 {
 	int					nb_arg;
@@ -109,6 +107,8 @@ void					free_struct(t_arg *arg, t_flags *flags);
 void					free_t_int(t_int *inc);
 
 void					init_flags(t_arg *arg, int i, t_flags *flags, int num);
+int						extract_value(char *s, t_arg *arg, t_flags *flags,
+						int num);
 
 int						print_char(t_arg *arg, t_flags *flags, int num);
 char					*printable_w(long long w, t_arg *arg);

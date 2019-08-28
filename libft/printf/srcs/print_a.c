@@ -145,7 +145,6 @@ char	*convert_hex(long double d, int precision, int length)
 	return (round_hex(hex));
 }
 
-
 int		print_a(char a, t_arg *arg, t_flags *flags, int num)
 {
 	long double	d;
@@ -157,11 +156,13 @@ int		print_a(char a, t_arg *arg, t_flags *flags, int num)
 	d = arg->d[flags->index_arg[num]];
 	u = *(((size_t *)&arg->d[flags->index_arg[num]]) + 1);
 	sign_pr[0] = ((d == 0 && u != 0) || d < 0) ? 1 : 0;
-	sign_pr[1] = ((arg->precision[num] && !flags->precision[num]) || !arg->precision[num]) ? 0 : 1;
+	sign_pr[1] = ((arg->precision[num] && !flags->precision[num]) ||
+		!arg->precision[num]) ? 0 : 1;
 	d = (sign_pr[0]) ? -d : d;
 	exp = dble_process(&d, arg->length[num]);
 	hex = convert_hex(d, flags->precision[num], arg->length[num]);
-	hex = if_maj(add_exp(insert_x_point(hex, sign_pr[1]), exp, 'p', sign_pr[0]), a);
+	hex = if_maj(add_exp(insert_x_point(hex, sign_pr[1]), exp, 'p',
+		sign_pr[0]), a);
 
 /*
 	long double	d;

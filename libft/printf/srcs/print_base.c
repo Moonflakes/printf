@@ -12,6 +12,22 @@
 
 #include "printf.h"
 
+void	while_me(int j, int i, char **str, char *padstr)
+{
+	while (--j >= 0)
+	{
+		while (--i >= 0)
+		{
+			if (str[0][i] == '-')
+				break ;
+			padstr[j--] = str[0][i];
+		}
+		if (i >= 0 && str[0][i] == '-')
+			padstr[0] = '-';
+		padstr[j] = (padstr[j] == '-') ? '-' : '0';
+	}
+}
+
 char	*pad_precision(char **str, t_flags *flags, int num)
 {
 	int		i;
@@ -25,18 +41,7 @@ char	*pad_precision(char **str, t_flags *flags, int num)
 		j = flags->precision[num] + 1;
 		if (!(padstr = (char*)ft_memalloc(sizeof(char) * (j + 1))))
 			return (NULL);
-		while (--j >= 0)
-		{
-			while (--i >= 0)
-			{
-				if (str[0][i] == '-')
-					break ;
-				padstr[j--] = str[0][i];
-			}
-			if (i >= 0 && str[0][i] == '-')
-				padstr[0] = '-';
-			padstr[j] = (padstr[j] == '-') ? '-' : '0';
-		}
+		while_me(j, i, str, padstr);
 		ft_strdel(str);
 		str[0] = ft_strdup(padstr);
 		ft_strdel(&padstr);
@@ -65,7 +70,7 @@ int		print_nb(t_arg *arg, t_flags *flags, int num)
 int		print_base(char base, t_arg *arg, t_flags *flags, int num)
 {
 	unsigned long long	i;
-	char		*str;
+	char				*str;
 
 	i = arg->ull[flags->index_arg[num]];
 	if (i == 0 && flags->precision[num] == 1 && arg->precision[num] == 1
@@ -86,7 +91,7 @@ int		print_base(char base, t_arg *arg, t_flags *flags, int num)
 int		print_hex(char c, t_arg *arg, t_flags *flags, int num)
 {
 	unsigned long long	i;
-	char		*x;
+	char				*x;
 
 	i = arg->ull[flags->index_arg[num]];
 	x = (arg->length[num] == 1 || arg->length[num] == 3) ?

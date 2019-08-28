@@ -23,8 +23,9 @@ void	begin_str(char **padstr, t_flags *flags, t_int *inc, t_arg *arg)
 			padstr[0][inc->a++] = inc->str[inc->j++];
 	}
 	if (flags->zero[inc->num] == 1 && flags->htag[inc->num] == 1 &&
-		((ft_strchr("pxX", arg->type[inc->num]) && arg->precision[inc->num] == 0) ||
-		(ft_strchr("aA", arg->type[inc->num]) && arg->precision[inc->num] == 1)))
+		((ft_strchr("pxX", arg->type[inc->num]) &&
+		arg->precision[inc->num] == 0) || (ft_strchr("aA", arg->type[inc->num])
+		&& arg->precision[inc->num] == 1)))
 	{
 		while (inc->str[inc->j])
 		{
@@ -45,32 +46,25 @@ char	*put_pad_l(char **padstr, t_arg *arg, t_flags *flags, t_int *inc)
 	char			pad;
 	int				len;
 
-	k = 0;
+	k = -1;
 	len = ft_strlen(inc->str);
-	pad = ((ft_strchr("%aAgGfFeE", arg->type[inc->num]) && flags->zero[inc->num] == 1) ||
-			(!ft_strchr("sScCp", arg->type[inc->num]) && ft_strchr("idDuUoOxXb", arg->type[inc->num])
-			&& flags->zero[inc->num] == 1 && arg->precision[inc->num] == 0)) ? '0' : ' ';
+	pad = ((ft_strchr("%aAgGfFeE", arg->type[inc->num]) &&
+	flags->zero[inc->num] == 1) || (!ft_strchr("sScCp", arg->type[inc->num]) &&
+	ft_strchr("idDuUoOxXb", arg->type[inc->num]) && flags->zero[inc->num] == 1
+	&& arg->precision[inc->num] == 0)) ? '0' : ' ';
 	while (inc->str[inc->j] || (len == 0 && (arg->type[inc->num] == 'S' ||
 		(arg->type[inc->num] == 's' && arg->length[inc->num] == 1))))
 	{
 		begin_str(&padstr[0], flags, inc, arg);
-		while (k < (flags->width[inc->num] - len))
-		{
+		while (++k < (flags->width[inc->num] - len))
 			padstr[0][inc->a++] = pad;
-			k++;
-		}
 		padstr[0][inc->a++] = inc->str[inc->j++];
 		if (len == 0)
 			len = 1;
 	}
 	if (!inc->str || !inc->str[0])
-	{
-		while (k < (flags->width[inc->num] - len))
-		{
+		while (++k < (flags->width[inc->num] - len))
 			padstr[0][inc->a++] = pad;
-			k++;
-		}
-	}
 	return (ft_strdup_free(padstr[0]));
 }
 
@@ -114,10 +108,8 @@ char	*padding(char *str, t_arg *arg, t_flags *flags, int num)
 		}
 		padstr[j] = '\0';
 		ft_strdel(&str);
-		if (flags->left[num])
-			str = put_pad_r(&padstr, arg, flags, &inc);
-		else
-			str = put_pad_l(&padstr, arg, flags, &inc);
+		str = (flags->left[num]) ? put_pad_r(&padstr, arg, flags, &inc) :
+			put_pad_l(&padstr, arg, flags, &inc);
 	}
 	ft_strdel(&inc.str);
 	return (str);
@@ -125,16 +117,8 @@ char	*padding(char *str, t_arg *arg, t_flags *flags, int num)
 
 char	*process_flags(char *str, t_arg *arg, t_flags *flags, int num)
 {
-	
 	str = htag_process(str, arg, flags, num);
-	// ft_putendl("");
-	// ft_putstr("htag :");
-	// ft_putendl(str);
 	str = add_plus_or_space(str, arg, flags, num);
-	// ft_putstr("space :");
-	// ft_putendl(str);
 	str = padding(str, arg, flags, num);
-	// ft_putstr("padding :");
-	// ft_putendl(str);
 	return (str);
 }

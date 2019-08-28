@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-char		*char_tab_malloc(int len)
+char				*char_tab_malloc(int len)
 {
 	char *tab;
 
@@ -21,7 +21,7 @@ char		*char_tab_malloc(int len)
 	return (tab);
 }
 
-char		**str_tab_malloc(int len)
+char				**str_tab_malloc(int len)
 {
 	char **tab;
 
@@ -34,7 +34,8 @@ unsigned long long	*ull_tab_malloc(int len)
 {
 	unsigned long long *tab;
 
-	if (!(tab = (unsigned long long*)ft_memalloc(sizeof(unsigned long long) * len)))
+	if (!(tab = (unsigned long long*)ft_memalloc(sizeof(unsigned long long)
+			* len)))
 		return (NULL);
 	return (tab);
 }

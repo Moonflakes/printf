@@ -36,6 +36,7 @@ char	*pr_str(char *str, t_flags *flags, t_arg *arg, int num)
 void	verif_next_arg(t_arg *arg, t_flags *flags, int next)
 {
 	char *sw_next;
+
 	if (arg->i && arg->i[flags->index_arg[next]])
 	{
 		if ((arg->type[next] == 'C' || (arg->type[next] == 'c'
@@ -50,7 +51,7 @@ void	verif_next_arg(t_arg *arg, t_flags *flags, int next)
 	}
 }
 
-int	print_char(t_arg *arg, t_flags *flags, int num)
+int		print_char(t_arg *arg, t_flags *flags, int num)
 {
 	char c;
 	char *str;
@@ -59,13 +60,10 @@ int	print_char(t_arg *arg, t_flags *flags, int num)
 	setlocale(LC_ALL, "");
 	if ((arg->type[num] == 'c' && arg->length[num] == 0) ||
 		(arg->i[flags->index_arg[num]] <= 127 &&
-		arg->i[flags->index_arg[num]] >= 0)) {
+		arg->i[flags->index_arg[num]] >= 0))
+	{
 		str = ft_strndup(&c, 1);
-		// ft_putstr("je passe la\n");
-		// ft_putstr(str);
-		// ft_putnbr(arg->i[flags->index_arg[num]]);
-		// ft_putchar(c);
-		}
+	}
 	else
 	{
 		str = printable_w(arg->i[flags->index_arg[num]], arg);
@@ -75,15 +73,48 @@ int	print_char(t_arg *arg, t_flags *flags, int num)
 	return (printing(&str, arg, flags, num));
 }
 
-int	print_string(t_arg *arg, t_flags *flags, int num)
+void	blabla(t_arg *arg, t_flags *flags, int *i, char **str)
+{
+	char	*c;
+	int		nb_octet;
+	int 	*w_str;
+
+	w_str = arg->s[flags->index_arg[i[1]]];
+	if (w_str[0])
+			*str = ft_strdup_free(printable_w(w_str[0], arg));
+		nb_octet = (w_str[0] <= 127 && w_str[0] >= 0) ? 1 :
+			(nbase_len(w_str[0], 2) / 6) + 1;
+	while (w_str[++i[0]])
+	{
+		nb_octet = nb_octet + (nbase_len(w_str[i[0]], 2) / 6) + 1;
+		if ((nb_octet <= flags->precision[i[1]] && arg->precision[i[1]] == 1)
+			|| arg->precision[i[1]] == 0)
+		{
+			c = ft_strdup_free(printable_w(w_str[i[0]], arg));
+			if (mblen(c, MB_CUR_MAX) == -1)
+			{
+				ft_strdel(&c);
+				ft_strdel(str);
+				*str = ft_strdup("");
+				arg->ret = -1;
+				return (printing(str, arg, flags, i[1]));
+			}
+			*str = ft_strjoin_free(*str, c, 0);
+		}
+	}
+	// return (0);
+}
+
+int		print_string(t_arg *arg, t_flags *flags, int num)
 {
 	char	*str;
 	int		*w_str;
-	int		i;
-	int		nb_octet;
-	char	*c;
+	int		i[2];
+	// int		nb_octet;
+	// char	*c;
 
-	i = 0;
+	i[0] = 0;
+	i[1] = num;
 	w_str = arg->s[flags->index_arg[num]];
 	setlocale(LC_ALL, "");
 	if ((int)w_str >= 0 && (int)w_str <= 127 && (arg->type[num] == 'S'
@@ -101,38 +132,35 @@ int	print_string(t_arg *arg, t_flags *flags, int num)
 		str = ft_strdup((char*)arg->s[flags->index_arg[num]]);
 	else
 	{
-		if (w_str[i])
-			str = ft_strdup_free(printable_w(w_str[i], arg));
-		if (w_str[i] <= 127 && w_str[i] >= 0)
-			nb_octet = 1;
-		else
-			nb_octet = (nbase_len(w_str[i], 2) / 6) + 1;
-		i++;
-		while (w_str[i])
-		{
-			nb_octet = nb_octet + (nbase_len(w_str[i], 2) / 6) + 1;
-			if ((nb_octet <= flags->precision[num] && arg->precision[num] == 1)
-				|| arg->precision[num] == 0)
-			{
-				c = ft_strdup_free(printable_w(w_str[i], arg));
-				if (mblen(c, MB_CUR_MAX) == -1)
-				{
-					ft_strdel(&c);
-					ft_strdel(&str);
-					str = ft_strdup("");
-					arg->ret = -1;
-					return (printing(&str, arg, flags, num));
-				}
-				str = ft_strjoin_free(str, c, 0);
-			}
-			i++;
-		}
+		blabla(arg, flags, i, &str);
+		// if (w_str[0])
+		// 	str = ft_strdup_free(printable_w(w_str[0], arg));
+		// nb_octet = (w_str[0] <= 127 && w_str[0] >= 0) ? 1 :
+		// 	(nbase_len(w_str[0], 2) / 6) + 1;
+		// while (w_str[++i])
+		// {
+		// 	nb_octet = nb_octet + (nbase_len(w_str[i], 2) / 6) + 1;
+		// 	if ((nb_octet <= flags->precision[num] && arg->precision[num] == 1)
+		// 		|| arg->precision[num] == 0)
+		// 	{
+		// 		c = ft_strdup_free(printable_w(w_str[i], arg));
+		// 		if (mblen(c, MB_CUR_MAX) == -1)
+		// 		{
+		// 			ft_strdel(&c);
+		// 			ft_strdel(&str);
+		// 			str = ft_strdup("");
+		// 			arg->ret = -1;
+		// 			return (printing(&str, arg, flags, num));
+		// 		}
+		// 		str = ft_strjoin_free(str, c, 0);
+		// 	}
+		// }
 	}
 	str = pr_str(str, flags, arg, num);
 	return (printing(&str, arg, flags, num));
 }
 
-int	what_base(t_arg *arg, int num)
+int		what_base(t_arg *arg, int num)
 {
 	if (arg->type[num] == 'u' || arg->type[num] == 'U')
 		return (10);
@@ -143,7 +171,7 @@ int	what_base(t_arg *arg, int num)
 	return (0);
 }
 
-int	if_length(t_arg *arg, t_flags *flags, int num)
+int		if_length(t_arg *arg, t_flags *flags, int num)
 {
 	if (arg->length[num] == 1)
 		return (print_la(arg->type[num], arg, flags, num));
@@ -152,7 +180,7 @@ int	if_length(t_arg *arg, t_flags *flags, int num)
 	return (0);
 }
 
-int	print_arg(t_arg *arg, t_flags *flags, int num)
+int		print_arg(t_arg *arg, t_flags *flags, int num)
 {
 	char	*pct;
 	int		i;
@@ -163,13 +191,13 @@ int	print_arg(t_arg *arg, t_flags *flags, int num)
 		if (arg->type[num] == '%')
 		{
 			pct = ft_strdup("%");
-			return(printing(&pct, arg, flags, num));
+			return (printing(&pct, arg, flags, num));
 		}
 		while (tabf[i].cond1 && !ft_strchr(tabf[i].cond1, arg->type[num]))
 			++i;
 		if (tabf[i].cond2)
 			return (tabf[i].cond2 == 1 ? (tabf[i].f2(arg->type[num], arg, flags,
-			num)) : (tabf[i].f2(what_base(arg, num), arg, flags, num)));	
+			num)) : (tabf[i].f2(what_base(arg, num), arg, flags, num)));
 		else
 			return (tabf[i].f1(arg, flags, num));
 	}
