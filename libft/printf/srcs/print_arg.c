@@ -13,26 +13,6 @@
 #include "printf.h"
 #include "funct.h"
 
-char	*pr_str(char *str, t_flags *flags, t_arg *arg, int num)
-{
-	int		i;
-	int		j;
-
-	i = ft_strlen(str);
-	j = 0;
-	if (flags->precision[num] < i && arg->precision[num] == 1)
-	{
-		while (j < flags->precision[num])
-		{
-			j++;
-		}
-		str[j] = '\0';
-	}
-	if (mblen(str, MB_CUR_MAX) == -1)
-		str = ft_strdup_del("", str);
-	return (str);
-}
-
 void	verif_next_arg(t_arg *arg, t_flags *flags, int next)
 {
 	char *sw_next;
@@ -70,93 +50,6 @@ int		print_char(t_arg *arg, t_flags *flags, int num)
 		if (mblen(str, MB_CUR_MAX) == -1)
 			arg->ret = -1;
 	}
-	return (printing(&str, arg, flags, num));
-}
-
-void	blabla(t_arg *arg, t_flags *flags, int *i, char **str)
-{
-	char	*c;
-	int		nb_octet;
-	int 	*w_str;
-
-	w_str = arg->s[flags->index_arg[i[1]]];
-	if (w_str[0])
-			*str = ft_strdup_free(printable_w(w_str[0], arg));
-		nb_octet = (w_str[0] <= 127 && w_str[0] >= 0) ? 1 :
-			(nbase_len(w_str[0], 2) / 6) + 1;
-	while (w_str[++i[0]])
-	{
-		nb_octet = nb_octet + (nbase_len(w_str[i[0]], 2) / 6) + 1;
-		if ((nb_octet <= flags->precision[i[1]] && arg->precision[i[1]] == 1)
-			|| arg->precision[i[1]] == 0)
-		{
-			c = ft_strdup_free(printable_w(w_str[i[0]], arg));
-			if (mblen(c, MB_CUR_MAX) == -1)
-			{
-				ft_strdel(&c);
-				ft_strdel(str);
-				*str = ft_strdup("");
-				arg->ret = -1;
-				return (printing(str, arg, flags, i[1]));
-			}
-			*str = ft_strjoin_free(*str, c, 0);
-		}
-	}
-	// return (0);
-}
-
-int		print_string(t_arg *arg, t_flags *flags, int num)
-{
-	char	*str;
-	int		*w_str;
-	int		i[2];
-	// int		nb_octet;
-	// char	*c;
-
-	i[0] = 0;
-	i[1] = num;
-	w_str = arg->s[flags->index_arg[num]];
-	setlocale(LC_ALL, "");
-	if ((int)w_str >= 0 && (int)w_str <= 127 && (arg->type[num] == 'S'
-		|| (arg->type[num] == 's' && arg->length[num] == 1)))
-	{
-		str = ft_memalloc(sizeof(char) * (2));
-		str[0] = (int)w_str;
-	}
-	else if (arg->s[flags->index_arg[num]] == NULL)
-		str = ft_strdup("(null)");
-	else if (w_str[0] == 0)
-		str = ft_strdup("");
-	else if (arg->type[num] == 's' && arg->length[num] == 0
-			&& arg->s[flags->index_arg[num]] != NULL)
-		str = ft_strdup((char*)arg->s[flags->index_arg[num]]);
-	else
-	{
-		blabla(arg, flags, i, &str);
-		// if (w_str[0])
-		// 	str = ft_strdup_free(printable_w(w_str[0], arg));
-		// nb_octet = (w_str[0] <= 127 && w_str[0] >= 0) ? 1 :
-		// 	(nbase_len(w_str[0], 2) / 6) + 1;
-		// while (w_str[++i])
-		// {
-		// 	nb_octet = nb_octet + (nbase_len(w_str[i], 2) / 6) + 1;
-		// 	if ((nb_octet <= flags->precision[num] && arg->precision[num] == 1)
-		// 		|| arg->precision[num] == 0)
-		// 	{
-		// 		c = ft_strdup_free(printable_w(w_str[i], arg));
-		// 		if (mblen(c, MB_CUR_MAX) == -1)
-		// 		{
-		// 			ft_strdel(&c);
-		// 			ft_strdel(&str);
-		// 			str = ft_strdup("");
-		// 			arg->ret = -1;
-		// 			return (printing(&str, arg, flags, num));
-		// 		}
-		// 		str = ft_strjoin_free(str, c, 0);
-		// 	}
-		// }
-	}
-	str = pr_str(str, flags, arg, num);
 	return (printing(&str, arg, flags, num));
 }
 

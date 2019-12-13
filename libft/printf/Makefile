@@ -22,6 +22,7 @@ SRCS = 	ft_printf.c \
 		init_flags.c \
 		extract_value.c \
 		print_arg.c \
+		print_string.c \
 		printing.c \
 		print_w.c \
 		print_base.c \
