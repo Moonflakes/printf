@@ -15,7 +15,7 @@
 
 # include "printf.h"
 
-t_tf    tabf[]  =
+t_tf    tabf[] =
 {
     {"cC\0", 0, &print_char, NULL},
     {"dDi\0", 0, &print_nb, NULL},

@@ -25,6 +25,7 @@ SRCS = 	ft_printf.c \
 		print_string.c \
 		printing.c \
 		print_w.c \
+		manage_octet.c \
 		print_base.c \
 		print_f.c \
 		print_e.c \

@@ -112,6 +112,8 @@ int						extract_value(char *s, t_arg *arg, t_flags *flags,
 
 int						print_char(t_arg *arg, t_flags *flags, int num);
 char					*printable_w(long long w, t_arg *arg);
+void					octet_to_str(t_arg *arg, char *str, int nb_octet,
+						long long w);
 int						print_string(t_arg *arg, t_flags *flags, int num);
 int						print_nb(t_arg *arg, t_flags *flags, int num);
 int						print_base(char base, t_arg *arg, t_flags *flags,

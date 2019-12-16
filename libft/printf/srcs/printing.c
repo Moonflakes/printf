@@ -23,12 +23,14 @@ int	printing(char **str, t_arg *arg, t_flags *flags, int num)
 	{
 		*str = process_flags(*str, arg, flags, num);
 		if (!arg->i[flags->index_arg[num]] && (arg->type[num] == 'c' ||
-			arg->type[num] == 'C') && flags->left[num]) {
+			arg->type[num] == 'C') && flags->left[num]) 
+		{
 			ft_putchar('\0');
 			ft_putstr(*str);
 		}
 		else if (!arg->i[flags->index_arg[num]] && (arg->type[num] == 'c' ||
-			arg->type[num] == 'C') && !flags->left[num]) {
+			arg->type[num] == 'C') && !flags->left[num]) 
+		{
 			a = ft_strlen(*str) - 1;
 			*str = a < 0 ? *str : ft_strsub_free(*str, 0, a);
 			ft_putstr(*str);

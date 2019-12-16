@@ -14,17 +14,16 @@
 
 void	round_char_hex(char **nb, int len)
 {
-	
 	if (nb[0][len - 1] == 'f')
-    {
-        nb[0][len - 1] = '0';
-        if (len - 1 > 0)
-    		round_char_hex(nb, --len);
-    }
+	{
+		nb[0][len - 1] = '0';
+		if (len - 1 > 0)
+			round_char_hex(nb, --len);
+	}
 	else if (nb[0][len - 1] == '9')
 		nb[0][len - 1] = 'a';
-    else
-        nb[0][len - 1] = nb[0][len - 1] + 1;
+	else
+		nb[0][len - 1] = nb[0][len - 1] + 1;
 }
 
 char	*round_hex(char *hex)
