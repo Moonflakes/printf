@@ -29,7 +29,7 @@ static void	ft_recursive(char *str, long long n, int base, unsigned long long i)
 		*str = n - 10 + 'A';
 }
 
-char	*ft_itoabase(long long n, int base)
+char		*ft_itoabase(long long n, int base)
 {
 	unsigned long long	i;
 	int					sign;

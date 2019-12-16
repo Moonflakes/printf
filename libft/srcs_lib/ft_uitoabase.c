@@ -33,8 +33,8 @@ static void	ft_recursive(char *str, unsigned long long jack, unsigned int base,
 char		*ft_uitoabase(unsigned long long jack, unsigned int base)
 {
 	unsigned long long	i;
-	char	*str;
-	int		count;
+	char				*str;
+	int					count;
 
 	i = jack;
 	count = 0;

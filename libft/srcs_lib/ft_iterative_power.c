@@ -26,7 +26,5 @@ long long	ft_iterative_power(long long nb, long long power)
 		nb = r * nb;
 		power--;
 	}
-//	ft_putnbr(nb);
-//	ft_putendl(" : itpow");
 	return (nb);
 }

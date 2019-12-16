@@ -16,10 +16,6 @@ long double	ft_power_double(long double nb, long long power)
 {
 	long double	r;
 
-//	ft_putnbr(nb);
-//	ft_putendl(" : nb");
-//	ft_putnbr(power);
-//	ft_putendl(" : power");
 	r = nb;
 	if (power == 0 || nb == 1)
 		return (1);
@@ -36,12 +32,8 @@ long double	ft_power_double(long double nb, long long power)
 		while (1 < power)
 		{
 			nb = r * nb;
-//			ft_putunsignednbr(nb);
-//			ft_putendl(" : nb la");
 			power--;
 		}
 	}
-//	ft_putunsignednbr(nb);
-//	ft_putendl(" : nb");
 	return (nb);
 }

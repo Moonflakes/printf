@@ -12,7 +12,7 @@
 
 #include "../includes/libft.h"
 
-char *ft_itoa(long long n)
+char	*ft_itoa(long long n)
 {
 	unsigned long long	a;
 	char				*str;
@@ -23,11 +23,8 @@ char *ft_itoa(long long n)
 	len = 1;
 	sign = n < 0 ? 1 : 0;
 	n < 0 ? n = -n : 0;
-	while (a - 1 < (unsigned long long)n)
-	{
+	while (a - 1 < (unsigned long long)n && ++len)
 		a *= 10;
-		++len;
-	}
 	a /= 10;
 	if (!(str = ft_memalloc(sizeof(char) * (len + sign + 1))))
 		return (NULL);

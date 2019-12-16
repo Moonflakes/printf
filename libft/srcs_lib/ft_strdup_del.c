@@ -18,8 +18,8 @@ char	*ft_strdup_del(const char *s1, char *s2)
 	char	*dest;
 
 	dest = NULL;
-    if (s2)
-        ft_strdel(&s2);
+	if (s2)
+		ft_strdel(&s2);
 	if (s1)
 	{
 		len = ft_strlen(s1);

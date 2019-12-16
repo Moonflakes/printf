@@ -28,4 +28,3 @@ long double	ft_iterative_power_double(long double nb, long double power)
 	}
 	return (nb);
 }
-

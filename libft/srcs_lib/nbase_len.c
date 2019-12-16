@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-long long      nbase_len(long long nb, long long base)
+long long	nbase_len(long long nb, long long base)
 {
 	long long i;
 

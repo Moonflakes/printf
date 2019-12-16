@@ -96,4 +96,3 @@ int		print_string(t_arg *arg, t_flags *flags, int num)
 	str = pr_str(str, flags, arg, num);
 	return (printing(&str, arg, flags, num));
 }
-
