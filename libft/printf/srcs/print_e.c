@@ -30,7 +30,7 @@ char	*char_e(long double e, int precision, int *exp)
 		k = e;
 	}
 	nb[i] = '\0';
-	i =  (nb[0] == 0) ? 1 : 0;
+	i = (nb[0] == 0) ? 1 : 0;
 	return (round_d(nb, exp, 0));
 }
 

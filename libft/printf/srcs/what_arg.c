@@ -36,29 +36,26 @@ int		nb_prct(const char *format)
 
 int		len_and_type(const char *s, t_arg *arg, int num, t_flags *flags)
 {
-	int		i;
-	int		j;
+	int		i[2];
 	char	*type;
 
 	type = NULL;
 	if (!(type = ft_strdup("cCdDioOuUbxXeEfFgGaAnpsSrk")))
 		return (0);
-	i = -1;
-	while (s[++i])
+	i[0] = -1;
+	i[1] = num;
+	while (s[++i[0]])
 	{
-		j = -1;
-		while (type[++j])
-			if (s[i] == type[j])
-				arg->type[num] = type[j];
-		if (s[i] == '%' && arg->type)
+		check_type(type, i, arg, s);
+		if (s[i[0]] == '%' && arg->type)
 			arg->type[num] = '%';
 		if (arg->type && arg->type[num])
 		{
-			arg->size[num] = i + 1;
+			arg->size[num] = i[0] + 1;
 			arg->strp[num] = ft_strndup(s, arg->size[num]);
 			process_strp(arg, num, flags);
 			ft_strdel(&type);
-			return (i + 1);
+			return (i[0] + 1);
 		}
 	}
 	ft_strdel(&type);
@@ -72,10 +69,9 @@ void	set_nb_arg(t_arg *arg, t_flags *flags)
 	i = 0;
 	while (i < arg->nb_prct)
 	{
-			arg->nb_arg = flags->index_arg[i] + 1;
+		arg->nb_arg = flags->index_arg[i] + 1;
 		i++;
 	}
-	
 }
 
 void	set_index_arg(t_arg *arg, t_flags *flags)

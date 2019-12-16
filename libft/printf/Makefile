@@ -18,6 +18,7 @@ SRCS = 	ft_printf.c \
 		mallocchar.c \
 		init_struct.c \
 		what_arg.c \
+		check_type.c \
 		stock_arg.c \
 		init_flags.c \
 		extract_value.c \
@@ -28,6 +29,7 @@ SRCS = 	ft_printf.c \
 		manage_octet.c \
 		print_base.c \
 		print_f.c \
+		utils_f.c \
 		print_e.c \
 		print_g.c \
 		utils_d.c \

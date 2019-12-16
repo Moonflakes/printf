@@ -15,7 +15,7 @@
 int		exposant_d(long double d)
 {
 	int	exp;
-	
+
 	exp = 0;
 	if (d < 1)
 	{
@@ -104,7 +104,7 @@ char	*add_exp(char *nb, int exp, char e, int sign)
 	int		i;
 
 	len = ft_strlen(nb) + 3;
-	sign_exp = (exp < 0) ? '-': '+';
+	sign_exp = (exp < 0) ? '-' : '+';
 	exp = abs_value(exp);
 	i = -1;
 	if (!(nbexp = (char*)ft_memalloc(sizeof(char) * len + 1)))

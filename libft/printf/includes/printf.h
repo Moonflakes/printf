@@ -140,6 +140,8 @@ void					num_arg(const char *format, t_arg *arg, t_flags *flags);
 int						nb_prct(const char *format);
 int						len_and_type(const char *s, t_arg *arg, int num,
 						t_flags *flags);
+void					check_type(char *type, int *i, t_arg *arg,
+						const char *s);
 int						extract_value(char *s, t_arg *arg, t_flags *flags,
 						int num);
 void					width(t_arg *arg, t_flags *flags, int num);
@@ -173,5 +175,8 @@ int						abs_value(int value);
 char					*round_d(char *nb, int *exp, int d);
 char					*round_hex(char *hex);
 int						reset_nb(char **nb, int i, int precision, int len);
+int						ft_doublen(long double nb);
+int						start_d(long double n, char **nb);
+void					end_d(long double *d, int precision, int *i, char **nb);
 
 #endif

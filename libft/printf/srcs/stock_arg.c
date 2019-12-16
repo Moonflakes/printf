@@ -19,11 +19,11 @@ void	extract_arg(va_list ap, t_arg *arg, t_flags *flags, int num)
 	if (flags->asterix_p[num] == 1)
 		flags->precision[num] = va_arg(ap, int);
 	if (ft_strchr("cCdDi", arg->type[num]))
-		arg->i[flags->index_arg[num]] = (arg->length[num] == 0) ? 
+		arg->i[flags->index_arg[num]] = (arg->length[num] == 0) ?
 									va_arg(ap, int) : va_arg(ap, long long);
 	if (ft_strchr("uUoOxXpb", arg->type[num]))
 		arg->ull[flags->index_arg[num]] = (arg->length[num] == 0 &&
-		arg->type[num] != 'p') ? 
+		arg->type[num] != 'p') ?
 					va_arg(ap, unsigned int) : va_arg(ap, unsigned long long);
 	if (ft_strchr("sSn", arg->type[num]))
 		arg->s[flags->index_arg[num]] = va_arg(ap, int*);
@@ -54,9 +54,8 @@ void	stock_arg(va_list ap, t_arg *arg, t_flags *flags)
 				i++;
 			}
 		}
-		else
-			if (arg->type)
-				extract_arg(ap, arg, flags, num);
+		else if (arg->type)
+			extract_arg(ap, arg, flags, num);
 		num++;
 	}
 }
